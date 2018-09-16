@@ -32,8 +32,10 @@ public class MenuMaterias extends javax.swing.JFrame {
         BTNmodificar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         BTNalta = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Menu Materias");
 
         jPanel3.setBackground(new java.awt.Color(97, 212, 195));
 
@@ -62,9 +64,9 @@ public class MenuMaterias extends javax.swing.JFrame {
 
         BTNmodificar.setText("Modificar");
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Aaron\\Desktop\\iconos\\Materias2.png")); // NOI18N
-
         BTNalta.setText("Registrar");
+
+        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\horario\\Proyecto-Horario\\iconos\\icono-materia.png")); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -74,15 +76,18 @@ public class MenuMaterias extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addComponent(BTNalta)
-                        .addGap(52, 52, 52)
-                        .addComponent(BTNmodificar)
-                        .addGap(57, 57, 57)
-                        .addComponent(BTNeliminar))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(154, 154, 154)
-                        .addComponent(jLabel1)))
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(34, 34, 34)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel2)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(BTNalta)
+                                .addGap(52, 52, 52)
+                                .addComponent(BTNmodificar)))
+                        .addGap(57, 57, 57)
+                        .addComponent(BTNeliminar)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -96,7 +101,9 @@ public class MenuMaterias extends javax.swing.JFrame {
                     .addComponent(BTNeliminar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel1)
-                .addGap(0, 38, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel2)
+                .addContainerGap(49, Short.MAX_VALUE))
         );
 
         pack();
@@ -142,6 +149,7 @@ public class MenuMaterias extends javax.swing.JFrame {
     private javax.swing.JButton BTNeliminar;
     private javax.swing.JButton BTNmodificar;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel3;
     // End of variables declaration//GEN-END:variables

@@ -32,8 +32,10 @@ public class MenuMaestro extends javax.swing.JFrame {
         BTNmodificar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         BTNalta = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Menu Maestros");
 
         jPanel3.setBackground(new java.awt.Color(97, 212, 195));
 
@@ -62,9 +64,9 @@ public class MenuMaestro extends javax.swing.JFrame {
 
         BTNmodificar.setText("Modificar");
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Aaron\\Desktop\\iconos\\profesor.png")); // NOI18N
-
         BTNalta.setText("Registrar");
+
+        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\horario\\Proyecto-Horario\\iconos\\icono-profesor.png")); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -74,6 +76,7 @@ public class MenuMaestro extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel2)
                     .addComponent(jLabel1)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(BTNalta)
@@ -94,7 +97,9 @@ public class MenuMaestro extends javax.swing.JFrame {
                     .addComponent(BTNeliminar))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel1)
-                .addGap(0, 45, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2)
+                .addContainerGap(59, Short.MAX_VALUE))
         );
 
         pack();
@@ -141,6 +146,7 @@ public class MenuMaestro extends javax.swing.JFrame {
     private javax.swing.JButton BTNeliminar;
     private javax.swing.JButton BTNmodificar;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel3;
     // End of variables declaration//GEN-END:variables

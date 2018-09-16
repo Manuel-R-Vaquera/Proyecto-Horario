@@ -32,8 +32,10 @@ public class MenuAula extends javax.swing.JFrame {
         BTNalta = new javax.swing.JButton();
         BTNeliminar = new javax.swing.JButton();
         BTNmodificar = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Menu Aulas");
 
         jPanel3.setBackground(new java.awt.Color(97, 212, 195));
 
@@ -58,13 +60,13 @@ public class MenuAula extends javax.swing.JFrame {
                 .addGap(30, 30, 30))
         );
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Aaron\\Desktop\\iconos\\Materias.png")); // NOI18N
-
         BTNalta.setText("Registrar");
 
         BTNeliminar.setText("Eliminar");
 
         BTNmodificar.setText("Modificar");
+
+        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\horario\\Proyecto-Horario\\iconos\\icono-pc.png")); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -72,17 +74,20 @@ public class MenuAula extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addComponent(BTNalta)
-                .addGap(53, 53, 53)
-                .addComponent(BTNmodificar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(BTNeliminar)
-                .addGap(46, 46, 46))
-            .addGroup(layout.createSequentialGroup()
                 .addGap(147, 147, 147)
                 .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel2)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(BTNalta)
+                        .addGap(53, 53, 53)
+                        .addComponent(BTNmodificar)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(BTNeliminar)
+                .addGap(46, 46, 46))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -95,7 +100,9 @@ public class MenuAula extends javax.swing.JFrame {
                     .addComponent(BTNeliminar))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel1)
-                .addGap(0, 38, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2)
+                .addGap(0, 41, Short.MAX_VALUE))
         );
 
         pack();
@@ -141,6 +148,7 @@ public class MenuAula extends javax.swing.JFrame {
     private javax.swing.JButton BTNeliminar;
     private javax.swing.JButton BTNmodificar;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel3;
     // End of variables declaration//GEN-END:variables
