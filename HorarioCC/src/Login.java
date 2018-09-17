@@ -140,14 +140,15 @@ public class Login extends javax.swing.JFrame {
     private void btningresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btningresarActionPerformed
         // TODO add your handling code here:
         try {
-String usuario ="admin";
+        String usuario ="admin";
         String Contraseña="1234";
         String Pass =new String(txtpassword.getPassword());
         
         if (txtusuario.getText().equals(usuario  )&& Pass.equals(Contraseña)) {
-            JOptionPane.showMessageDialog(null, "Seccion iniciada como administrador");
-
-            
+            JOptionPane.showMessageDialog(null, "Bienvenido Administrador");
+            MenuInicio mMenuInicio = new MenuInicio();
+            mMenuInicio.show();
+            this.hide();
         }
             
         } catch (Exception e) {
