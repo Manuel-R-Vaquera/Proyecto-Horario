@@ -98,7 +98,7 @@ public class BajaMateria extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(97, 212, 195));
 
-        jLabel8.setIcon(new javax.swing.ImageIcon("C:\\horario\\Proyecto-Horario\\iconos\\materia.png")); // NOI18N
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGENES/materia.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);

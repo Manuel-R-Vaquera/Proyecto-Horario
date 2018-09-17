@@ -66,7 +66,7 @@ public class MenuAula extends javax.swing.JFrame {
 
         BTNmodificar.setText("Modificar");
 
-        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\horario\\Proyecto-Horario\\iconos\\icono-pc.png")); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGENES/icono-pc.png"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

@@ -67,7 +67,7 @@ public class BajaMaestro extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(97, 212, 195));
 
-        jLabel5.setIcon(new javax.swing.ImageIcon("C:\\horario\\Proyecto-Horario\\iconos\\maestro.png")); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGENES/maestro.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);

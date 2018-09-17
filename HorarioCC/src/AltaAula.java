@@ -95,7 +95,7 @@ public class AltaAula extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(97, 212, 195));
 
-        jLabel8.setIcon(new javax.swing.ImageIcon("C:\\horario\\Proyecto-Horario\\iconos\\cc.png")); // NOI18N
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGENES/cc.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);

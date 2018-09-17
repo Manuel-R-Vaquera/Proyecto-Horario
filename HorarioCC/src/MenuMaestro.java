@@ -66,7 +66,7 @@ public class MenuMaestro extends javax.swing.JFrame {
 
         BTNalta.setText("Registrar");
 
-        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\horario\\Proyecto-Horario\\iconos\\icono-profesor.png")); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGENES/icono-profesor.png"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

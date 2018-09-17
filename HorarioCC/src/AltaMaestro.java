@@ -84,7 +84,7 @@ public class AltaMaestro extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(97, 212, 195));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\horario\\Proyecto-Horario\\iconos\\maestro.png")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGENES/maestro.png"))); // NOI18N
         jLabel1.setText("jLabel1");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);

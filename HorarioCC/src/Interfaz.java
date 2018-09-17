@@ -66,12 +66,12 @@ public class Interfaz extends javax.swing.JFrame {
 
         BTNmaestros.setBackground(new java.awt.Color(255, 255, 255));
         BTNmaestros.setForeground(new java.awt.Color(255, 255, 255));
-        BTNmaestros.setIcon(new javax.swing.ImageIcon("C:\\Users\\Aaron\\Desktop\\iconos\\profesor.png")); // NOI18N
+        BTNmaestros.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGENES/icono-profesor.png"))); // NOI18N
         BTNmaestros.setBorder(null);
 
         BTNcc.setBackground(new java.awt.Color(255, 255, 255));
         BTNcc.setForeground(new java.awt.Color(255, 255, 255));
-        BTNcc.setIcon(new javax.swing.ImageIcon("C:\\Users\\Aaron\\Desktop\\iconos\\Materias.png")); // NOI18N
+        BTNcc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGENES/icono-pc.png"))); // NOI18N
         BTNcc.setBorder(null);
         BTNcc.setBorderPainted(false);
 
@@ -81,7 +81,7 @@ public class Interfaz extends javax.swing.JFrame {
         jLabel4.setToolTipText("");
 
         BTNhorario.setBackground(new java.awt.Color(255, 255, 255));
-        BTNhorario.setIcon(new javax.swing.ImageIcon("C:\\Users\\Aaron\\Desktop\\iconos\\icons8_Clock_96px.png")); // NOI18N
+        BTNhorario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGENES/icono.-horario.png"))); // NOI18N
         BTNhorario.setBorder(null);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
@@ -91,7 +91,7 @@ public class Interfaz extends javax.swing.JFrame {
 
         BTNmaterias.setBackground(new java.awt.Color(255, 255, 255));
         BTNmaterias.setForeground(new java.awt.Color(255, 255, 255));
-        BTNmaterias.setIcon(new javax.swing.ImageIcon("C:\\Users\\Aaron\\Desktop\\iconos\\Materias2.png")); // NOI18N
+        BTNmaterias.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGENES/icono-materia.png"))); // NOI18N
         BTNmaterias.setBorder(null);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N

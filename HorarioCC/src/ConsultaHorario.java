@@ -40,7 +40,7 @@ public class ConsultaHorario extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(97, 212, 195));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\horario\\Proyecto-Horario\\iconos\\horario.png")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGENES/horario.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
