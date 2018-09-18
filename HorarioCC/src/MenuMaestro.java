@@ -50,7 +50,7 @@ public class MenuMaestro extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addComponent(jLabel5)
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -61,10 +61,25 @@ public class MenuMaestro extends javax.swing.JFrame {
         );
 
         BTNeliminar.setText("Eliminar");
+        BTNeliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BTNeliminarActionPerformed(evt);
+            }
+        });
 
         BTNmodificar.setText("Modificar");
+        BTNmodificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BTNmodificarActionPerformed(evt);
+            }
+        });
 
         BTNalta.setText("Registrar");
+        BTNalta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BTNaltaActionPerformed(evt);
+            }
+        });
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGENES/icono-profesor.png"))); // NOI18N
 
@@ -76,12 +91,14 @@ public class MenuMaestro extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel2)
                     .addComponent(jLabel1)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(BTNalta)
-                        .addGap(53, 53, 53)
-                        .addComponent(BTNmodificar)))
+                        .addGap(26, 26, 26)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(BTNmodificar))
+                        .addGap(27, 27, 27)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(BTNeliminar)
                 .addGap(39, 39, 39))
@@ -97,13 +114,31 @@ public class MenuMaestro extends javax.swing.JFrame {
                     .addComponent(BTNeliminar))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel2)
-                .addContainerGap(59, Short.MAX_VALUE))
+                .addContainerGap(53, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void BTNaltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNaltaActionPerformed
+        // TODO add your handling code here:
+        AltaMaestro mAltaMaestro = new AltaMaestro();
+        mAltaMaestro.show();
+    }//GEN-LAST:event_BTNaltaActionPerformed
+
+    private void BTNmodificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNmodificarActionPerformed
+        // TODO add your handling code here:
+        ModificarMaestro mModificarMaestro = new ModificarMaestro();
+        mModificarMaestro.show();
+    }//GEN-LAST:event_BTNmodificarActionPerformed
+
+    private void BTNeliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNeliminarActionPerformed
+        // TODO add your handling code here:
+        BajaMaestro mBajaMaestro = new BajaMaestro();
+        mBajaMaestro.show();
+    }//GEN-LAST:event_BTNeliminarActionPerformed
 
     /**
      * @param args the command line arguments

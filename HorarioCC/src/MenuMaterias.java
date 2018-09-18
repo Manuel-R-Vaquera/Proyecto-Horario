@@ -50,7 +50,7 @@ public class MenuMaterias extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(47, 47, 47)
                 .addComponent(jLabel5)
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -61,10 +61,25 @@ public class MenuMaterias extends javax.swing.JFrame {
         );
 
         BTNeliminar.setText("Eliminar");
+        BTNeliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BTNeliminarActionPerformed(evt);
+            }
+        });
 
         BTNmodificar.setText("Modificar");
+        BTNmodificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BTNmodificarActionPerformed(evt);
+            }
+        });
 
         BTNalta.setText("Registrar");
+        BTNalta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BTNaltaActionPerformed(evt);
+            }
+        });
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGENES/icono-materia.png"))); // NOI18N
 
@@ -80,14 +95,14 @@ public class MenuMaterias extends javax.swing.JFrame {
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(34, 34, 34)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(BTNalta)
+                        .addGap(47, 47, 47)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(BTNalta)
-                                .addGap(52, 52, 52)
-                                .addComponent(BTNmodificar)))
-                        .addGap(57, 57, 57)
-                        .addComponent(BTNeliminar)))
+                                .addComponent(BTNmodificar)
+                                .addGap(62, 62, 62)
+                                .addComponent(BTNeliminar)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -108,6 +123,24 @@ public class MenuMaterias extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void BTNeliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNeliminarActionPerformed
+        // TODO add your handling code here:
+        MenuMaterias mMenuMaterias = new MenuMaterias();
+            mBajaMateria.show();
+    }//GEN-LAST:event_BTNeliminarActionPerformed
+
+    private void BTNaltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNaltaActionPerformed
+        // TODO add your handling code here:
+        MenuMaterias mMenuMaterias = new MenuMaterias();
+            mAltaMateria.show();
+    }//GEN-LAST:event_BTNaltaActionPerformed
+
+    private void BTNmodificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNmodificarActionPerformed
+        // TODO add your handling code here:
+        MenuMaterias mMenuMaterias = new MenuMaterias();
+            mModificarMateria.show();
+    }//GEN-LAST:event_BTNmodificarActionPerformed
 
     /**
      * @param args the command line arguments
