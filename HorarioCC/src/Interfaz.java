@@ -68,6 +68,11 @@ public class Interfaz extends javax.swing.JFrame {
         BTNmaestros.setForeground(new java.awt.Color(255, 255, 255));
         BTNmaestros.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGENES/icono-profesor.png"))); // NOI18N
         BTNmaestros.setBorder(null);
+        BTNmaestros.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BTNmaestrosActionPerformed(evt);
+            }
+        });
 
         BTNcc.setBackground(new java.awt.Color(255, 255, 255));
         BTNcc.setForeground(new java.awt.Color(255, 255, 255));
@@ -191,6 +196,10 @@ public class Interfaz extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void BTNmaestrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNmaestrosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BTNmaestrosActionPerformed
 
     /**
      * @param args the command line arguments

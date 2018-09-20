@@ -1,3 +1,6 @@
+
+import javax.swing.JOptionPane;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -10,6 +13,8 @@
  */
 public class BajaMaestro extends javax.swing.JFrame {
 
+       Maestro mMaestro = new Maestro();
+       Conexion mConexion = new Conexion();
     /**
      * Creates new form BajaMaestro
      */
@@ -135,6 +140,10 @@ public class BajaMaestro extends javax.swing.JFrame {
 
     private void BTNaceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNaceptarActionPerformed
         // TODO add your handling code here:
+        
+        if(this.)
+        
+        
     }//GEN-LAST:event_BTNaceptarActionPerformed
 
     /**
@@ -168,7 +177,7 @@ public class BajaMaestro extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new BajaMaestro().setVisible(true);
-            }
+            
         });
     }
 
