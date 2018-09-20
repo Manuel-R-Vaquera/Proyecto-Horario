@@ -126,19 +126,19 @@ public class MenuMaterias extends javax.swing.JFrame {
 
     private void BTNeliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNeliminarActionPerformed
         // TODO add your handling code here:
-        MenuMaterias mMenuMaterias = new MenuMaterias();
+        BajaMateria mBajaMateria = new BajaMateria();
             mBajaMateria.show();
     }//GEN-LAST:event_BTNeliminarActionPerformed
 
     private void BTNaltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNaltaActionPerformed
         // TODO add your handling code here:
-        MenuMaterias mMenuMaterias = new MenuMaterias();
+        AltaMateria mAltaMateria = new AltaMateria();
             mAltaMateria.show();
     }//GEN-LAST:event_BTNaltaActionPerformed
 
     private void BTNmodificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNmodificarActionPerformed
         // TODO add your handling code here:
-        MenuMaterias mMenuMaterias = new MenuMaterias();
+        ModificarMateria mModificarMateria = new ModificarMateria();
             mModificarMateria.show();
     }//GEN-LAST:event_BTNmodificarActionPerformed
 
