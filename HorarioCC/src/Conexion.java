@@ -26,7 +26,7 @@ public class Conexion {
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             conexion = DriverManager.getConnection(
-                    "jdbc:mysql://localhost/horariocc", "root", "");
+                    "jdbc:mysql://localhost:8889/horariocc", "root", "root");
             if (conexion != null) {
                 return true;
             } else {
@@ -36,6 +36,12 @@ public class Conexion {
             e.printStackTrace();
             return false;
         }
+    }
+    
+        public Connection getConexion() {
+
+        return this.conexion;
+
     }
     
     public void desconectar() {
@@ -129,8 +135,10 @@ public class Conexion {
         Statement consulta;
         try{
             consulta = conexion.createStatement();
-            consulta.execute("INSERT INTO horariocc.aula (ID_Aula, Nombre_Aula)" + 
-                    "VALUES(null, '" + mAula.getID_Aula()+ "'," +"'" +mAula.getNombre_Aula()+ "');");
+            consulta.execute("INSERT INTO horariocc"
+                    + "(ID_Aula, Nombre_Aula)" + 
+                    "VALUES(null, '" + mAula.getID_Aula()+ "'," 
+                    +"'" +mAula.getNombre_Aula()+ "');");
             return true;
         }catch(Exception e){
              e.printStackTrace();
