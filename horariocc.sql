@@ -1,20 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 4.1.14
--- http://www.phpmyadmin.net
+-- version 4.7.7
+-- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 15-09-2018 a las 23:27:30
--- Versión del servidor: 5.6.17
--- Versión de PHP: 5.5.12
+-- Servidor: localhost
+-- Tiempo de generación: 20-09-2018 a las 16:47:00
+-- Versión del servidor: 5.6.38-log
+-- Versión de PHP: 7.2.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
 
 --
 -- Base de datos: `horariocc`
@@ -26,13 +20,10 @@ SET time_zone = "+00:00";
 -- Estructura de tabla para la tabla `aula`
 --
 
-CREATE TABLE IF NOT EXISTS `aula` (
-  `ID_Aula` int(10) NOT NULL AUTO_INCREMENT,
-  `Nombre_Aula` varchar(30) DEFAULT NULL,
-  PRIMARY KEY (`ID_Aula`),
-  UNIQUE KEY `ID_Aula` (`ID_Aula`),
-  KEY `ID_Aula_2` (`ID_Aula`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+CREATE TABLE `aula` (
+  `ID_Aula` int(10) NOT NULL,
+  `Nombre_Aula` varchar(30) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -40,13 +31,10 @@ CREATE TABLE IF NOT EXISTS `aula` (
 -- Estructura de tabla para la tabla `maestros`
 --
 
-CREATE TABLE IF NOT EXISTS `maestros` (
-  `ID_Maestro` int(10) NOT NULL AUTO_INCREMENT,
-  `Nombre_Maestro` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`ID_Maestro`),
-  UNIQUE KEY `ID_Maestro` (`ID_Maestro`),
-  KEY `ID_Maestro_2` (`ID_Maestro`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+CREATE TABLE `maestros` (
+  `ID_Maestro` int(10) NOT NULL,
+  `Nombre_Maestro` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -54,38 +42,74 @@ CREATE TABLE IF NOT EXISTS `maestros` (
 -- Estructura de tabla para la tabla `materia`
 --
 
-CREATE TABLE IF NOT EXISTS `materia` (
-  `ID_Materia` int(10) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `materia` (
+  `ID_Materia` int(10) NOT NULL,
   `Nombre_Materia` varchar(50) DEFAULT NULL,
   `Grado` int(2) DEFAULT NULL,
   `Carrera` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`ID_Materia`),
-  UNIQUE KEY `ID_Materia` (`ID_Materia`),
-  KEY `ID_Materia_2` (`ID_Materia`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  `ID_Maestro` int(10) NOT NULL,
+  `ID_Aula` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Índices para tablas volcadas
+--
+
+--
+-- Indices de la tabla `aula`
+--
+ALTER TABLE `aula`
+  ADD PRIMARY KEY (`ID_Aula`),
+  ADD UNIQUE KEY `ID_Aula` (`ID_Aula`),
+  ADD KEY `ID_Aula_2` (`ID_Aula`);
+
+--
+-- Indices de la tabla `maestros`
+--
+ALTER TABLE `maestros`
+  ADD PRIMARY KEY (`ID_Maestro`),
+  ADD UNIQUE KEY `ID_Maestro` (`ID_Maestro`),
+  ADD KEY `ID_Maestro_2` (`ID_Maestro`);
+
+--
+-- Indices de la tabla `materia`
+--
+ALTER TABLE `materia`
+  ADD PRIMARY KEY (`ID_Materia`),
+  ADD UNIQUE KEY `ID_Materia` (`ID_Materia`),
+  ADD KEY `ID_Materia_2` (`ID_Materia`),
+  ADD KEY `MaestroMateria` (`ID_Maestro`),
+  ADD KEY `AulaMateria` (`ID_Aula`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `aula`
+--
+ALTER TABLE `aula`
+  MODIFY `ID_Aula` int(10) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `maestros`
+--
+ALTER TABLE `maestros`
+  MODIFY `ID_Maestro` int(10) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `materia`
+--
+ALTER TABLE `materia`
+  MODIFY `ID_Materia` int(10) NOT NULL AUTO_INCREMENT;
 
 --
 -- Restricciones para tablas volcadas
 --
 
 --
--- Filtros para la tabla `aula`
---
-ALTER TABLE `aula`
-  ADD CONSTRAINT `Aula-Materia` FOREIGN KEY (`ID_Aula`) REFERENCES `materia` (`ID_Materia`) ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `maestros`
---
-ALTER TABLE `maestros`
-  ADD CONSTRAINT `Maestro-Materia` FOREIGN KEY (`ID_Maestro`) REFERENCES `materia` (`ID_Materia`) ON UPDATE CASCADE;
-
---
 -- Filtros para la tabla `materia`
 --
 ALTER TABLE `materia`
-  ADD CONSTRAINT `Materia-Maestro` FOREIGN KEY (`ID_Materia`) REFERENCES `maestros` (`ID_Maestro`) ON UPDATE CASCADE;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+  ADD CONSTRAINT `AulaMateria` FOREIGN KEY (`ID_Aula`) REFERENCES `aula` (`ID_Aula`),
+  ADD CONSTRAINT `MaestroMateria` FOREIGN KEY (`ID_Maestro`) REFERENCES `maestros` (`ID_Maestro`);
