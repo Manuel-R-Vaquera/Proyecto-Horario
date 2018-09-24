@@ -6,21 +6,21 @@ import javax.swing.JOptionPane;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author Manzana
  */
 public class BajaMaestro extends javax.swing.JFrame {
 
-       Maestro mMaestro = new Maestro();
-       Conexion mConexion = new Conexion();
+    Maestro mMaestro = new Maestro();
+    Conexion mConexion = new Conexion();
+
     /**
      * Creates new form BajaMaestro
      */
     public BajaMaestro() {
         initComponents();
-         getContentPane().setBackground(new java.awt.Color(36,47,65));
+        getContentPane().setBackground(new java.awt.Color(36, 47, 65));
     }
 
     /**
@@ -140,15 +140,22 @@ public class BajaMaestro extends javax.swing.JFrame {
 
     private void BTNaceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNaceptarActionPerformed
         // TODO add your handling code here:
-        
-        if(this.)
-        
-        
-    }//GEN-LAST:event_BTNaceptarActionPerformed
+        if (this.BTNaceptar.getText().isEmpty() || this.TXTid.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(rootPane, "Seleccione ID para Eliminar");
+        } else {
+            mMaestro.setID_Maestro(Integer.parseInt(this.TXTid.getText()));
+            //int ID = Integer.parseInt(TXTid.getText());
+            if (mConexion.conectar()) {
+                if (mConexion.eliminarMaestro(mMaestro)) {
+                    JOptionPane.showMessageDialog(rootPane, "Maestro Eliminado");
+                }
+            }
 
+    }//GEN-LAST:event_BTNaceptarActionPerformed
+    }
     /**
-     * @param args the command line arguments
-     */
+         * @param args the command line arguments
+         */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -177,9 +184,10 @@ public class BajaMaestro extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new BajaMaestro().setVisible(true);
-            
-        });
+            }
+            });
     }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BTNaceptar;
