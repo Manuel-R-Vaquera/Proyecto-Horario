@@ -1,3 +1,6 @@
+
+import javax.swing.JOptionPane;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -9,6 +12,9 @@
  * @author Manzana
  */
 public class ModificarMaestro extends javax.swing.JFrame {
+    
+        Maestro mMaestro = new Maestro();
+        Conexion mConexion = new Conexion();
 
     /**
      * Creates new form ModificarMaestro
@@ -186,7 +192,32 @@ public class ModificarMaestro extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BTNaceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNaceptarActionPerformed
-        // TODO add your handling code here:
+
+            Maestro nMaestro = new Maestro();
+            
+                if(this.BTNaceptar.getText().isEmpty()||this.TXTid.getText().isEmpty())
+                {
+                        JOptionPane.showMessageDialog(rootPane, "Asegurese de llenar todos los campos");
+                }
+                else
+                {
+                    mMaestro.setID_Maestro(Integer.parseInt(this.TXTid.getText()));
+                    nMaestro.setNombre_Maestro(this.TXTnuevonombre.getText());
+                    nMaestro.setID_Maestro(Integer.parseInt(this.TXTNuevoId.getText()));
+                    
+                    if
+                            (mConexion.conectar())
+                        if(mConexion.modificarMaestro(mMaestro, nMaestro))
+                        {
+                            JOptionPane.showMessageDialog(rootPane, "Maestro Modificado Con Exito");
+                        }
+                        else
+                        {
+                           JOptionPane.showMessageDialog(rootPane, "Error al Modificar"); 
+                        }
+                }
+                
+          
     }//GEN-LAST:event_BTNaceptarActionPerformed
 
     /**

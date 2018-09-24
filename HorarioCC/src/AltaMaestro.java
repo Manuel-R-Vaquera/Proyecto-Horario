@@ -1,5 +1,6 @@
 
 import java.awt.Color;
+import javax.swing.JOptionPane;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -13,9 +14,9 @@ import java.awt.Color;
  */
 public class AltaMaestro extends javax.swing.JFrame {
 
-    /**
-     * Creates new form AltaMaestro
-     */
+    Maestro mMaestro = new Maestro();
+    Conexion mConexion = new Conexion();
+    
     public AltaMaestro() {
         initComponents();
         getContentPane().setBackground(new java.awt.Color(36,47,65));    
@@ -163,6 +164,28 @@ public class AltaMaestro extends javax.swing.JFrame {
 
     private void BTNaceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNaceptarActionPerformed
         // TODO add your handling code here:
+        if(this.TXTid.getText().isEmpty()||this.TXTnombre.getText().isEmpty())
+        {
+            JOptionPane.showMessageDialog(rootPane,"Asegurese De Llenar Todos Los Campos");
+        }
+        else
+        {
+            mMaestro.setID_Maestro(Integer.parseInt(this.TXTid.getText()));
+            mMaestro.setNombre_Maestro(this.TXTnombre.getText()); 
+        }
+        if(mConexion.conectar())
+        {
+            if(mConexion.GuardarMaestro(mMaestro))
+            {
+                JOptionPane.showMessageDialog(rootPane,"Gracias por Registrarse");
+            }
+        }
+        this.hide();
+        MenuMaestro mMenuMaestro = new MenuMaestro();
+        mMenuMaestro.show();
+        
+        
+        
     }//GEN-LAST:event_BTNaceptarActionPerformed
 
     /**

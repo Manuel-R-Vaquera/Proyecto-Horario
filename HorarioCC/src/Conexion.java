@@ -96,8 +96,8 @@ public class Conexion {
          Statement consulta;
         try{
             consulta = conexion.createStatement();
-            consulta.execute("INSERT INTO horariocc.materia (ID_Materia, Nombre_Materia, Grado, Carrera)" + 
-                    "VALUES(null, '" + mMateria.getID_Materia()+ "'," + "'" + mMateria.getNombre_Materia()+ "'," +"'" + mMateria.getGrado() + "'," + "'" + mMateria.getCarrera()+"');");
+            consulta.execute("INSERT INTO horariocc (ID_Materia, Nombre_Materia, Grado, Carrera)" + 
+                    "values ('" + mMateria.getNombre_Materia() + "');");
             return true;
         }catch(Exception e){
              e.printStackTrace();
