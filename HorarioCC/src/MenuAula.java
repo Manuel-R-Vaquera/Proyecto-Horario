@@ -10,6 +10,8 @@
  */
 public class MenuAula extends javax.swing.JFrame {
 
+    private Object mAltaAula;
+
     /**
      * Creates new form MenuAula
      */
@@ -50,7 +52,7 @@ public class MenuAula extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(47, 47, 47)
                 .addComponent(jLabel5)
-                .addContainerGap(68, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -61,10 +63,25 @@ public class MenuAula extends javax.swing.JFrame {
         );
 
         BTNalta.setText("Registrar");
+        BTNalta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BTNaltaActionPerformed(evt);
+            }
+        });
 
         BTNeliminar.setText("Eliminar");
+        BTNeliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BTNeliminarActionPerformed(evt);
+            }
+        });
 
         BTNmodificar.setText("Modificar");
+        BTNmodificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BTNmodificarActionPerformed(evt);
+            }
+        });
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGENES/icono-pc.png"))); // NOI18N
 
@@ -76,16 +93,15 @@ public class MenuAula extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(147, 147, 147)
                 .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(29, 29, 29)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel2)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(BTNalta)
-                        .addGap(53, 53, 53)
-                        .addComponent(BTNmodificar)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(BTNalta)
+                .addGap(27, 27, 27)
+                .addComponent(BTNmodificar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addComponent(BTNeliminar)
                 .addGap(46, 46, 46))
         );
@@ -99,14 +115,32 @@ public class MenuAula extends javax.swing.JFrame {
                     .addComponent(BTNmodificar)
                     .addComponent(BTNeliminar))
                 .addGap(18, 18, 18)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel1)
                 .addGap(0, 41, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void BTNaltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNaltaActionPerformed
+        // TODO add your handling code here:
+            AltaAula mAltaAula = new AltaAula();
+            mAltaAula.show();
+    }//GEN-LAST:event_BTNaltaActionPerformed
+
+    private void BTNmodificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNmodificarActionPerformed
+        // TODO add your handling code here:
+        ModificarAula mModificarAula = new ModificarAula();
+        mModificarAula.show();
+    }//GEN-LAST:event_BTNmodificarActionPerformed
+
+    private void BTNeliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNeliminarActionPerformed
+        // TODO add your handling code here:
+        BajaAula mBajaAula = new BajaAula();
+        mBajaAula.show();
+    }//GEN-LAST:event_BTNeliminarActionPerformed
 
     /**
      * @param args the command line arguments
