@@ -10,24 +10,24 @@
  */
 public class Materia {
     
-    private int ID_Materia;
-    private String Nombre_Materia;
-    private int grado;
-    private String Carrera;
+     String ID_Materia;
+     String Nombre_Materia;
+     int grado;
+     String Carrera;
     
     public Materia()
     {
-        ID_Materia = 0;
+        ID_Materia = "";
         Nombre_Materia = "";
         grado = 0;
         Carrera = "";
     }
 
-    public int getID_Materia() {
+    public String getID_Materia() {
         return ID_Materia;
     }
 
-    public void setID_Materia(int ID_Materia) {
+    public void setID_Materia(String ID_Materia) {
         this.ID_Materia = ID_Materia;
     }
 
