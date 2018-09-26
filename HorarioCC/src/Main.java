@@ -18,8 +18,9 @@ public class Main {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        /*Login mLogin = new Login();
-        mLogin.show();*/
+        Login mLogin = new Login();
+        mLogin.show();
+        /*
         //---------------------------------------------------------------
         Conexion mConexion = new Conexion();
         mConexion.conectar();
@@ -30,7 +31,7 @@ public class Main {
             JOptionPane.showMessageDialog(null, "Error de Conexion");
         }
         //---------------------------------------------------------------
-        
+        */
     }
     
 }

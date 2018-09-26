@@ -119,6 +119,11 @@ public class ModificarAula extends javax.swing.JFrame {
         BTNsair.setBackground(new java.awt.Color(97, 212, 195));
         BTNsair.setText("Salir");
         BTNsair.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        BTNsair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BTNsairActionPerformed(evt);
+            }
+        });
 
         BTNaceptar.setBackground(new java.awt.Color(97, 212, 195));
         BTNaceptar.setText("Aceptar");
@@ -282,6 +287,13 @@ public class ModificarAula extends javax.swing.JFrame {
                 }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void BTNsairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNsairActionPerformed
+        this.hide();
+        MenuAula mMenuAula = new MenuAula();
+        mMenuAula.show();
+        
+    }//GEN-LAST:event_BTNsairActionPerformed
 
     /**
      * @param args the command line arguments

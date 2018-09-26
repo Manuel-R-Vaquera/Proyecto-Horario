@@ -91,6 +91,11 @@ public class ModificarMaestro extends javax.swing.JFrame {
         BTNsalir.setBackground(new java.awt.Color(97, 212, 195));
         BTNsalir.setText("Salir");
         BTNsalir.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        BTNsalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BTNsalirActionPerformed(evt);
+            }
+        });
 
         jLabel6.setBackground(new java.awt.Color(255, 255, 255));
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
@@ -246,6 +251,12 @@ public class ModificarMaestro extends javax.swing.JFrame {
                 }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void BTNsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNsalirActionPerformed
+        this.hide();
+        MenuAula mMenuAula = new MenuAula();
+        mMenuAula.show();
+    }//GEN-LAST:event_BTNsalirActionPerformed
 
     public void setFilas() {
         Maestro mMaestro;
