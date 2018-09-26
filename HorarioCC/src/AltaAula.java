@@ -1,5 +1,6 @@
 
 import java.awt.Color;
+import javax.swing.JOptionPane;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -13,9 +14,9 @@ import java.awt.Color;
  */
 public class AltaAula extends javax.swing.JFrame {
 
-    /**
-     * Creates new form AltaAula
-     */
+    Aula mAula = new Aula();
+    Conexion mConexion = new Conexion();
+    
     public AltaAula() {
         initComponents();
      getContentPane().setBackground(new java.awt.Color(36,47,65));    }
@@ -29,13 +30,10 @@ public class AltaAula extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         TXTnombre = new javax.swing.JTextField();
-        TXTid = new javax.swing.JTextField();
         BTNsair = new javax.swing.JButton();
         BTNaceptar = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
@@ -47,10 +45,6 @@ public class AltaAula extends javax.swing.JFrame {
         setBackground(new java.awt.Color(36, 47, 65));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("ID:");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 180, -1, -1));
-
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Nombre:");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 230, -1, -1));
@@ -59,13 +53,6 @@ public class AltaAula extends javax.swing.JFrame {
         TXTnombre.setForeground(new java.awt.Color(255, 255, 255));
         TXTnombre.setBorder(null);
         getContentPane().add(TXTnombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 250, 260, 20));
-
-        TXTid.setBackground(new java.awt.Color(36, 47, 65));
-        TXTid.setForeground(new java.awt.Color(255, 255, 255));
-        TXTid.setToolTipText("");
-        TXTid.setBorder(null);
-        getContentPane().add(TXTid, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 200, 260, 20));
-        TXTid.getAccessibleContext().setAccessibleName("");
 
         BTNsair.setBackground(new java.awt.Color(97, 212, 195));
         BTNsair.setText("Salir");
@@ -81,12 +68,6 @@ public class AltaAula extends javax.swing.JFrame {
             }
         });
         getContentPane().add(BTNaceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 320, 70, -1));
-
-        jLabel4.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("_____________________________________");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 190, 270, 50));
 
         jLabel5.setBackground(new java.awt.Color(255, 255, 255));
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
@@ -132,7 +113,24 @@ public class AltaAula extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BTNaceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNaceptarActionPerformed
-        // TODO add your handling code here:
+        if(this.TXTnombre.getText().isEmpty())
+        {
+            JOptionPane.showMessageDialog(rootPane,"Asegurese De Llenar Todos Los Campos");
+        }
+        else
+        {
+            mAula.setNombre_Aula(this.TXTnombre.getText());
+        }
+        if(mConexion.conectar())
+        {
+            if(mConexion.GuardarAula(mAula))
+            {
+                JOptionPane.showMessageDialog(rootPane,"Gracias por Registrarse");
+            }
+        }
+        this.hide();
+        MenuAula mMenuAula = new MenuAula();
+        mMenuAula.show();
     }//GEN-LAST:event_BTNaceptarActionPerformed
 
     /**
@@ -173,12 +171,9 @@ public class AltaAula extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BTNaceptar;
     private javax.swing.JButton BTNsair;
-    private javax.swing.JTextField TXTid;
     private javax.swing.JTextField TXTnombre;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;

@@ -32,7 +32,6 @@ public class MenuAula extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         BTNalta = new javax.swing.JButton();
-        BTNeliminar = new javax.swing.JButton();
         BTNmodificar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
@@ -69,13 +68,6 @@ public class MenuAula extends javax.swing.JFrame {
             }
         });
 
-        BTNeliminar.setText("Eliminar");
-        BTNeliminar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BTNeliminarActionPerformed(evt);
-            }
-        });
-
         BTNmodificar.setText("Modificar");
         BTNmodificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -101,9 +93,7 @@ public class MenuAula extends javax.swing.JFrame {
                 .addComponent(BTNalta)
                 .addGap(27, 27, 27)
                 .addComponent(BTNmodificar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
-                .addComponent(BTNeliminar)
-                .addGap(46, 46, 46))
+                .addGap(46, 173, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -112,8 +102,7 @@ public class MenuAula extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BTNalta)
-                    .addComponent(BTNmodificar)
-                    .addComponent(BTNeliminar))
+                    .addComponent(BTNmodificar))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -135,12 +124,6 @@ public class MenuAula extends javax.swing.JFrame {
         ModificarAula mModificarAula = new ModificarAula();
         mModificarAula.show();
     }//GEN-LAST:event_BTNmodificarActionPerformed
-
-    private void BTNeliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNeliminarActionPerformed
-        // TODO add your handling code here:
-        BajaAula mBajaAula = new BajaAula();
-        mBajaAula.show();
-    }//GEN-LAST:event_BTNeliminarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -179,7 +162,6 @@ public class MenuAula extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BTNalta;
-    private javax.swing.JButton BTNeliminar;
     private javax.swing.JButton BTNmodificar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

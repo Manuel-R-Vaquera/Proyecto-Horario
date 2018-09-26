@@ -10,20 +10,20 @@
  */
 public class Maestro {
     
-    private int ID_Maestro;
+    private String ID_Maestro;
     private String Nombre_Maestro;
     
     public Maestro()
     {
-        ID_Maestro = 0;
+        ID_Maestro = "";
         Nombre_Maestro = "";
     }
 
-    public int getID_Maestro() {
+    public String getID_Maestro() {
         return ID_Maestro;
     }
 
-    public void setID_Maestro(int ID_Maestro) {
+    public void setID_Maestro(String ID_Maestro) {
         this.ID_Maestro = ID_Maestro;
     }
 

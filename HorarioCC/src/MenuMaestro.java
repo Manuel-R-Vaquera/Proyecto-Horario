@@ -28,7 +28,6 @@ public class MenuMaestro extends javax.swing.JFrame {
 
         jPanel3 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        BTNeliminar = new javax.swing.JButton();
         BTNmodificar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         BTNalta = new javax.swing.JButton();
@@ -59,13 +58,6 @@ public class MenuMaestro extends javax.swing.JFrame {
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30))
         );
-
-        BTNeliminar.setText("Eliminar");
-        BTNeliminar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BTNeliminarActionPerformed(evt);
-            }
-        });
 
         BTNmodificar.setText("Modificar");
         BTNmodificar.addActionListener(new java.awt.event.ActionListener() {
@@ -99,9 +91,7 @@ public class MenuMaestro extends javax.swing.JFrame {
                             .addComponent(jLabel2)
                             .addComponent(BTNmodificar))
                         .addGap(27, 27, 27)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(BTNeliminar)
-                .addGap(39, 39, 39))
+                .addGap(39, 140, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -110,8 +100,7 @@ public class MenuMaestro extends javax.swing.JFrame {
                 .addGap(38, 38, 38)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BTNalta)
-                    .addComponent(BTNmodificar)
-                    .addComponent(BTNeliminar))
+                    .addComponent(BTNmodificar))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -133,12 +122,6 @@ public class MenuMaestro extends javax.swing.JFrame {
         ModificarMaestro mModificarMaestro = new ModificarMaestro();
         mModificarMaestro.show();
     }//GEN-LAST:event_BTNmodificarActionPerformed
-
-    private void BTNeliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNeliminarActionPerformed
-        // TODO add your handling code here:
-        BajaMaestro mBajaMaestro = new BajaMaestro();
-        mBajaMaestro.show();
-    }//GEN-LAST:event_BTNeliminarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -178,7 +161,6 @@ public class MenuMaestro extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BTNalta;
-    private javax.swing.JButton BTNeliminar;
     private javax.swing.JButton BTNmodificar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

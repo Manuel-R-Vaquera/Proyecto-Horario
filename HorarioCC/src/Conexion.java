@@ -3,6 +3,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -57,8 +58,8 @@ public class Conexion {
         Statement consulta;
         try{
             consulta = conexion.createStatement();
-            consulta.execute("INSERT INTO horariocc.maestros (ID_Maestro, Nombre_Maestro)" + 
-                    "VALUES(null, '" + mMaestro.getID_Maestro()+ "'," +"'" +mMaestro.getNombre_Maestro()+ "');");
+            consulta.execute("INSERT INTO maestros (Nombre_Maestro)" + 
+                    "VALUES('" +mMaestro.getNombre_Maestro()+ "');");
             return true;
         }catch(Exception e){
              e.printStackTrace();
@@ -82,7 +83,9 @@ public class Conexion {
 
         try {
             consulta = conexion.createStatement();
-            consulta.execute("update maestros set " + "Nombre_Maestro = '" + nMaestro.getNombre_Maestro()+ "WHERE ID_Maestro = '" + mMaestro.getID_Maestro()+ "';");
+            consulta.execute("update maestros set " +
+            "Nombre_Maestro = '" + nMaestro.getNombre_Maestro()+
+            "' where ID_Maestro= '" + mMaestro.getID_Maestro()+ "';");
             return true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -135,10 +138,8 @@ public class Conexion {
         Statement consulta;
         try{
             consulta = conexion.createStatement();
-            consulta.execute("INSERT INTO horariocc"
-                    + "(ID_Aula, Nombre_Aula)" + 
-                    "VALUES(null, '" + mAula.getID_Aula()+ "'," 
-                    +"'" +mAula.getNombre_Aula()+ "');");
+            consulta.execute("insert into aula (Nombre_Aula)" + 
+                    "values ('" + mAula.getNombre_Aula() + "');");
             return true;
         }catch(Exception e){
              e.printStackTrace();
@@ -162,11 +163,57 @@ public class Conexion {
 
         try {
             consulta = conexion.createStatement();
-            consulta.execute("update aula set " + "Nombre_Aula = '" + nAula.getNombre_Aula()+ "WHERE ID_Aula = '" + mAula.getID_Aula()+ "';");
+            consulta.execute("update aula set " +
+            "Nombre_Aula = '" + nAula.getNombre_Aula()+
+            "' where ID_Aula= '" + mAula.getID_Aula()+ "';");
             return true;
         } catch (Exception e) {
             e.printStackTrace();
             return false;
         }
+    }
+    public ArrayList consultarMaestro() {
+        Maestro mMaestro = null;
+        Statement consulta;
+        ResultSet resultado;
+        ArrayList MaestroArray = new ArrayList();
+        
+        try {
+            
+            consulta = conexion.createStatement();
+            resultado = consulta.executeQuery("select * from maestros order by ID_Maestro");
+            while (resultado.next()) {
+                mMaestro = new Maestro();
+                mMaestro.setID_Maestro(resultado.getString("ID_Maestro"));
+                mMaestro.setNombre_Maestro(resultado.getString("Nombre_Maestro"));
+                MaestroArray.add(mMaestro);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+            
+        return MaestroArray;        
+    }
+    public ArrayList consultarAula() {
+        Aula mAula = null;
+        Statement consulta;
+        ResultSet resultado;
+        ArrayList AulaArray = new ArrayList();
+        
+        try {
+            
+            consulta = conexion.createStatement();
+            resultado = consulta.executeQuery("select * from aula order by ID_Aula");
+            while (resultado.next()) {
+                mAula = new Aula();
+                mAula.setID_Aula(resultado.getString("ID_Aula"));
+                mAula.setNombre_Aula(resultado.getString("Nombre_Aula"));
+                AulaArray.add(mAula);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+            
+        return AulaArray;        
     }
 }

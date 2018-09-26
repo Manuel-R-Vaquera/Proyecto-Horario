@@ -10,19 +10,19 @@
  */
 public class Aula {
     
-    private int ID_Aula;
+    private String ID_Aula;
     private String Nombre_Aula;
 
     public Aula() {
-        ID_Aula = 0;
+        ID_Aula = "";
         Nombre_Aula = "";
     }
 
-    public int getID_Aula() {
+    public String getID_Aula() {
         return ID_Aula;
     }
 
-    public void setID_Aula(int ID_Aula) {
+    public void setID_Aula(String ID_Aula) {
         this.ID_Aula = ID_Aula;
     }
 
