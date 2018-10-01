@@ -17,6 +17,7 @@ public class MenuAula extends javax.swing.JFrame {
      */
     public MenuAula() {
         initComponents();
+         this.setLocationRelativeTo(null);
     }
 
     /**
@@ -129,18 +130,21 @@ public class MenuAula extends javax.swing.JFrame {
         // TODO add your handling code here:
             AltaAula mAltaAula = new AltaAula();
             mAltaAula.show();
+            this.hide();
     }//GEN-LAST:event_BTNaltaActionPerformed
 
     private void BTNmodificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNmodificarActionPerformed
         // TODO add your handling code here:
         ModificarAula mModificarAula = new ModificarAula();
         mModificarAula.show();
+        this.hide();
     }//GEN-LAST:event_BTNmodificarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.hide();
         MenuInicio mMI = new MenuInicio();
         mMI.show();
+        this.hide();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

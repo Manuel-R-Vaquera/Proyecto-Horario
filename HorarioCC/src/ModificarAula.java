@@ -24,6 +24,7 @@ public class ModificarAula extends javax.swing.JFrame {
 
     public ModificarAula() {
         initComponents();
+         this.setLocationRelativeTo(null);
         getContentPane().setBackground(new java.awt.Color(36, 47, 65));
         setFilas();
     }
@@ -244,7 +245,7 @@ public class ModificarAula extends javax.swing.JFrame {
             
                 if(this.TXTnuevonombre.getText().isEmpty())
                 {
-                        JOptionPane.showMessageDialog(rootPane, "No a seleccionado ningun maestro");
+                        JOptionPane.showMessageDialog(rootPane, "No Ha Seleccionado Ningún Maestro");
                 }
                 else
                 {
@@ -254,7 +255,7 @@ public class ModificarAula extends javax.swing.JFrame {
                     if(mConexion.conectar())
                         if(mConexion.modificarAula(mAula, nAula))
                         {
-                            JOptionPane.showMessageDialog(rootPane, "Aula Modificada Con Exito");
+                            JOptionPane.showMessageDialog(rootPane, "Aula Modificada Con Éxito");
                             modelo.setColumnCount(0);
                             modelo.setRowCount(0);
                             setFilas();
@@ -274,12 +275,12 @@ public class ModificarAula extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         if (this.TXTnuevonombre.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(rootPane, "No a seleccionado ningun maestro");
+            JOptionPane.showMessageDialog(rootPane, "No Ha seleccionado Ningún Maestro");
         } else {
             mAula.setID_Aula(this.IdTxt.getText());
                 if (mConexion.conectar()) {
                     if (mConexion.eliminarAula(mAula)) {
-                    JOptionPane.showMessageDialog(rootPane, "Aula Eliminada con Exito");
+                    JOptionPane.showMessageDialog(rootPane, "Aula Eliminada con Éxito");
                     modelo.setColumnCount(0);
                     modelo.setRowCount(0);
                     setFilas();

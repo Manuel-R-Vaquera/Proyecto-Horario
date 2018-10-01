@@ -222,6 +222,7 @@ System.exit(0);
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
           boolean a = false;
+          
  
         // TODO add your handling code here:
         if (a) {  // a es una variable boolean en true

@@ -15,6 +15,7 @@ public class MenuMaterias extends javax.swing.JFrame {
      */
     public MenuMaterias() {
         initComponents();
+         this.setLocationRelativeTo(null);
     }
 
     /**
@@ -128,18 +129,21 @@ public class MenuMaterias extends javax.swing.JFrame {
         // TODO add your handling code here:
         BajaMateria mBajaMateria = new BajaMateria();
             mBajaMateria.show();
+            this.hide();
     }//GEN-LAST:event_BTNeliminarActionPerformed
 
     private void BTNaltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNaltaActionPerformed
         // TODO add your handling code here:
         AltaMateria mAltaMateria = new AltaMateria();
             mAltaMateria.show();
+            this.hide();
     }//GEN-LAST:event_BTNaltaActionPerformed
 
     private void BTNmodificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNmodificarActionPerformed
         // TODO add your handling code here:
         ModificarMateria mModificarMateria = new ModificarMateria();
             mModificarMateria.show();
+            this.hide();
     }//GEN-LAST:event_BTNmodificarActionPerformed
 
     /**

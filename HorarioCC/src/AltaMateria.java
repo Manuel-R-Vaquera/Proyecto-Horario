@@ -18,6 +18,7 @@ public class AltaMateria extends javax.swing.JFrame {
     
     public AltaMateria() {
         initComponents();
+         this.setLocationRelativeTo(null);
         getContentPane().setBackground(new java.awt.Color(36,47,65));
     }
 
@@ -58,6 +59,11 @@ public class AltaMateria extends javax.swing.JFrame {
         BTNsair.setBackground(new java.awt.Color(97, 212, 195));
         BTNsair.setText("Salir");
         BTNsair.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        BTNsair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BTNsairActionPerformed(evt);
+            }
+        });
 
         BTNaceptar.setBackground(new java.awt.Color(97, 212, 195));
         BTNaceptar.setText("Aceptar");
@@ -200,6 +206,13 @@ public class AltaMateria extends javax.swing.JFrame {
             
         }
     }//GEN-LAST:event_BTNaceptarActionPerformed
+
+    private void BTNsairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNsairActionPerformed
+        // TODO add your handling code here:
+        this.hide();
+        MenuMaterias mMA = new MenuMaterias();
+        mMA.show();
+    }//GEN-LAST:event_BTNsairActionPerformed
 
     /**
      * @param args the command line arguments
