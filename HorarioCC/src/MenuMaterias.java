@@ -125,8 +125,6 @@ public class MenuMaterias extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-<<<<<<< HEAD
-=======
     private void BTNeliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNeliminarActionPerformed
         // TODO add your handling code here:
         BajaMateria mBajaMateria = new BajaMateria();
@@ -134,7 +132,6 @@ public class MenuMaterias extends javax.swing.JFrame {
             this.hide();
     }//GEN-LAST:event_BTNeliminarActionPerformed
 
->>>>>>> 05310f98a2742e81d63db1ff153f5869ebb4a550
     private void BTNaltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNaltaActionPerformed
         // TODO add your handling code here:
         AltaMateria mAltaMateria = new AltaMateria();

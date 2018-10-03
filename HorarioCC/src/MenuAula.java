@@ -130,13 +130,12 @@ public class MenuAula extends javax.swing.JFrame {
         // TODO add your handling code here:
             AltaAula mAltaAula = new AltaAula();
             mAltaAula.show();
-<<<<<<< HEAD
+            
             MenuAula mMA = new MenuAula();
             mMA.hide();
             
-=======
+
             this.hide();
->>>>>>> 05310f98a2742e81d63db1ff153f5869ebb4a550
     }//GEN-LAST:event_BTNaltaActionPerformed
 
     private void BTNmodificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNmodificarActionPerformed
