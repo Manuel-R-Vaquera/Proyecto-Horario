@@ -156,24 +156,28 @@ public class MenuInicio extends javax.swing.JFrame {
         // TODO add your handling code here:
         MenuAula mMenuAula = new MenuAula();
         mMenuAula.show();
+        this.hide();
     }//GEN-LAST:event_BTNaulaActionPerformed
 
     private void BTNmaestroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNmaestroActionPerformed
         // TODO add your handling code here:
         MenuMaestro mMenuMaestro = new MenuMaestro();
         mMenuMaestro.show();
+        this.hide();
     }//GEN-LAST:event_BTNmaestroActionPerformed
 
     private void BTNmateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNmateriaActionPerformed
         // TODO add your handling code here:
         MenuMaterias mMenuMaterias = new MenuMaterias();
         mMenuMaterias.show();
+        this.hide();
     }//GEN-LAST:event_BTNmateriaActionPerformed
 
     private void BTNhorarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNhorarioActionPerformed
         // TODO add your handling code here:
         ConsultaHorario mConsultaHorario = new ConsultaHorario();
         mConsultaHorario.show();
+        this.hide();
     }//GEN-LAST:event_BTNhorarioActionPerformed
 
     /**

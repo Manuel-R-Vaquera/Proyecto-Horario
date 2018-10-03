@@ -10,20 +10,17 @@ import java.util.ArrayList;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author PC
  */
 public class Conexion {
-    
+
     private Connection conexion;
-    ResultSet rs= null;
+    ResultSet rs = null;
     Statement statement = null;
-    
-   
-    
-    public boolean conectar(){
+
+    public boolean conectar() {
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             conexion = DriverManager.getConnection(
@@ -38,13 +35,13 @@ public class Conexion {
             return false;
         }
     }
-    
-        public Connection getConexion() {
+
+    public Connection getConexion() {
 
         return this.conexion;
 
     }
-    
+
     public void desconectar() {
         try {
             this.conexion.close();
@@ -52,134 +49,139 @@ public class Conexion {
             System.err.println(e.getMessage());
         }
     }
-    
+
     //Catalogo Maestros//
-    public boolean GuardarMaestro(Maestro mMaestro){
+    public boolean GuardarMaestro(Maestro mMaestro) {
         Statement consulta;
-        try{
+        try {
             consulta = conexion.createStatement();
-            consulta.execute("INSERT INTO maestros (Nombre_Maestro)" + 
-                    "VALUES('" +mMaestro.getNombre_Maestro()+ "');");
+            consulta.execute("INSERT INTO maestros (Nombre_Maestro)"
+                    + "VALUES('" + mMaestro.getNombre_Maestro() + "');");
             return true;
-        }catch(Exception e){
-             e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
             return false;
         }
     }
+
     public boolean eliminarMaestro(Maestro mMaestro) {
         Statement consulta;
 
         try {
             consulta = conexion.createStatement();
-            consulta.execute("delete from maestros " + " where ID_Maestro = '" + mMaestro.getID_Maestro()+ "';");
+            consulta.execute("delete from maestros " + " where ID_Maestro = '" + mMaestro.getID_Maestro() + "';");
             return true;
         } catch (Exception e) {
             e.printStackTrace();
             return false;
         }
     }
+
     public boolean modificarMaestro(Maestro mMaestro, Maestro nMaestro) {
         Statement consulta;
 
         try {
             consulta = conexion.createStatement();
-            consulta.execute("update maestros set " +
-            "Nombre_Maestro = '" + nMaestro.getNombre_Maestro()+
-            "' where ID_Maestro= '" + mMaestro.getID_Maestro()+ "';");
+            consulta.execute("update maestros set "
+                    + "Nombre_Maestro = '" + nMaestro.getNombre_Maestro()
+                    + "' where ID_Maestro= '" + mMaestro.getID_Maestro() + "';");
             return true;
         } catch (Exception e) {
             e.printStackTrace();
             return false;
         }
     }
-    
+
     ///Catalogo Materia///
-    
-    public boolean GuardarMateria(Materia mMateria){
-         Statement consulta;
-        try{
+    public boolean GuardarMateria(Materia mMateria) {
+        Statement consulta;
+        try {
             consulta = conexion.createStatement();
-            consulta.execute("insert into materia (Nombre_Materia)" + 
-                    "values ('" + mMateria.getNombre_Materia() + "');");
+            consulta.execute("insert into materia (Nombre_Materia)"
+                    + "values ('" + mMateria.getNombre_Materia() + "');");
             return true;
-        }catch(Exception e){
-             e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
             return false;
         }
     }
+
     public boolean eliminarMateria(Materia mMateria) {
         Statement consulta;
 
         try {
             consulta = conexion.createStatement();
-            consulta.execute("delete from materia " + " where ID_Materia = '" + mMateria.getID_Materia()+ "';");
+            consulta.execute("delete from materia " + " where ID_Materia = '" + mMateria.getID_Materia() + "';");
             return true;
         } catch (Exception e) {
             e.printStackTrace();
             return false;
         }
     }
+
     public boolean modificarMateria(Materia mMateria, Materia nMateria) {
         Statement consulta;
 
         try {
             consulta = conexion.createStatement();
-           consulta.execute("update materia set " + "Nombre_Materia = '" + nMateria.getNombre_Materia()+ "'," + "Grado = '" + nMateria.getGrado()+ "'" + "Carrera = '" + nMateria.getCarrera()+ "WHERE ID_Materia = '" + mMateria.getID_Materia()+ "';");
+            consulta.execute("update materia set " + "Nombre_Materia = '" + nMateria.getNombre_Materia() + "'," + "Grado = '" + nMateria.getGrado() + "'" + "Carrera = '" + nMateria.getCarrera() + "WHERE ID_Materia = '" + mMateria.getID_Materia() + "';");
             return true;
         } catch (Exception e) {
             e.printStackTrace();
             return false;
         }
     }
-    
+
     //Catalogo aula//
-    
-    public boolean GuardarAula(Aula mAula){
+    public boolean GuardarAula(Aula mAula) {
         Statement consulta;
-        try{
+        try {
             consulta = conexion.createStatement();
-            consulta.execute("insert into aula (Nombre_Aula)" + 
-                    "values ('" + mAula.getNombre_Aula() + "');");
+            consulta.execute("insert into aula (Nombre_Aula)"
+                    + "values ('" + mAula.getNombre_Aula() + "');");
             return true;
-        }catch(Exception e){
-             e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
             return false;
         }
     }
+
     public boolean eliminarAula(Aula mAula) {
         Statement consulta;
 
         try {
             consulta = conexion.createStatement();
-            consulta.execute("delete from aula " + " where ID_Aula = '" + mAula.getID_Aula()+ "';");
+            consulta.execute("delete from aula " + " where ID_Aula = '" + mAula.getID_Aula() + "';");
             return true;
         } catch (Exception e) {
             e.printStackTrace();
             return false;
         }
     }
+
     public boolean modificarAula(Aula mAula, Aula nAula) {
         Statement consulta;
 
         try {
             consulta = conexion.createStatement();
-            consulta.execute("update aula set " +
-            "Nombre_Aula = '" + nAula.getNombre_Aula()+
-            "' where ID_Aula= '" + mAula.getID_Aula()+ "';");
+            consulta.execute("update aula set "
+                    + "Nombre_Aula = '" + nAula.getNombre_Aula()
+                    + "' where ID_Aula= '" + mAula.getID_Aula() + "';");
             return true;
         } catch (Exception e) {
             e.printStackTrace();
             return false;
         }
     }
+
     public ArrayList consultarMaestro() {
         Maestro mMaestro = null;
         Statement consulta;
         ResultSet resultado;
         ArrayList MaestroArray = new ArrayList();
-        
+
         try {
-            
+
             consulta = conexion.createStatement();
             resultado = consulta.executeQuery("select * from maestros order by ID_Maestro");
             while (resultado.next()) {
@@ -191,17 +193,18 @@ public class Conexion {
         } catch (Exception e) {
             e.printStackTrace();
         }
-            
-        return MaestroArray;        
+
+        return MaestroArray;
     }
+
     public ArrayList consultarAula() {
         Aula mAula = null;
         Statement consulta;
         ResultSet resultado;
         ArrayList AulaArray = new ArrayList();
-        
+
         try {
-            
+
             consulta = conexion.createStatement();
             resultado = consulta.executeQuery("select * from aula order by ID_Aula");
             while (resultado.next()) {
@@ -213,7 +216,7 @@ public class Conexion {
         } catch (Exception e) {
             e.printStackTrace();
         }
-            
-        return AulaArray;        
+
+        return AulaArray;
     }
 }

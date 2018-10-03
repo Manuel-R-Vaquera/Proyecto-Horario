@@ -28,11 +28,11 @@ public class MenuMaterias extends javax.swing.JFrame {
 
         jPanel3 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        BTNeliminar = new javax.swing.JButton();
         BTNmodificar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         BTNalta = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Menu Materias");
@@ -60,13 +60,6 @@ public class MenuMaterias extends javax.swing.JFrame {
                 .addGap(30, 30, 30))
         );
 
-        BTNeliminar.setText("Eliminar");
-        BTNeliminar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BTNeliminarActionPerformed(evt);
-            }
-        });
-
         BTNmodificar.setText("Modificar");
         BTNmodificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -82,6 +75,13 @@ public class MenuMaterias extends javax.swing.JFrame {
         });
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGENES/icono-materia.png"))); // NOI18N
+
+        jButton1.setText("Salir");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -101,9 +101,9 @@ public class MenuMaterias extends javax.swing.JFrame {
                             .addComponent(jLabel2)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(BTNmodificar)
-                                .addGap(62, 62, 62)
-                                .addComponent(BTNeliminar)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(42, 42, 42)
+                                .addComponent(jButton1)))))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -113,7 +113,7 @@ public class MenuMaterias extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BTNalta)
                     .addComponent(BTNmodificar)
-                    .addComponent(BTNeliminar))
+                    .addComponent(jButton1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
@@ -123,12 +123,6 @@ public class MenuMaterias extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void BTNeliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNeliminarActionPerformed
-        // TODO add your handling code here:
-        BajaMateria mBajaMateria = new BajaMateria();
-            mBajaMateria.show();
-    }//GEN-LAST:event_BTNeliminarActionPerformed
 
     private void BTNaltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNaltaActionPerformed
         // TODO add your handling code here:
@@ -141,6 +135,10 @@ public class MenuMaterias extends javax.swing.JFrame {
         ModificarMateria mModificarMateria = new ModificarMateria();
             mModificarMateria.show();
     }//GEN-LAST:event_BTNmodificarActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -179,8 +177,8 @@ public class MenuMaterias extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BTNalta;
-    private javax.swing.JButton BTNeliminar;
     private javax.swing.JButton BTNmodificar;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel5;
