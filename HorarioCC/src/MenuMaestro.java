@@ -15,6 +15,7 @@ public class MenuMaestro extends javax.swing.JFrame {
      */
     public MenuMaestro() {
         initComponents();
+         this.setLocationRelativeTo(null);
     }
 
     /**
@@ -126,12 +127,14 @@ public class MenuMaestro extends javax.swing.JFrame {
         // TODO add your handling code here:
         AltaMaestro mAltaMaestro = new AltaMaestro();
         mAltaMaestro.show();
+        this.hide();
     }//GEN-LAST:event_BTNaltaActionPerformed
 
     private void BTNmodificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNmodificarActionPerformed
         // TODO add your handling code here:
         ModificarMaestro mModificarMaestro = new ModificarMaestro();
         mModificarMaestro.show();
+        this.hide();
     }//GEN-LAST:event_BTNmodificarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

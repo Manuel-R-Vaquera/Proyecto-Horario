@@ -19,6 +19,7 @@ public class AltaAula extends javax.swing.JFrame {
     
     public AltaAula() {
         initComponents();
+         this.setLocationRelativeTo(null);
      getContentPane().setBackground(new java.awt.Color(36,47,65));    }
 
     /**
@@ -57,6 +58,11 @@ public class AltaAula extends javax.swing.JFrame {
         BTNsair.setBackground(new java.awt.Color(97, 212, 195));
         BTNsair.setText("Salir");
         BTNsair.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        BTNsair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BTNsairActionPerformed(evt);
+            }
+        });
         getContentPane().add(BTNsair, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 320, 71, -1));
 
         BTNaceptar.setBackground(new java.awt.Color(97, 212, 195));
@@ -106,8 +112,9 @@ public class AltaAula extends javax.swing.JFrame {
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("REGISTRO DE AULA");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 100, -1, -1));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 60, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -115,7 +122,7 @@ public class AltaAula extends javax.swing.JFrame {
     private void BTNaceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNaceptarActionPerformed
         if(this.TXTnombre.getText().isEmpty())
         {
-            JOptionPane.showMessageDialog(rootPane,"Asegurese De Llenar Todos Los Campos");
+            JOptionPane.showMessageDialog(rootPane,"Asegúrese De Llenar Todos Los Campos");
         }
         else
         {
@@ -125,13 +132,20 @@ public class AltaAula extends javax.swing.JFrame {
         {
             if(mConexion.GuardarAula(mAula))
             {
-                JOptionPane.showMessageDialog(rootPane,"Gracias por Registrarse");
+                JOptionPane.showMessageDialog(rootPane,"Centro De Computo Registrado");
             }
         }
         this.hide();
         MenuAula mMenuAula = new MenuAula();
         mMenuAula.show();
     }//GEN-LAST:event_BTNaceptarActionPerformed
+
+    private void BTNsairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNsairActionPerformed
+        // TODO add your handling code here:
+        this.hide();
+        MenuAula mMA = new MenuAula();
+        mMA.show();
+    }//GEN-LAST:event_BTNsairActionPerformed
 
     /**
      * @param args the command line arguments

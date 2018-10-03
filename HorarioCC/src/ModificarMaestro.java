@@ -28,6 +28,7 @@ public class ModificarMaestro extends javax.swing.JFrame {
      */
     public ModificarMaestro() {
         initComponents();
+         this.setLocationRelativeTo(null);
         getContentPane().setBackground(new java.awt.Color(36,47,65));
         setFilas();
     }
@@ -206,7 +207,7 @@ public class ModificarMaestro extends javax.swing.JFrame {
             
                 if(this.TXTnuevonombre.getText().isEmpty())
                 {
-                        JOptionPane.showMessageDialog(rootPane, "No a seleccionado ningun maestro");
+                        JOptionPane.showMessageDialog(rootPane, "No Ha Seleccionado Ningún Maestro");
                 }
                 else
                 {
@@ -216,7 +217,7 @@ public class ModificarMaestro extends javax.swing.JFrame {
                     if(mConexion.conectar())
                         if(mConexion.modificarMaestro(mMaestro, nMaestro))
                         {
-                            JOptionPane.showMessageDialog(rootPane, "Maestro Modificado Con Exito");
+                            JOptionPane.showMessageDialog(rootPane, "Maestro Modificado Con Éxito");
                             modelo.setColumnCount(0);
                             modelo.setRowCount(0);
                             setFilas();
@@ -238,12 +239,12 @@ public class ModificarMaestro extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         if (this.TXTnuevonombre.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(rootPane, "No a seleccionado ningun maestro");
+            JOptionPane.showMessageDialog(rootPane, "No Ha Seleccionado Ningún Maestro");
         } else {
             mMaestro.setID_Maestro(this.IdText.getText());
                 if (mConexion.conectar()) {
                     if (mConexion.eliminarMaestro(mMaestro)) {
-                    JOptionPane.showMessageDialog(rootPane, "Maestro Eliminado con Exito");
+                    JOptionPane.showMessageDialog(rootPane, "Maestro Eliminado con Éxito");
                     modelo.setColumnCount(0);
                     modelo.setRowCount(0);
                     setFilas();
@@ -253,9 +254,9 @@ public class ModificarMaestro extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void BTNsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNsalirActionPerformed
-        this.hide();
-        MenuAula mMenuAula = new MenuAula();
-        mMenuAula.show();
+          this.hide();
+        MenuMaestro mMM = new MenuMaestro();
+        mMM.show();
     }//GEN-LAST:event_BTNsalirActionPerformed
 
     public void setFilas() {

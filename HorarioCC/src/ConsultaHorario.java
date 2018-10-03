@@ -15,6 +15,7 @@ public class ConsultaHorario extends javax.swing.JFrame {
      */
     public ConsultaHorario() {
         initComponents();
+         this.setLocationRelativeTo(null);
         getContentPane().setBackground(new java.awt.Color(36,47,65));
     }
 

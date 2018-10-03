@@ -8,7 +8,9 @@
 
 
 
+import java.io.PrintStream;
 import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
 import javax.swing.table.DefaultTableModel;
 
 
@@ -16,7 +18,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author CARLOS
+ * @author Martin
  */
 public class Login extends javax.swing.JFrame {
 
@@ -25,8 +27,9 @@ public class Login extends javax.swing.JFrame {
      */
     public Login() {
         initComponents();
-       this.setTitle("Acceso al Sistema");
+       this.setTitle("Login");
        this.setLocationRelativeTo(null);
+        
     }
 
     /**
@@ -78,9 +81,19 @@ public class Login extends javax.swing.JFrame {
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/usuario.png"))); // NOI18N
 
         jButton1.setText("Mostrar");
+        jButton1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                jButton1MouseDragged(evt);
+            }
+        });
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton1MouseClicked(evt);
+            }
+        });
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
             }
         });
 
@@ -100,12 +113,13 @@ public class Login extends javax.swing.JFrame {
                             .addComponent(txtusuario, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)
                             .addComponent(txtpassword))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE))
+                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(79, 79, 79)
                         .addComponent(btningresar)
                         .addGap(18, 18, 18)
-                        .addComponent(btnsalir, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnsalir, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 140, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -115,11 +129,14 @@ public class Login extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(27, 27, 27)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
                             .addComponent(txtusuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
                             .addComponent(txtpassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -127,10 +144,7 @@ public class Login extends javax.swing.JFrame {
                         .addGap(24, 24, 24)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btningresar)
-                            .addComponent(btnsalir)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(btnsalir))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -150,20 +164,45 @@ public class Login extends javax.swing.JFrame {
 
     private void btningresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btningresarActionPerformed
         // TODO add your handling code here:
-        try {
+       
         String usuario ="admin";
         String Contraseña="1234";
         String Pass =new String(txtpassword.getPassword());
         
+          String usuario2 ="user";
+        String Contraseña2="1234";
+        String Pass2 =new String(txtpassword.getPassword());
+        if(this.txtusuario.getText().isEmpty())
+        {
+            JOptionPane.showMessageDialog(rootPane,"Asegurese De Llenar el campo del usuario");
+        }
+         if(this.txtpassword.getText().isEmpty())
+        {
+            JOptionPane.showMessageDialog(rootPane,"Asegurese De Llenar el campo de la contraseña");
+        }
         if (txtusuario.getText().equals(usuario  )&& Pass.equals(Contraseña)) {
             JOptionPane.showMessageDialog(null, "Bienvenido Administrador");
             MenuInicio mMenuInicio = new MenuInicio();
             mMenuInicio.show();
+       
             this.hide();
+    
+                    
+           
+        }else  {
+                if (txtusuario.getText().equals(usuario2  )&& Pass2.equals(Contraseña2)) {
+            JOptionPane.showMessageDialog(null, "Bienvenido Usuario");
+           // MenuInicio mMenuInicio = new MenuInicio();
+            //mMenuInicio.show();
+       
+            this.hide();
+            }
+                else {JOptionPane.showMessageDialog(null, "constraseña o usuario incorrecta por favor verifica tu contraseña");}       
+       
+        
+       
         }
-            
-        } catch (Exception e) {
-        }
+        
     }//GEN-LAST:event_btningresarActionPerformed
 
     private void btnsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsalirActionPerformed
@@ -173,17 +212,32 @@ System.exit(0);
     }//GEN-LAST:event_btnsalirActionPerformed
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        boolean a = false;
+     
+    }//GEN-LAST:event_jButton1MouseClicked
+
+    private void jButton1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseDragged
+       
+    }//GEN-LAST:event_jButton1MouseDragged
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+          boolean a = false;
+          
+ 
         // TODO add your handling code here:
         if (a) {  // a es una variable boolean en true
-    txtpassword.setEchoChar((char)0); // este método es el que hace visible el texto del jPasswordField
-    a = false;
-} else {
+
+            txtpassword.setEchoChar((char)0); // este método es el que hace visible el texto del jPasswordField
+            a = false;
+        } else {
             char i = 0;
-    txtpassword.setEchoChar(i); // i es el char
-    a = true;
-}
-    }//GEN-LAST:event_jButton1MouseClicked
+            txtpassword.setEchoChar(i); // i es el char
+            a = true;
+
+        }
+       
+
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
