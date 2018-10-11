@@ -9,18 +9,18 @@
  * @author PC
  */
 public class Materia {
-    
-     String ID_Materia;
-     String Nombre_Materia;
-     int grado;
-     String Carrera;
-    
-    public Materia()
-    {
+
+    String ID_Materia;
+    String Nombre_Materia;
+    int grado;
+    String Carrera;
+
+    public Materia() {
         ID_Materia = "";
         Nombre_Materia = "";
         grado = 0;
         Carrera = "";
+
     }
 
     public String getID_Materia() {

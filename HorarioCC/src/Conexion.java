@@ -1,9 +1,16 @@
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -97,8 +104,9 @@ public class Conexion {
         Statement consulta;
         try {
             consulta = conexion.createStatement();
-            consulta.execute("insert into materia (Nombre_Materia)"
-                    + "values ('" + mMateria.getNombre_Materia() + "');");
+            consulta.execute("insert into materia (Nombre_Materia, Grado, Carrera)"
+                    + "values ('" + mMateria.getNombre_Materia() + "'," + mMateria.getGrado() + 
+                    ",'"+ mMateria.getCarrera()+ "');");
             return true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -124,7 +132,11 @@ public class Conexion {
 
         try {
             consulta = conexion.createStatement();
-            consulta.execute("update materia set " + "Nombre_Materia = '" + nMateria.getNombre_Materia() + "'," + "Grado = '" + nMateria.getGrado() + "'" + "Carrera = '" + nMateria.getCarrera() + "WHERE ID_Materia = '" + mMateria.getID_Materia() + "';");
+            consulta.execute("update materia set "
+                    + "Nombre_Materia = '" + nMateria.getNombre_Materia()
+                    + "', Grado = " + nMateria.getGrado()
+                    + ", Carrera = '" + nMateria.getCarrera()
+                    + "' where ID_Materia= '" + mMateria.getID_Materia() + "';");
             return true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -139,6 +151,19 @@ public class Conexion {
             consulta = conexion.createStatement();
             consulta.execute("insert into aula (Nombre_Aula)"
                     + "values ('" + mAula.getNombre_Aula() + "');");
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+    
+    public boolean GuardarHorario(Horario mHorario) {
+        Statement consulta;
+        try {
+            consulta = conexion.createStatement();
+            consulta.execute("insert into Clase (ID_Materia)"
+                    + "values ('" + mHorario.getID_Materia() + "');");
             return true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -218,5 +243,95 @@ public class Conexion {
         }
 
         return AulaArray;
+    }
+
+    public void CargarMaestros(JComboBox ComboMaestro, JLabel IDMAESTRO) {
+        Statement consulta;
+        
+        try {
+            consulta = conexion.createStatement();
+            ResultSet res = null;
+            res = consulta.executeQuery("SELECT Nombre_Maestro, ID_Maestro FROM maestros");
+
+            ComboMaestro.addItem("Seleccione un Maestro");
+            IDMAESTRO.setText("");
+            while (res.next()) {
+
+                ComboMaestro.addItem(res.getString("Nombre_Maestro"));
+                IDMAESTRO.setText(res.getString("ID_Maestro"));
+                
+
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+    public void CargarMateria(JComboBox ComboMateria) {
+        Statement consulta;
+        
+        try {
+            consulta = conexion.createStatement();
+            ResultSet res = null;
+            res = consulta.executeQuery("SELECT Nombre_Materia, ID_Materia FROM materia");
+
+            ComboMateria.addItem("Seleccione una Materia");
+            while (res.next()) {
+
+                ComboMateria.addItem(res.getString("Nombre_Materia"));
+
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+    
+    public void CargarAula(JComboBox ComboAula) {
+        Statement consulta;
+        
+        try {
+            consulta = conexion.createStatement();
+            ResultSet res = null;
+            res = consulta.executeQuery("SELECT Nombre_Aula, ID_Aula FROM aula");
+
+            ComboAula.addItem("Seleccione un Aula");
+            while (res.next()) {
+
+                ComboAula.addItem(res.getString("Nombre_Aula"));
+
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+    
+        public ArrayList consultarMateria() {
+        Materia mMateria = null;
+        Statement consulta;
+        ResultSet resultado;
+        ArrayList MateriaArray = new ArrayList();
+
+        try {
+
+            consulta = conexion.createStatement();
+            resultado = consulta.executeQuery("select * from materia order by ID_Materia");
+            while (resultado.next()) {
+                mMateria = new Materia();
+                mMateria.setID_Materia(resultado.getString("ID_Materia"));
+                mMateria.setNombre_Materia(resultado.getString("Nombre_Materia"));
+                mMateria.setGrado(resultado.getInt("Grado"));
+                mMateria.setCarrera(resultado.getString("Carrera"));
+                MateriaArray.add(mMateria);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return MateriaArray;
     }
 }

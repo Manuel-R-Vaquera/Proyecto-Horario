@@ -1,9 +1,16 @@
+
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.RowFilter;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author Aaron
@@ -13,10 +20,16 @@ public class ModificarMateria extends javax.swing.JFrame {
     /**
      * Creates new form ModificarMateria
      */
+    Conexion mConexion = new Conexion();
+    public TableRowSorter<TableModel> modeloOrdenado;
+    DefaultTableModel modelo = new DefaultTableModel();
+    Materia mMateria = new Materia();
+
     public ModificarMateria() {
         initComponents();
-         this.setLocationRelativeTo(null);
-        getContentPane().setBackground(new java.awt.Color(36,47,65));
+        this.setLocationRelativeTo(null);
+        getContentPane().setBackground(new java.awt.Color(36, 47, 65));
+        setFilas();
     }
 
     /**
@@ -28,34 +41,28 @@ public class ModificarMateria extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        TXTid = new javax.swing.JTextField();
         BTNsair = new javax.swing.JButton();
         BTNaceptar = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        TXTnuevoid = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        TXTnuevonombre = new javax.swing.JTextField();
+        TXTnombre = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        TXTnuevocarrera = new javax.swing.JTextField();
+        TXTcarrera = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         TXTgrado = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        TablaMateria = new javax.swing.JTable();
+        BTNborrar = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        IdText = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Modificar Materia");
-
-        TXTid.setBackground(new java.awt.Color(36, 47, 65));
-        TXTid.setForeground(new java.awt.Color(255, 255, 255));
-        TXTid.setToolTipText("");
-        TXTid.setBorder(null);
 
         BTNsair.setBackground(new java.awt.Color(97, 212, 195));
         BTNsair.setText("Salir");
@@ -67,23 +74,13 @@ public class ModificarMateria extends javax.swing.JFrame {
         });
 
         BTNaceptar.setBackground(new java.awt.Color(97, 212, 195));
-        BTNaceptar.setText("Aceptar");
+        BTNaceptar.setText("Modificar");
         BTNaceptar.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         BTNaceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BTNaceptarActionPerformed(evt);
             }
         });
-
-        jLabel4.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("_____________________________________");
-
-        jLabel5.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("_____________________________________");
 
         jPanel1.setBackground(new java.awt.Color(97, 212, 195));
 
@@ -110,27 +107,17 @@ public class ModificarMateria extends javax.swing.JFrame {
                 .addContainerGap(94, Short.MAX_VALUE))
         );
 
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("ID:");
-
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Nuevo ID:");
-
-        TXTnuevoid.setBackground(new java.awt.Color(36, 47, 65));
-        TXTnuevoid.setForeground(new java.awt.Color(255, 255, 255));
-        TXTnuevoid.setBorder(null);
-
         jLabel7.setBackground(new java.awt.Color(255, 255, 255));
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("_____________________________________");
 
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Nuevo Nombre:");
+        jLabel3.setText("Nombre:");
 
-        TXTnuevonombre.setBackground(new java.awt.Color(36, 47, 65));
-        TXTnuevonombre.setForeground(new java.awt.Color(255, 255, 255));
-        TXTnuevonombre.setBorder(null);
+        TXTnombre.setBackground(new java.awt.Color(36, 47, 65));
+        TXTnombre.setForeground(new java.awt.Color(255, 255, 255));
+        TXTnombre.setBorder(null);
 
         jLabel9.setBackground(new java.awt.Color(255, 255, 255));
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
@@ -138,11 +125,11 @@ public class ModificarMateria extends javax.swing.JFrame {
         jLabel9.setText("_____________________________________");
 
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel10.setText("Nueva Carrera:");
+        jLabel10.setText("Carrera:");
 
-        TXTnuevocarrera.setBackground(new java.awt.Color(36, 47, 65));
-        TXTnuevocarrera.setForeground(new java.awt.Color(255, 255, 255));
-        TXTnuevocarrera.setBorder(null);
+        TXTcarrera.setBackground(new java.awt.Color(36, 47, 65));
+        TXTcarrera.setForeground(new java.awt.Color(255, 255, 255));
+        TXTcarrera.setBorder(null);
 
         jLabel11.setBackground(new java.awt.Color(255, 255, 255));
         jLabel11.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
@@ -150,11 +137,43 @@ public class ModificarMateria extends javax.swing.JFrame {
         jLabel11.setText("_____________________________________");
 
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel12.setText("Nuevo Grado:");
+        jLabel12.setText("Grado:");
 
         TXTgrado.setBackground(new java.awt.Color(36, 47, 65));
         TXTgrado.setForeground(new java.awt.Color(255, 255, 255));
         TXTgrado.setBorder(null);
+
+        TablaMateria.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        TablaMateria.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TablaMateriaMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(TablaMateria);
+
+        BTNborrar.setBackground(new java.awt.Color(97, 212, 195));
+        BTNborrar.setText("Borrar");
+        BTNborrar.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        BTNborrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BTNborrarActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("ID");
+
+        IdText.setForeground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -162,57 +181,52 @@ public class ModificarMateria extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(TXTid, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel1)
-                            .addComponent(TXTnuevoid, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3)
-                            .addComponent(TXTnuevonombre, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel10)
-                            .addComponent(TXTnuevocarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel12)
-                            .addComponent(TXTgrado, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(BTNaceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27)
-                        .addComponent(BTNsair, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(BTNaceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(27, 27, 27)
+                                .addComponent(BTNsair, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(BTNborrar, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(20, 20, 20))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(TXTnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel10)
+                                    .addComponent(TXTcarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel12)
+                                    .addComponent(TXTgrado, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel4)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(IdText)))
+                                .addContainerGap())))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(42, 42, 42)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(TXTid, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addComponent(jLabel2)))
-                .addGap(10, 10, 10)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(TXTnuevoid, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(IdText))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel3)
                 .addGap(10, 10, 10)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(TXTnuevonombre, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TXTnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(6, 6, 6)
                         .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -220,7 +234,7 @@ public class ModificarMateria extends javax.swing.JFrame {
                 .addComponent(jLabel10)
                 .addGap(10, 10, 10)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(TXTnuevocarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TXTcarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(6, 6, 6)
                         .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -232,19 +246,46 @@ public class ModificarMateria extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(6, 6, 6)
                         .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BTNaceptar)
-                    .addComponent(BTNsair))
-                .addGap(34, 34, 34))
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(BTNsair)
+                    .addComponent(BTNborrar))
+                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void BTNaceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNaceptarActionPerformed
-        // TODO add your handling code here:
+        Materia nMateria = new Materia();
+            
+                if(this.TXTnombre.getText().isEmpty())
+                {
+                        JOptionPane.showMessageDialog(rootPane, "No Ha Seleccionado Ningún Maestro");
+                }
+                else
+                {
+                    mMateria.setID_Materia(this.IdText.getText());
+                    nMateria.setNombre_Materia(this.TXTnombre.getText());
+                    nMateria.setCarrera(this.TXTcarrera.getText());
+                    nMateria.setGrado(Integer.parseInt(this.TXTgrado.getText()));
+                    
+                    
+                    if(mConexion.conectar())
+                        if(mConexion.modificarMateria(mMateria, nMateria))
+                        {
+                            JOptionPane.showMessageDialog(rootPane, "Materia Modificado Con Éxito");
+                            modelo.setColumnCount(0);
+                            modelo.setRowCount(0);
+                            setFilas();
+                        }
+                        else
+                        {
+                           JOptionPane.showMessageDialog(rootPane, "Error al Modificar"); 
+                        }
+                }
     }//GEN-LAST:event_BTNaceptarActionPerformed
 
     private void BTNsairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNsairActionPerformed
@@ -253,6 +294,69 @@ public class ModificarMateria extends javax.swing.JFrame {
         MenuMaterias mMA = new MenuMaterias();
         mMA.show();
     }//GEN-LAST:event_BTNsairActionPerformed
+
+    private void TablaMateriaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaMateriaMouseClicked
+        int rec = this.TablaMateria.getSelectedRow();
+        this.TXTnombre.setText(TablaMateria.getValueAt(rec, 1).toString());
+        this.TXTgrado.setText(TablaMateria.getValueAt(rec, 2).toString());
+        this.TXTcarrera.setText(TablaMateria.getValueAt(rec, 3).toString());
+        this.IdText.setText(TablaMateria.getValueAt(rec, 0).toString());
+    }//GEN-LAST:event_TablaMateriaMouseClicked
+
+    private void BTNborrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNborrarActionPerformed
+        if (this.TXTnombre.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(rootPane, "No Ha Seleccionado Ningúna Materia");
+        } else {
+            mMateria.setID_Materia(this.IdText.getText());
+                if (mConexion.conectar()) {
+                    if (mConexion.eliminarMateria(mMateria)) {
+                    JOptionPane.showMessageDialog(rootPane, "Materia Eliminado con Éxito");
+                    modelo.setColumnCount(0);
+                    modelo.setRowCount(0);
+                    setFilas();
+                    }
+                }
+        }
+        this.IdText.setText(null);
+        this.TXTnombre.setText(null);
+        this.TXTgrado.setText(null);
+        this.TXTcarrera.setText(null);
+    }//GEN-LAST:event_BTNborrarActionPerformed
+
+    public void setFilas() {
+        Materia mMateria;
+        mConexion.conectar();
+        ArrayList mArrayList = new ArrayList();
+        mArrayList = mConexion.consultarMateria();
+        String[] Datos;
+
+        modelo.addColumn("ID Materia");
+        modelo.addColumn("Nombre");
+        modelo.addColumn("Grado");
+        modelo.addColumn("Carrera");
+
+        for (Object mMateriaArrays : mArrayList) {
+            Datos = new String[4];
+            mMateria = (Materia) mMateriaArrays;
+            Datos[0] = mMateria.getID_Materia();
+            Datos[1] = mMateria.getNombre_Materia();
+            Datos[2] = Integer.toString(mMateria.getGrado());
+            Datos[3] = mMateria.getCarrera();
+
+            modelo.addRow(Datos);
+            modeloOrdenado = new TableRowSorter<TableModel>(modelo);
+            modeloOrdenado.setRowFilter(RowFilter.regexFilter("^a", 0));
+        }
+
+        this.TablaMateria.setModel(modelo);
+        this.TablaMateria.getColumnModel().getColumn(0);
+        this.TablaMateria.getColumnModel().getColumn(1).setPreferredWidth(220);
+
+        if (this.TablaMateria.getRowCount() > 0) {
+            this.TablaMateria.setRowSelectionInterval(0, 0);
+        }
+
+    }
 
     /**
      * @param args the command line arguments
@@ -291,24 +395,23 @@ public class ModificarMateria extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BTNaceptar;
+    private javax.swing.JButton BTNborrar;
     private javax.swing.JButton BTNsair;
+    private javax.swing.JLabel IdText;
+    private javax.swing.JTextField TXTcarrera;
     private javax.swing.JTextField TXTgrado;
-    private javax.swing.JTextField TXTid;
-    private javax.swing.JTextField TXTnuevocarrera;
-    private javax.swing.JTextField TXTnuevoid;
-    private javax.swing.JTextField TXTnuevonombre;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JTextField TXTnombre;
+    private javax.swing.JTable TablaMateria;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

@@ -265,6 +265,7 @@ public class ModificarAula extends javax.swing.JFrame {
                            JOptionPane.showMessageDialog(rootPane, "Error al Modificar"); 
                         }
                 }
+                this.TXTnuevonombre.setText(null);
     }//GEN-LAST:event_BTNaceptarActionPerformed
 
     private void TablaAulaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaAulaMouseClicked

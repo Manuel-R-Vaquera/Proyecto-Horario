@@ -227,6 +227,7 @@ public class ModificarMaestro extends javax.swing.JFrame {
                            JOptionPane.showMessageDialog(rootPane, "Error al Modificar"); 
                         }
                 }
+                this.TXTnuevonombre.setText(null);
                 
           
     }//GEN-LAST:event_BTNaceptarActionPerformed

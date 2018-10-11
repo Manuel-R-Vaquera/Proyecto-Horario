@@ -33,7 +33,7 @@ public class MenuMaterias extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         BTNalta = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        BtnSalir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Menu Materias");
@@ -77,10 +77,10 @@ public class MenuMaterias extends javax.swing.JFrame {
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGENES/icono-materia.png"))); // NOI18N
 
-        jButton1.setText("Salir");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        BtnSalir.setText("Salir");
+        BtnSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                BtnSalirActionPerformed(evt);
             }
         });
 
@@ -103,7 +103,7 @@ public class MenuMaterias extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(BTNmodificar)
                                 .addGap(42, 42, 42)
-                                .addComponent(jButton1)))))
+                                .addComponent(BtnSalir)))))
                 .addContainerGap(46, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -114,7 +114,7 @@ public class MenuMaterias extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BTNalta)
                     .addComponent(BTNmodificar)
-                    .addComponent(jButton1))
+                    .addComponent(BtnSalir))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
@@ -127,8 +127,6 @@ public class MenuMaterias extends javax.swing.JFrame {
 
     private void BTNeliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNeliminarActionPerformed
         // TODO add your handling code here:
-        BajaMateria mBajaMateria = new BajaMateria();
-            mBajaMateria.show();
             this.hide();
     }//GEN-LAST:event_BTNeliminarActionPerformed
 
@@ -146,9 +144,9 @@ public class MenuMaterias extends javax.swing.JFrame {
             this.hide();
     }//GEN-LAST:event_BTNmodificarActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void BtnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSalirActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_BtnSalirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -188,7 +186,7 @@ public class MenuMaterias extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BTNalta;
     private javax.swing.JButton BTNmodificar;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton BtnSalir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel5;
