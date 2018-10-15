@@ -157,13 +157,30 @@ public class Conexion {
             return false;
         }
     }
-    
-    public boolean GuardarHorario(Horario mHorario) {
+    public boolean GuardarClase2(Clase mClase) {
         Statement consulta;
         try {
             consulta = conexion.createStatement();
-            consulta.execute("insert into Clase (ID_Materia)"
-                    + "values ('" + mHorario.getID_Materia() + "');");
+            consulta.execute("insert into clase (Materia, Maestro, Aula, Hora, Dia) values ("
+                    + "'" + mClase.getMateria()
+                    + "','" + mClase.getMaestro()
+                    + "','" + mClase.getAula()
+                    + "'," + mClase.getHora()
+                    + ",'" + mClase.getDia() +"');");
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+    public boolean GuardarClase(Clase mClase) {
+        Statement consulta;
+        try {
+            consulta = conexion.createStatement();
+            consulta.execute("insert into clase (Class, Hora, Dia) values ("
+                    + "Maestro = '" + mClase.getMaestro()
+                    + "', Hora = " + mClase.getHora()
+                    + ", Dia = '" + mClase.getDia() +"');");
             return true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -245,22 +262,17 @@ public class Conexion {
         return AulaArray;
     }
 
-    public void CargarMaestros(JComboBox ComboMaestro, JLabel IDMAESTRO) {
+    public void CargarMaestros(JComboBox CBMaestro) {
         Statement consulta;
         
         try {
             consulta = conexion.createStatement();
             ResultSet res = null;
-            res = consulta.executeQuery("SELECT Nombre_Maestro, ID_Maestro FROM maestros");
-
-            ComboMaestro.addItem("Seleccione un Maestro");
-            IDMAESTRO.setText("");
+            res = consulta.executeQuery("SELECT Nombre_Maestro FROM maestros");
+            
+            CBMaestro.addItem("Seleccione un Maestro");
             while (res.next()) {
-
-                ComboMaestro.addItem(res.getString("Nombre_Maestro"));
-                IDMAESTRO.setText(res.getString("ID_Maestro"));
-                
-
+                CBMaestro.addItem(res.getString("Nombre_Maestro"));
             }
 
         } catch (Exception e) {
@@ -268,18 +280,20 @@ public class Conexion {
         }
 
     }
-    public void CargarMateria(JComboBox ComboMateria) {
+    public void CargarMateria(JComboBox CBMateria) {
         Statement consulta;
         
         try {
             consulta = conexion.createStatement();
             ResultSet res = null;
-            res = consulta.executeQuery("SELECT Nombre_Materia, ID_Materia FROM materia");
+            res = consulta.executeQuery("SELECT Nombre_Materia FROM materia");
 
-            ComboMateria.addItem("Seleccione una Materia");
+            CBMateria.addItem("Seleccione una Materia");
             while (res.next()) {
 
-                ComboMateria.addItem(res.getString("Nombre_Materia"));
+                CBMateria.addItem(res.getString("Nombre_Materia"));
+                /*Horario mHorario = new Horario();
+                mHorario.setID_Materia(Integer.parseInt("ID_Materia"));*/
 
             }
 
@@ -289,18 +303,18 @@ public class Conexion {
 
     }
     
-    public void CargarAula(JComboBox ComboAula) {
+    public void CargarAula(JComboBox CBAula) {
         Statement consulta;
         
         try {
             consulta = conexion.createStatement();
             ResultSet res = null;
-            res = consulta.executeQuery("SELECT Nombre_Aula, ID_Aula FROM aula");
+            res = consulta.executeQuery("SELECT Nombre_Aula FROM aula");
 
-            ComboAula.addItem("Seleccione un Aula");
+            CBAula.addItem("Seleccione un Aula");
             while (res.next()) {
 
-                ComboAula.addItem(res.getString("Nombre_Aula"));
+                CBAula.addItem(res.getString("Nombre_Aula"));
 
             }
 
@@ -334,4 +348,5 @@ public class Conexion {
 
         return MateriaArray;
     }
+        
 }

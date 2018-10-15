@@ -9,5 +9,10 @@
  * @author manzana
  */
 public class Prueba {
+   /* mClase.setMaestro(this.ComboMaestro.getSelectedItem().toString());
+            mClase.setAula(this.LAula.getSelectedItem().toString());
+            mClase.setMateria(this.LMateria.getSelectedItem().toString());
+            mClase.setDia(this.LDia.getSelectedItem().toString());
+            mClase.setHora(Integer.parseInt(this.SHora.getValue().toString()));*/
     
 }
