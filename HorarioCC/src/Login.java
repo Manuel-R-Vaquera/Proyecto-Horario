@@ -112,14 +112,14 @@ public class Login extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtusuario, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)
                             .addComponent(txtpassword))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(79, 79, 79)
                         .addComponent(btningresar)
                         .addGap(18, 18, 18)
-                        .addComponent(btnsalir, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 140, Short.MAX_VALUE)))
+                        .addComponent(btnsalir, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -172,14 +172,7 @@ public class Login extends javax.swing.JFrame {
           String usuario2 ="user";
         String Contraseña2="1234";
         String Pass2 =new String(txtpassword.getPassword());
-        if(this.txtusuario.getText().isEmpty())
-        {
-            JOptionPane.showMessageDialog(rootPane,"Asegurese De Llenar el campo del usuario");
-        }
-         if(this.txtpassword.getText().isEmpty())
-        {
-            JOptionPane.showMessageDialog(rootPane,"Asegurese De Llenar el campo de la contraseña");
-        }
+        
         if (txtusuario.getText().equals(usuario  )&& Pass.equals(Contraseña)) {
             JOptionPane.showMessageDialog(null, "Bienvenido Administrador");
             MenuInicio mMenuInicio = new MenuInicio();
@@ -197,7 +190,7 @@ public class Login extends javax.swing.JFrame {
        
             this.hide();
             }
-                else {JOptionPane.showMessageDialog(null, "constraseña o usuario incorrecta por favor verifica tu contraseña");}       
+                else {JOptionPane.showMessageDialog(null, "constraseña o usuario incorrecta por favor verifica tu informacion");}       
        
         
        

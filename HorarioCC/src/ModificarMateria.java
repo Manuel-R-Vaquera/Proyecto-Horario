@@ -41,7 +41,6 @@ public class ModificarMateria extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        BTNsair = new javax.swing.JButton();
         BTNaceptar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
@@ -60,21 +59,13 @@ public class ModificarMateria extends javax.swing.JFrame {
         BTNborrar = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         IdText = new javax.swing.JLabel();
+        BTNsair = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Modificar Materia");
 
-        BTNsair.setBackground(new java.awt.Color(97, 212, 195));
-        BTNsair.setText("Salir");
-        BTNsair.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        BTNsair.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BTNsairActionPerformed(evt);
-            }
-        });
-
         BTNaceptar.setBackground(new java.awt.Color(97, 212, 195));
-        BTNaceptar.setText("Modificar");
+        BTNaceptar.setText("Aceptar");
         BTNaceptar.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         BTNaceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -93,9 +84,12 @@ public class ModificarMateria extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(47, 47, 47)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel6))
-                .addContainerGap(43, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel8)
+                        .addContainerGap(43, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -104,7 +98,7 @@ public class ModificarMateria extends javax.swing.JFrame {
                 .addComponent(jLabel8)
                 .addGap(39, 39, 39)
                 .addComponent(jLabel6)
-                .addContainerGap(94, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jLabel7.setBackground(new java.awt.Color(255, 255, 255));
@@ -162,7 +156,7 @@ public class ModificarMateria extends javax.swing.JFrame {
         jScrollPane1.setViewportView(TablaMateria);
 
         BTNborrar.setBackground(new java.awt.Color(97, 212, 195));
-        BTNborrar.setText("Borrar");
+        BTNborrar.setText("Eliminar");
         BTNborrar.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         BTNborrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -174,6 +168,15 @@ public class ModificarMateria extends javax.swing.JFrame {
         jLabel4.setText("ID");
 
         IdText.setForeground(new java.awt.Color(255, 255, 255));
+
+        BTNsair.setBackground(new java.awt.Color(97, 212, 195));
+        BTNsair.setText("Salir");
+        BTNsair.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        BTNsair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BTNsairActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -191,11 +194,11 @@ public class ModificarMateria extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(BTNaceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(27, 27, 27)
-                                .addComponent(BTNsair, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(BTNborrar, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(20, 20, 20))
+                                .addComponent(BTNborrar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(BTNsair, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(19, 19, 19))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel3)
@@ -218,7 +221,7 @@ public class ModificarMateria extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(IdText))
@@ -249,8 +252,8 @@ public class ModificarMateria extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BTNaceptar)
-                    .addComponent(BTNsair)
-                    .addComponent(BTNborrar))
+                    .addComponent(BTNborrar)
+                    .addComponent(BTNsair))
                 .addContainerGap())
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -310,7 +313,7 @@ public class ModificarMateria extends javax.swing.JFrame {
             mMateria.setID_Materia(this.IdText.getText());
                 if (mConexion.conectar()) {
                     if (mConexion.eliminarMateria(mMateria)) {
-                    JOptionPane.showMessageDialog(rootPane, "Materia Eliminado con Éxito");
+                    JOptionPane.showMessageDialog(rootPane, "Materia Eliminada con Éxito");
                     modelo.setColumnCount(0);
                     modelo.setRowCount(0);
                     setFilas();
