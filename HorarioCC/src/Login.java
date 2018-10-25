@@ -21,6 +21,7 @@ import javax.swing.table.DefaultTableModel;
  * @author Martin
  */
 public class Login extends javax.swing.JFrame {
+    public boolean mostrar = true;
 
     /**
      * Creates new form frmusuariologin
@@ -45,11 +46,12 @@ public class Login extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         txtusuario = new javax.swing.JTextField();
-        txtpassword = new javax.swing.JPasswordField();
         btningresar = new javax.swing.JButton();
         btnsalir = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnMostrar = new javax.swing.JButton();
+        txtPassOculto = new javax.swing.JPasswordField();
+        txtPassVisible = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -80,20 +82,16 @@ public class Login extends javax.swing.JFrame {
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/usuario.png"))); // NOI18N
 
-        jButton1.setText("Mostrar");
-        jButton1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseDragged(java.awt.event.MouseEvent evt) {
-                jButton1MouseDragged(evt);
-            }
-        });
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
-            }
-        });
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnMostrar.setText("Mostrar");
+        btnMostrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnMostrarActionPerformed(evt);
+            }
+        });
+
+        txtPassVisible.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPassVisibleActionPerformed(evt);
             }
         });
 
@@ -104,25 +102,25 @@ public class Login extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(79, 79, 79)
+                        .addComponent(btningresar)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnsalir, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(44, 44, 44)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel2)
                             .addComponent(jLabel1))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtusuario, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)
-                            .addComponent(txtpassword))
+                            .addComponent(txtPassOculto, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
+                            .addComponent(txtPassVisible)
+                            .addComponent(txtusuario))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(79, 79, 79)
-                        .addComponent(btningresar)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnsalir, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnMostrar)))
+                .addGap(16, 16, 16)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -136,12 +134,14 @@ public class Login extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
                             .addComponent(txtusuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGap(14, 14, 14)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel2)
-                            .addComponent(txtpassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(24, 24, 24)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(txtPassVisible, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtPassOculto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnMostrar, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(19, 19, 19)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btningresar)
                             .addComponent(btnsalir))))
@@ -165,13 +165,14 @@ public class Login extends javax.swing.JFrame {
     private void btningresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btningresarActionPerformed
         // TODO add your handling code here:
        
+        
         String usuario ="admin";
         String Contraseña="1234";
-        String Pass =new String(txtpassword.getPassword());
+        String Pass =new String(txtPassOculto.getPassword());
         
           String usuario2 ="user";
         String Contraseña2="1234";
-        String Pass2 =new String(txtpassword.getPassword());
+        String Pass2 =new String(txtPassOculto.getPassword());
         
         if (txtusuario.getText().equals(usuario  )&& Pass.equals(Contraseña)) {
             JOptionPane.showMessageDialog(null, "Bienvenido Administrador");
@@ -204,33 +205,41 @@ System.exit(0);
 // TODO add your handling code here:
     }//GEN-LAST:event_btnsalirActionPerformed
 
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-     
-    }//GEN-LAST:event_jButton1MouseClicked
+    private void btnMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarActionPerformed
 
-    private void jButton1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseDragged
-       
-    }//GEN-LAST:event_jButton1MouseDragged
+        //Proceso condicional para mostrar e ocultar la contraseña
+        if (mostrar)
+        {
+            //Ocultamiento y muestreo de componentes
+            txtPassVisible.setVisible(true);
+            txtPassOculto.setVisible(false);
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-          boolean a = false;
-          
- 
-        // TODO add your handling code here:
-        if (a) {  // a es una variable boolean en true
+            //Consultamos el valor existente de Pass Oculto
+            //lo añadimos como nuevo valor para Pass Visible.
+            txtPassVisible.setText(txtPassOculto.getText());
 
-            txtpassword.setEchoChar((char)0); // este método es el que hace visible el texto del jPasswordField
-            a = false;
-        } else {
-            char i = 0;
-            txtpassword.setEchoChar(i); // i es el char
-            a = true;
+            //Le decimos al sistema que en el proximo click que de el
+            //usuario debe de mostrarse la contrseña en modo Oculto.
+            mostrar = false;
+        }else{
+            //Ocultamiento y muestreo de componentes
+            txtPassVisible.setVisible(false);
+            txtPassOculto.setVisible(true);
 
+            //Consultamos el valor existente de Pass Visible
+            //lo añadimos como nuevo valor para Pass Oculto.
+            txtPassOculto.setText(txtPassVisible.getText());
+
+            //Le decimos al sistema que en el proximo click que de el
+            //usuario debe de mostrarse la contrseña en modo visible.
+            mostrar = true;
         }
-       
 
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnMostrarActionPerformed
+
+    private void txtPassVisibleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPassVisibleActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPassVisibleActionPerformed
 
     /**
      * @param args the command line arguments
@@ -269,14 +278,15 @@ System.exit(0);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnMostrar;
     private javax.swing.JButton btningresar;
     private javax.swing.JButton btnsalir;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPasswordField txtpassword;
+    private javax.swing.JPasswordField txtPassOculto;
+    private javax.swing.JTextField txtPassVisible;
     private javax.swing.JTextField txtusuario;
     // End of variables declaration//GEN-END:variables
 }
