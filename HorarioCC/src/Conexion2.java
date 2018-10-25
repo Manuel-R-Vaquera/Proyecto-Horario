@@ -59,13 +59,15 @@ public class Conexion2 {
         try {
 
             consulta = conexion.createStatement();
-            resultado = consulta.executeQuery("select * from clase order by ID_Clase");
+            resultado = consulta.executeQuery("select * from clase WHERE Dia = 'Lunes' order by Hora");
             while (resultado.next()) {
                 mClase = new Clase();
+                mClase.setHora(resultado.getInt("Hora"));
                 mClase.setMateria(resultado.getString("Materia"));
                 mClase.setMaestro(resultado.getString("Maestro"));
                 mClase.setAula(resultado.getString("Aula"));
-                mClase.setHora(Integer.parseInt(resultado.getString("Hora")));
+                
+                //mClase.setHora(Integer.parseInt(resultado.getString("Hora")));
                 ClaseArray.add(mClase);
             }
         } catch (Exception e) {
@@ -74,4 +76,111 @@ public class Conexion2 {
 
         return ClaseArray;
     }
+    public ArrayList consultarClaseMartes() {
+        Clase mClase = null;
+        Statement consulta;
+        ResultSet resultado;
+        ArrayList ClaseArray = new ArrayList();
+
+        try {
+
+            consulta = conexion.createStatement();
+            resultado = consulta.executeQuery("select * from clase WHERE Dia = 'Martes' order by Hora");
+            while (resultado.next()) {
+                mClase = new Clase();
+                mClase.setHora(resultado.getInt("Hora"));
+                mClase.setMateria(resultado.getString("Materia"));
+                mClase.setMaestro(resultado.getString("Maestro"));
+                mClase.setAula(resultado.getString("Aula"));
+                
+                //mClase.setHora(Integer.parseInt(resultado.getString("Hora")));
+                ClaseArray.add(mClase);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return ClaseArray;
+    }
+    
+    public ArrayList consultarClaseMiercoles() {
+        Clase mClase = null;
+        Statement consulta;
+        ResultSet resultado;
+        ArrayList ClaseArray = new ArrayList();
+
+        try {
+
+            consulta = conexion.createStatement();
+            resultado = consulta.executeQuery("select * from clase WHERE Dia = 'Miercoles' order by Hora");
+            while (resultado.next()) {
+                mClase = new Clase();
+                mClase.setHora(resultado.getInt("Hora"));
+                mClase.setMateria(resultado.getString("Materia"));
+                mClase.setMaestro(resultado.getString("Maestro"));
+                mClase.setAula(resultado.getString("Aula"));
+                
+                //mClase.setHora(Integer.parseInt(resultado.getString("Hora")));
+                ClaseArray.add(mClase);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return ClaseArray;
+    }
+    
+    public ArrayList consultarClaseJueves() {
+        Clase mClase = null;
+        Statement consulta;
+        ResultSet resultado;
+        ArrayList ClaseArray = new ArrayList();
+
+        try {
+
+            consulta = conexion.createStatement();
+            resultado = consulta.executeQuery("select * from clase WHERE Dia = 'Jueves' order by Hora");
+            while (resultado.next()) {
+                mClase = new Clase();
+                mClase.setHora(resultado.getInt("Hora"));
+                mClase.setMateria(resultado.getString("Materia"));
+                mClase.setMaestro(resultado.getString("Maestro"));
+                mClase.setAula(resultado.getString("Aula"));
+                
+                //mClase.setHora(Integer.parseInt(resultado.getString("Hora")));
+                ClaseArray.add(mClase);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return ClaseArray;
+    }
+    public ArrayList consultarClaseViernes() {
+        Clase mClase = null;
+        Statement consulta;
+        ResultSet resultado;
+        ArrayList ClaseArray = new ArrayList();
+
+        try {
+
+            consulta = conexion.createStatement();
+            resultado = consulta.executeQuery("select * from clase WHERE Dia = 'Viernes' order by Hora");
+            while (resultado.next()) {
+                mClase = new Clase();
+                mClase.setHora(resultado.getInt("Hora"));
+                mClase.setMateria(resultado.getString("Materia"));
+                mClase.setMaestro(resultado.getString("Maestro"));
+                mClase.setAula(resultado.getString("Aula"));
+                
+                //mClase.setHora(Integer.parseInt(resultado.getString("Hora")));
+                ClaseArray.add(mClase);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return ClaseArray;
+    }
+    
 }

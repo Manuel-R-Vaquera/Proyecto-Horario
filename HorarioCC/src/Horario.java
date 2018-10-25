@@ -2,6 +2,7 @@
 import java.util.ArrayList;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
@@ -10,56 +11,93 @@ import javax.swing.table.TableRowSorter;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author manzana
  */
 public class Horario extends javax.swing.JFrame {
-    
+
     Clase mClase = new Clase();
     Conexion2 mConexion2 = new Conexion2();
     public TableRowSorter<TableModel> modeloOrdenado;
     DefaultTableModel modelo = new DefaultTableModel();
 
-    
     public Horario() {
         initComponents();
-        
+        setFilasLunes();
+
     }
-    public void setFilas() {
+
+    public void setFilasLunes() {
         Clase mClase;
         mConexion2.conectar();
         ArrayList mArrayList = new ArrayList();
         mArrayList = mConexion2.consultarClaseLunes();
         String[] Datos;
 
-        modelo.addColumn("MAC");
-        modelo.addColumn("Lab1");
-        modelo.addColumn("LabSoL");
-        modelo.addColumn("Lab2");
-        modelo.addColumn("Lab3");
+        modelo.addColumn("Hora");
+        modelo.addColumn("Materia");
+        modelo.addColumn("Maestro");
+        modelo.addColumn("Aula");
 
         for (Object mClaseArrays : mArrayList) {
-            Datos = new String[2];
+            Datos = new String[4];
             mClase = (Clase) mClaseArrays;
-            Datos[0] = mClase.getMateria();
-            Datos[1] = mClase.getMaestro();
+            Datos[0] = Integer.toString(mClase.getHora());
+            Datos[1] = mClase.getMateria();
+            Datos[2] = mClase.getMaestro();
+            Datos[3] = mClase.getAula();
 
             modelo.addRow(Datos);
             modeloOrdenado = new TableRowSorter<TableModel>(modelo);
             modeloOrdenado.setRowFilter(RowFilter.regexFilter("^a", 0));
         }
 
-        /*this.TablaMaestros.setModel(modelo);
-        this.TablaMaestros.getColumnModel().getColumn(0);
-        this.TablaMaestros.getColumnModel().getColumn(1).setPreferredWidth(220);
+        this.TablaHorario.setModel(modelo);
+        this.TablaHorario.getColumnModel().getColumn(0).setPreferredWidth(10);
+        this.TablaHorario.getColumnModel().getColumn(1).setPreferredWidth(220);
 
-        if (this.TablaMaestros.getRowCount() > 0) {
-            this.TablaMaestros.setRowSelectionInterval(0, 0);
-        }*/
+        if (this.TablaHorario.getRowCount() > 0) {
+            this.TablaHorario.setRowSelectionInterval(0, 0);
+        }
 
     }
+
+    public void setFilasMartes() {
+        Clase mClase;
+        mConexion2.conectar();
+        ArrayList mArrayList = new ArrayList();
+        mArrayList = mConexion2.consultarClaseMartes();
+        String[] Datos;
+
+        modelo.addColumn("Hora");
+        modelo.addColumn("Materia");
+        modelo.addColumn("Maestro");
+        modelo.addColumn("Aula");
+
+        for (Object mClaseArrays : mArrayList) {
+            Datos = new String[4];
+            mClase = (Clase) mClaseArrays;
+            Datos[0] = Integer.toString(mClase.getHora());
+            Datos[1] = mClase.getMateria();
+            Datos[2] = mClase.getMaestro();
+            Datos[3] = mClase.getAula();
+
+            modelo.addRow(Datos);
+            modeloOrdenado = new TableRowSorter<TableModel>(modelo);
+            modeloOrdenado.setRowFilter(RowFilter.regexFilter("^a", 0));
+        }
+
+        this.TablaHorario.setModel(modelo);
+        this.TablaHorario.getColumnModel().getColumn(0).setPreferredWidth(10);
+        this.TablaHorario.getColumnModel().getColumn(1).setPreferredWidth(220);
+
+        if (this.TablaHorario.getRowCount() > 0) {
+            this.TablaHorario.setRowSelectionInterval(0, 0);
+        }
+
+    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -71,11 +109,16 @@ public class Horario extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        TablaHorario = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        TablaHorario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -86,27 +129,64 @@ public class Horario extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(TablaHorario);
+
+        jButton1.setText("Lunes");
+
+        jButton2.setText("Martes");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jButton3.setText("Miercoles");
+
+        jButton4.setText("Jueves");
+
+        jButton5.setText("Viernes");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(240, Short.MAX_VALUE)
+                .addGap(38, 38, 38)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2)
+                    .addComponent(jButton3)
+                    .addComponent(jButton4)
+                    .addComponent(jButton5))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 467, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(214, 214, 214))
+                .addGap(30, 30, 30))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(50, 50, 50)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(65, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton5))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(57, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        setFilasMartes();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -144,7 +224,12 @@ public class Horario extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable TablaHorario;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }

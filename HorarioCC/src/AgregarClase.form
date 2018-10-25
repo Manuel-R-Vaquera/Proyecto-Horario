@@ -34,21 +34,14 @@
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="BtnGuardar" min="-2" max="-2" attributes="0"/>
-                          <Component id="CBAula" min="-2" max="-2" attributes="0"/>
-                          <Component id="CBHora" min="-2" max="-2" attributes="0"/>
-                          <Component id="CBMaestro" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="CBDia" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="CBMateria" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="347" pref="795" max="32767" attributes="0"/>
-                  </Group>
+                  <Component id="BtnGuardar" min="-2" max="-2" attributes="0"/>
+                  <Component id="CBAula" min="-2" max="-2" attributes="0"/>
+                  <Component id="CBHora" min="-2" max="-2" attributes="0"/>
+                  <Component id="CBMaestro" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="CBDia" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="CBMateria" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
+              <EmptySpace pref="419" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>

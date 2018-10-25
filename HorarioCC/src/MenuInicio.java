@@ -29,11 +29,9 @@ public class MenuInicio extends javax.swing.JFrame {
 
         jPanel3 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        BTNaula = new javax.swing.JButton();
         BTNmaestro = new javax.swing.JButton();
         BTNmateria = new javax.swing.JButton();
         BTNhorario = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -63,13 +61,6 @@ public class MenuInicio extends javax.swing.JFrame {
                 .addGap(16, 16, 16))
         );
 
-        BTNaula.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGENES/icono-pc.png"))); // NOI18N
-        BTNaula.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BTNaulaActionPerformed(evt);
-            }
-        });
-
         BTNmaestro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGENES/icono-profesor.png"))); // NOI18N
         BTNmaestro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -91,8 +82,6 @@ public class MenuInicio extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("Aula");
-
         jLabel2.setText("Maestro");
 
         jLabel3.setText("Horario");
@@ -106,18 +95,14 @@ public class MenuInicio extends javax.swing.JFrame {
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGap(66, 66, 66)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(BTNaula, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(BTNmateria, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(BTNmateria)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(BTNhorario)
                     .addComponent(BTNmaestro))
                 .addGap(92, 92, 92))
             .addGroup(layout.createSequentialGroup()
-                .addGap(102, 102, 102)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(102, 311, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addGap(126, 126, 126))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -132,13 +117,9 @@ public class MenuInicio extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2))
+                .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(BTNaula)
-                    .addComponent(BTNmaestro))
+                .addComponent(BTNmaestro)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
@@ -152,13 +133,6 @@ public class MenuInicio extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void BTNaulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNaulaActionPerformed
-        // TODO add your handling code here:
-        MenuAula mMenuAula = new MenuAula();
-        mMenuAula.show();
-        this.hide();
-    }//GEN-LAST:event_BTNaulaActionPerformed
 
     private void BTNmaestroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNmaestroActionPerformed
         // TODO add your handling code here:
@@ -217,11 +191,9 @@ public class MenuInicio extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BTNaula;
     private javax.swing.JButton BTNhorario;
     private javax.swing.JButton BTNmaestro;
     private javax.swing.JButton BTNmateria;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
