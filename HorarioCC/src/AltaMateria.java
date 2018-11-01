@@ -50,12 +50,13 @@ public class AltaMateria extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Registrar Materias");
+        setPreferredSize(new java.awt.Dimension(605, 520));
         getContentPane().setLayout(null);
 
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Nombre:");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(296, 171, 41, 14);
+        jLabel2.setBounds(296, 171, 60, 14);
 
         TXTnombre.setBackground(new java.awt.Color(36, 47, 65));
         TXTnombre.setForeground(new java.awt.Color(255, 255, 255));
@@ -123,7 +124,7 @@ public class AltaMateria extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Grado:");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(296, 232, 33, 14);
+        jLabel3.setBounds(296, 232, 60, 14);
 
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Carrera:");

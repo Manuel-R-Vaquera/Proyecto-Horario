@@ -138,7 +138,7 @@ public class MenuMaterias extends javax.swing.JFrame {
     }//GEN-LAST:event_BTNaltaActionPerformed
 
     private void BTNmodificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNmodificarActionPerformed
-        // TODO add your handling code here:
+
         ModificarMateria mModificarMateria = new ModificarMateria();
             mModificarMateria.show();
             this.hide();
@@ -146,6 +146,9 @@ public class MenuMaterias extends javax.swing.JFrame {
 
     private void BtnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSalirActionPerformed
         // TODO add your handling code here:
+        this.hide();
+        MenuInicio mMI = new MenuInicio();
+        mMI.show();
     }//GEN-LAST:event_BtnSalirActionPerformed
 
     /**
