@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Nov 01, 2018 at 12:24 AM
+-- Generation Time: Nov 01, 2018 at 02:09 AM
 -- Server version: 5.7.23
 -- PHP Version: 7.2.8
 
@@ -63,20 +63,6 @@ CREATE TABLE `Lunes` (
   `Materia` varchar(100) NOT NULL,
   `Hora` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `Lunes`
---
-
-INSERT INTO `Lunes` (`ID_Clase`, `Maestro`, `Aula`, `Materia`, `Hora`) VALUES
-(1, 'Daniel Arredondo', 'MAC', 'Ingles', 7),
-(2, 'Jairo', 'LABSOL', 'Circuitos', 7),
-(3, 'Daniel Arredondo', 'Lab1', 'Ingles', 7),
-(4, 'Daniel Arredondo', 'Lab2', 'Ingles', 7),
-(8, 'Abraham Esquivel', 'MAC', 'Ingles', 8),
-(9, 'Antonia Mireles', 'LABSOL', 'Ingles', 8),
-(20, 'Antonia Mireles', 'Lab2', 'Lenguajes de Interfaz', 8),
-(27, 'Ignacio Salas', 'LABSOL', 'Ingles', 11);
 
 -- --------------------------------------------------------
 
@@ -180,7 +166,8 @@ ALTER TABLE `aula`
 -- Indexes for table `Jueves`
 --
 ALTER TABLE `Jueves`
-  ADD PRIMARY KEY (`ID_Clase`);
+  ADD PRIMARY KEY (`ID_Clase`),
+  ADD UNIQUE KEY `U1` (`Hora`,`Aula`);
 
 --
 -- Indexes for table `Lunes`
@@ -201,7 +188,8 @@ ALTER TABLE `maestros`
 -- Indexes for table `Martes`
 --
 ALTER TABLE `Martes`
-  ADD PRIMARY KEY (`ID_Clase`);
+  ADD PRIMARY KEY (`ID_Clase`),
+  ADD UNIQUE KEY `U1` (`Hora`,`Aula`);
 
 --
 -- Indexes for table `materia`
@@ -215,13 +203,15 @@ ALTER TABLE `materia`
 -- Indexes for table `Miercoles`
 --
 ALTER TABLE `Miercoles`
-  ADD PRIMARY KEY (`ID_Clase`);
+  ADD PRIMARY KEY (`ID_Clase`),
+  ADD UNIQUE KEY `U1` (`Hora`,`Aula`);
 
 --
 -- Indexes for table `Viernes`
 --
 ALTER TABLE `Viernes`
-  ADD PRIMARY KEY (`ID_Clase`);
+  ADD PRIMARY KEY (`ID_Clase`),
+  ADD UNIQUE KEY `U1` (`Hora`,`Aula`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -243,7 +233,7 @@ ALTER TABLE `Jueves`
 -- AUTO_INCREMENT for table `Lunes`
 --
 ALTER TABLE `Lunes`
-  MODIFY `ID_Clase` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `ID_Clase` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT for table `maestros`
@@ -255,13 +245,13 @@ ALTER TABLE `maestros`
 -- AUTO_INCREMENT for table `Martes`
 --
 ALTER TABLE `Martes`
-  MODIFY `ID_Clase` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_Clase` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `materia`
 --
 ALTER TABLE `materia`
-  MODIFY `ID_Materia` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `ID_Materia` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `Miercoles`
@@ -274,4 +264,3 @@ ALTER TABLE `Miercoles`
 --
 ALTER TABLE `Viernes`
   MODIFY `ID_Clase` int(10) NOT NULL AUTO_INCREMENT;
-
