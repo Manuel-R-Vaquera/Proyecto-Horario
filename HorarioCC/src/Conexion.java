@@ -162,10 +162,11 @@ public class Conexion {
         Statement consulta;
         try {
             consulta = conexion.createStatement();
-            consulta.execute("insert into Lunes (Maestro, Materia, Aula, Hora) values ("
+            consulta.execute("insert into Lunes (Maestro, Materia, Aula, Dia, Hora) values ("
                     + "'" + mClase.getMaestro()
                     + "','" + mClase.getMateria()
                     + "','" + mClase.getAula()
+                    + "','" + mClase.getDia()
                     + "'," + mClase.getHora() + ");");
             return 1;
         } catch (MySQLIntegrityConstraintViolationException be) {
@@ -182,10 +183,11 @@ public class Conexion {
         Statement consulta;
         try {
             consulta = conexion.createStatement();
-            consulta.execute("insert into Martes (Maestro, Materia, Aula, Hora) values ("
+            consulta.execute("insert into Martes (Maestro, Materia, Aula, Dia, Hora) values ("
                     + "'" + mClase.getMaestro()
                     + "','" + mClase.getMateria()
                     + "','" + mClase.getAula()
+                    + "','" + mClase.getDia()
                     + "'," + mClase.getHora() + ");");
             return 1;
         } catch (MySQLIntegrityConstraintViolationException be) {
@@ -202,10 +204,11 @@ public class Conexion {
         Statement consulta;
         try {
             consulta = conexion.createStatement();
-            consulta.execute("insert into Miercoles (Maestro, Materia, Aula, Hora) values ("
+            consulta.execute("insert into Miercoles (Maestro, Materia, Aula, Dia, Hora) values ("
                     + "'" + mClase.getMaestro()
                     + "','" + mClase.getMateria()
                     + "','" + mClase.getAula()
+                    + "','" + mClase.getDia()
                     + "'," + mClase.getHora() + ");");
             return 1;
         } catch (MySQLIntegrityConstraintViolationException be) {
@@ -222,10 +225,11 @@ public class Conexion {
         Statement consulta;
         try {
             consulta = conexion.createStatement();
-            consulta.execute("insert into Jueves (Maestro, Materia, Aula, Hora) values ("
+            consulta.execute("insert into Jueves (Maestro, Materia, Aula, Dia, Hora) values ("
                     + "'" + mClase.getMaestro()
                     + "','" + mClase.getMateria()
                     + "','" + mClase.getAula()
+                    + "','" + mClase.getDia()
                     + "'," + mClase.getHora() + ");");
             return 1;
         } catch (MySQLIntegrityConstraintViolationException be) {
@@ -242,10 +246,11 @@ public class Conexion {
         Statement consulta;
         try {
             consulta = conexion.createStatement();
-            consulta.execute("insert into Viernes (Maestro, Materia, Aula, Hora) values ("
+            consulta.execute("insert into Viernes (Maestro, Materia, Aula, Dia, Hora) values ("
                     + "'" + mClase.getMaestro()
                     + "','" + mClase.getMateria()
                     + "','" + mClase.getAula()
+                    + "','" + mClase.getDia()
                     + "'," + mClase.getHora() + ");");
             return 1;
         } catch (MySQLIntegrityConstraintViolationException be) {

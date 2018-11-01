@@ -155,8 +155,8 @@ public class MenuInicio extends javax.swing.JFrame {
 
     private void BTNhorarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNhorarioActionPerformed
         // TODO add your handling code here:
-        ConsultaHorario mConsultaHorario = new ConsultaHorario();
-        mConsultaHorario.show();
+        Horario mHorario = new Horario();
+        mHorario.show();
         this.hide();
     }//GEN-LAST:event_BTNhorarioActionPerformed
 
