@@ -142,31 +142,79 @@ public class AgregarClase extends javax.swing.JFrame {
             
             if (mConexion.conectar()) {
                 if (this.CBDia.getSelectedItem().toString() == "Lunes") {
-                    if (mConexion.GuardarClaseLunes(mClase)== 1) {
+                    switch(mConexion.GuardarClaseLunes(mClase)){
+                        case 1:
+                            JOptionPane.showMessageDialog(rootPane, "Clase Guardada con Exito");
+                            break;
+                        case 2:
+                            JOptionPane.showMessageDialog(rootPane, "Ya hay una clase asignada en esta HORA y a esta AULA");
+                            break;
+                        case 3:
+                            JOptionPane.showMessageDialog(rootPane, "ERROR");
+                            break;
+                    }
+                    
+                    /*if (mConexion.GuardarClaseLunes(mClase)== 1) {
                         JOptionPane.showMessageDialog(rootPane, "Clase Guardada con Exito");
                     }
                     if (mConexion.GuardarClaseLunes(mClase)== 2) {
                         JOptionPane.showMessageDialog(rootPane, "Ya hay una clase asignada en esta hora");
-                    }
+                    }*/
                 }
                 if (this.CBDia.getSelectedItem().toString() == "Martes") {
-                    if (mConexion.GuardarClaseMartes(mClase)) {
-                        JOptionPane.showMessageDialog(rootPane, "Clase Guardada con Exito");
+                    switch(mConexion.GuardarClaseMartes(mClase)){
+                        case 1:
+                            JOptionPane.showMessageDialog(rootPane, "Clase Guardada con Exito");
+                            break;
+                        case 2:
+                            JOptionPane.showMessageDialog(rootPane, "Ya hay una clase asignada en esta HORA y a esta AULA");
+                            break;
+                        case 3:
+                            JOptionPane.showMessageDialog(rootPane, "ERROR");
+                            break;
                     }
+                    
+                    /*if (mConexion.GuardarClaseMartes(mClase)) {
+                        JOptionPane.showMessageDialog(rootPane, "Clase Guardada con Exito");
+                    }*/
                 }
                 if (this.CBDia.getSelectedItem().toString() == "Miercoles") {
-                    if (mConexion.GuardarClaseMiercoles(mClase)) {
-                        JOptionPane.showMessageDialog(rootPane, "Clase Guardada con Exito");
+                    switch(mConexion.GuardarClaseMiercoles(mClase)){
+                        case 1:
+                            JOptionPane.showMessageDialog(rootPane, "Clase Guardada con Exito");
+                            break;
+                        case 2:
+                            JOptionPane.showMessageDialog(rootPane, "Ya hay una clase asignada en esta HORA y a esta AULA");
+                            break;
+                        case 3:
+                            JOptionPane.showMessageDialog(rootPane, "ERROR");
+                            break;
                     }
                 }
                 if (this.CBDia.getSelectedItem().toString() == "Jueves") {
-                    if (mConexion.GuardarClaseJueves(mClase)) {
-                        JOptionPane.showMessageDialog(rootPane, "Clase Guardada con Exito");
+                    switch(mConexion.GuardarClaseJueves(mClase)){
+                        case 1:
+                            JOptionPane.showMessageDialog(rootPane, "Clase Guardada con Exito");
+                            break;
+                        case 2:
+                            JOptionPane.showMessageDialog(rootPane, "Ya hay una clase asignada en esta HORA y a esta AULA");
+                            break;
+                        case 3:
+                            JOptionPane.showMessageDialog(rootPane, "ERROR");
+                            break;
                     }
                 }
                 if (this.CBDia.getSelectedItem().toString() == "Viernes") {
-                    if (mConexion.GuardarClaseViernes(mClase)) {
-                        JOptionPane.showMessageDialog(rootPane, "Clase Guardada con Exito");
+                    switch(mConexion.GuardarClaseViernes(mClase)){
+                        case 1:
+                            JOptionPane.showMessageDialog(rootPane, "Clase Guardada con Exito");
+                            break;
+                        case 2:
+                            JOptionPane.showMessageDialog(rootPane, "Ya hay una clase asignada en esta HORA y a esta AULA");
+                            break;
+                        case 3:
+                            JOptionPane.showMessageDialog(rootPane, "ERROR");
+                            break;
                     }
                 }
 

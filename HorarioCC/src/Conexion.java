@@ -168,17 +168,17 @@ public class Conexion {
                     + "','" + mClase.getAula()
                     + "'," + mClase.getHora() + ");");
             return 1;
-        } catch (MySQLIntegrityConstraintViolationException e) {
-            e.printStackTrace();
-            return 2;
+        } catch (MySQLIntegrityConstraintViolationException be) {
+            be.printStackTrace();
+            return 3;
         
         } catch (Exception e) {
             e.printStackTrace();
-            return 3;
+            return 2;
         }
     }
     
-    public boolean GuardarClaseMartes(Clase mClase) {
+    public int GuardarClaseMartes(Clase mClase) {
         Statement consulta;
         try {
             consulta = conexion.createStatement();
@@ -187,14 +187,18 @@ public class Conexion {
                     + "','" + mClase.getMateria()
                     + "','" + mClase.getAula()
                     + "'," + mClase.getHora() + ");");
-            return true;
+            return 1;
+        } catch (MySQLIntegrityConstraintViolationException be) {
+            be.printStackTrace();
+            return 3;
+        
         } catch (Exception e) {
             e.printStackTrace();
-            return false;
+            return 2;
         }
     }
     
-    public boolean GuardarClaseMiercoles(Clase mClase) {
+    public int GuardarClaseMiercoles(Clase mClase) {
         Statement consulta;
         try {
             consulta = conexion.createStatement();
@@ -203,14 +207,18 @@ public class Conexion {
                     + "','" + mClase.getMateria()
                     + "','" + mClase.getAula()
                     + "'," + mClase.getHora() + ");");
-            return true;
+            return 1;
+        } catch (MySQLIntegrityConstraintViolationException be) {
+            be.printStackTrace();
+            return 3;
+        
         } catch (Exception e) {
             e.printStackTrace();
-            return false;
+            return 2;
         }
     }
     
-    public boolean GuardarClaseJueves(Clase mClase) {
+    public int GuardarClaseJueves(Clase mClase) {
         Statement consulta;
         try {
             consulta = conexion.createStatement();
@@ -219,14 +227,18 @@ public class Conexion {
                     + "','" + mClase.getMateria()
                     + "','" + mClase.getAula()
                     + "'," + mClase.getHora() + ");");
-            return true;
+            return 1;
+        } catch (MySQLIntegrityConstraintViolationException be) {
+            be.printStackTrace();
+            return 3;
+        
         } catch (Exception e) {
             e.printStackTrace();
-            return false;
+            return 2;
         }
     }
     
-    public boolean GuardarClaseViernes(Clase mClase) {
+    public int GuardarClaseViernes(Clase mClase) {
         Statement consulta;
         try {
             consulta = conexion.createStatement();
@@ -235,10 +247,14 @@ public class Conexion {
                     + "','" + mClase.getMateria()
                     + "','" + mClase.getAula()
                     + "'," + mClase.getHora() + ");");
-            return true;
+            return 1;
+        } catch (MySQLIntegrityConstraintViolationException be) {
+            be.printStackTrace();
+            return 3;
+        
         } catch (Exception e) {
             e.printStackTrace();
-            return false;
+            return 2;
         }
     }
 
