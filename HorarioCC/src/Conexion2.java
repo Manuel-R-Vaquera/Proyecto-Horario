@@ -4,6 +4,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import javax.swing.JComboBox;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -59,7 +60,7 @@ public class Conexion2 {
         try {
 
             consulta = conexion.createStatement();
-            resultado = consulta.executeQuery("select * from clase WHERE Dia = 'Lunes' order by Hora");
+            resultado = consulta.executeQuery("select * from Lunes");
             while (resultado.next()) {
                 mClase = new Clase();
                 mClase.setHora(resultado.getInt("Hora"));
@@ -76,6 +77,27 @@ public class Conexion2 {
 
         return ClaseArray;
     }
+        public boolean ValidarLunes(int VHora) {
+        Statement consulta;
+        ResultSet resultado;
+        boolean valor = true;
+
+        try {
+
+            consulta = conexion.createStatement();
+            resultado = consulta.executeQuery("select Hora from Lunes where Hora =  " + VHora + ";");
+            if (resultado.equals("")) {
+                valor = true;
+            } else{
+                valor = false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return valor;
+    }
+        
     public ArrayList consultarClaseMartes() {
         Clase mClase = null;
         Statement consulta;

@@ -1,4 +1,5 @@
 
+import com.mysql.jdbc.exceptions.MySQLIntegrityConstraintViolationException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -31,7 +32,7 @@ public class Conexion {
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             conexion = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/horariocc", "root", "");
+                    "jdbc:mysql://localhost:8889/horariocc", "root", "root");
             if (conexion != null) {
                 return true;
             } else {
@@ -157,30 +158,83 @@ public class Conexion {
             return false;
         }
     }
-    public boolean GuardarClase2(Clase mClase) {
+    public int GuardarClaseLunes(Clase mClase) {
         Statement consulta;
         try {
             consulta = conexion.createStatement();
-            consulta.execute("insert into clase (Materia, Maestro, Aula, Hora, Dia) values ("
-                    + "'" + mClase.getMateria()
-                    + "','" + mClase.getMaestro()
+            consulta.execute("insert into Lunes (Maestro, Materia, Aula, Hora) values ("
+                    + "'" + mClase.getMaestro()
+                    + "','" + mClase.getMateria()
                     + "','" + mClase.getAula()
-                    + "'," + mClase.getHora()
-                    + ",'" + mClase.getDia() +"');");
+                    + "'," + mClase.getHora() + ");");
+            return 1;
+        } catch (MySQLIntegrityConstraintViolationException e) {
+            e.printStackTrace();
+            return 2;
+        
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 3;
+        }
+    }
+    
+    public boolean GuardarClaseMartes(Clase mClase) {
+        Statement consulta;
+        try {
+            consulta = conexion.createStatement();
+            consulta.execute("insert into Martes (Maestro, Materia, Aula, Hora) values ("
+                    + "'" + mClase.getMaestro()
+                    + "','" + mClase.getMateria()
+                    + "','" + mClase.getAula()
+                    + "'," + mClase.getHora() + ");");
             return true;
         } catch (Exception e) {
             e.printStackTrace();
             return false;
         }
     }
-    public boolean GuardarClase(Clase mClase) {
+    
+    public boolean GuardarClaseMiercoles(Clase mClase) {
         Statement consulta;
         try {
             consulta = conexion.createStatement();
-            consulta.execute("insert into clase (Class, Hora, Dia) values ("
-                    + "Maestro = '" + mClase.getMaestro()
-                    + "', Hora = " + mClase.getHora()
-                    + ", Dia = '" + mClase.getDia() +"');");
+            consulta.execute("insert into Miercoles (Maestro, Materia, Aula, Hora) values ("
+                    + "'" + mClase.getMaestro()
+                    + "','" + mClase.getMateria()
+                    + "','" + mClase.getAula()
+                    + "'," + mClase.getHora() + ");");
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+    
+    public boolean GuardarClaseJueves(Clase mClase) {
+        Statement consulta;
+        try {
+            consulta = conexion.createStatement();
+            consulta.execute("insert into Jueves (Maestro, Materia, Aula, Hora) values ("
+                    + "'" + mClase.getMaestro()
+                    + "','" + mClase.getMateria()
+                    + "','" + mClase.getAula()
+                    + "'," + mClase.getHora() + ");");
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+    
+    public boolean GuardarClaseViernes(Clase mClase) {
+        Statement consulta;
+        try {
+            consulta = conexion.createStatement();
+            consulta.execute("insert into Viernes (Maestro, Materia, Aula, Hora) values ("
+                    + "'" + mClase.getMaestro()
+                    + "','" + mClase.getMateria()
+                    + "','" + mClase.getAula()
+                    + "'," + mClase.getHora() + ");");
             return true;
         } catch (Exception e) {
             e.printStackTrace();

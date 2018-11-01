@@ -1,4 +1,6 @@
 
+import java.util.ArrayList;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
@@ -8,7 +10,6 @@ import javax.swing.SwingConstants;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author manzana
@@ -16,7 +17,10 @@ import javax.swing.SwingConstants;
 public class AgregarClase extends javax.swing.JFrame {
 
     Conexion mConexion = new Conexion();
+    Conexion2 mConexion2 = new Conexion2();
     Clase mClase = new Clase();
+    int VHora = 1;
+
     public AgregarClase() {
         initComponents();
         mConexion.conectar();
@@ -128,17 +132,53 @@ public class AgregarClase extends javax.swing.JFrame {
         if (this.CBMaestro.getSelectedItem() == "Seleccione un Maestro") {
             JOptionPane.showMessageDialog(rootPane, "Asegurese de llenar todos los campos");
         } else {
+
             mClase.setMaestro(this.CBMaestro.getSelectedItem().toString());
             mClase.setAula(this.CBAula.getSelectedItem().toString());
             mClase.setMateria(this.CBMateria.getSelectedItem().toString());
             mClase.setDia(this.CBDia.getSelectedItem().toString());
             mClase.setHora(Integer.parseInt(this.CBHora.getSelectedItem().toString()));
+            
+            
             if (mConexion.conectar()) {
-                if (mConexion.GuardarClase2(mClase)) {
-                    JOptionPane.showMessageDialog(rootPane, "Clase Guardada con Exito");
+                if (this.CBDia.getSelectedItem().toString() == "Lunes") {
+                    if (mConexion.GuardarClaseLunes(mClase)== 1) {
+                        JOptionPane.showMessageDialog(rootPane, "Clase Guardada con Exito");
+                    }
+                    if (mConexion.GuardarClaseLunes(mClase)== 2) {
+                        JOptionPane.showMessageDialog(rootPane, "Ya hay una clase asignada en esta hora");
+                    }
                 }
-            } else{JOptionPane.showMessageDialog(rootPane, "Error al conectar");}
+                if (this.CBDia.getSelectedItem().toString() == "Martes") {
+                    if (mConexion.GuardarClaseMartes(mClase)) {
+                        JOptionPane.showMessageDialog(rootPane, "Clase Guardada con Exito");
+                    }
+                }
+                if (this.CBDia.getSelectedItem().toString() == "Miercoles") {
+                    if (mConexion.GuardarClaseMiercoles(mClase)) {
+                        JOptionPane.showMessageDialog(rootPane, "Clase Guardada con Exito");
+                    }
+                }
+                if (this.CBDia.getSelectedItem().toString() == "Jueves") {
+                    if (mConexion.GuardarClaseJueves(mClase)) {
+                        JOptionPane.showMessageDialog(rootPane, "Clase Guardada con Exito");
+                    }
+                }
+                if (this.CBDia.getSelectedItem().toString() == "Viernes") {
+                    if (mConexion.GuardarClaseViernes(mClase)) {
+                        JOptionPane.showMessageDialog(rootPane, "Clase Guardada con Exito");
+                    }
+                }
+
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Error al conectar");
+            }
+
+            /*if (Integer.parseInt(this.CBHora.getSelectedItem().toString()) ==  ) {
+                JOptionPane.showMessageDialog(rootPane, "Iguales");
+            }*/
         }
+
     }//GEN-LAST:event_BtnGuardarActionPerformed
 
     /**

@@ -1,23 +1,23 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.7
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
--- Servidor: localhost
--- Tiempo de generación: 11-10-2018 a las 05:50:52
--- Versión del servidor: 5.6.38-log
--- Versión de PHP: 7.2.1
+-- Host: localhost:8889
+-- Generation Time: Nov 01, 2018 at 12:24 AM
+-- Server version: 5.7.23
+-- PHP Version: 7.2.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 --
--- Base de datos: `horariocc`
+-- Database: `horariocc`
 --
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `aula`
+-- Table structure for table `aula`
 --
 
 CREATE TABLE `aula` (
@@ -26,37 +26,62 @@ CREATE TABLE `aula` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Volcado de datos para la tabla `aula`
+-- Dumping data for table `aula`
 --
 
 INSERT INTO `aula` (`ID_Aula`, `Nombre_Aula`) VALUES
-(1, 'Centro 1'),
-(2, 'Aula 3'),
-(4, 'LABSOL'),
-(6, 'CC2'),
-(7, 'Itxcalli'),
-(8, 'cc4'),
-(9, 'cc5');
+(1, 'MAC'),
+(2, 'Lab1'),
+(3, 'LABSOL'),
+(4, 'Lab2'),
+(5, 'Lab3');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `Clase`
+-- Table structure for table `Jueves`
 --
 
-CREATE TABLE `Clase` (
-  `ID_Clase` int(11) NOT NULL,
-  `ID_Aula` int(11) NOT NULL,
-  `ID_Materia` int(11) NOT NULL,
-  `ID_Maestro` int(11) NOT NULL,
-  `Dia` int(2) NOT NULL,
+CREATE TABLE `Jueves` (
+  `ID_Clase` int(10) NOT NULL,
+  `Maestro` varchar(50) NOT NULL,
+  `Aula` varchar(50) NOT NULL,
+  `Materia` varchar(100) NOT NULL,
   `Hora` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `maestros`
+-- Table structure for table `Lunes`
+--
+
+CREATE TABLE `Lunes` (
+  `ID_Clase` int(10) NOT NULL,
+  `Maestro` varchar(50) NOT NULL,
+  `Aula` varchar(50) NOT NULL,
+  `Materia` varchar(100) NOT NULL,
+  `Hora` int(2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `Lunes`
+--
+
+INSERT INTO `Lunes` (`ID_Clase`, `Maestro`, `Aula`, `Materia`, `Hora`) VALUES
+(1, 'Daniel Arredondo', 'MAC', 'Ingles', 7),
+(2, 'Jairo', 'LABSOL', 'Circuitos', 7),
+(3, 'Daniel Arredondo', 'Lab1', 'Ingles', 7),
+(4, 'Daniel Arredondo', 'Lab2', 'Ingles', 7),
+(8, 'Abraham Esquivel', 'MAC', 'Ingles', 8),
+(9, 'Antonia Mireles', 'LABSOL', 'Ingles', 8),
+(20, 'Antonia Mireles', 'Lab2', 'Lenguajes de Interfaz', 8),
+(27, 'Ignacio Salas', 'LABSOL', 'Ingles', 11);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `maestros`
 --
 
 CREATE TABLE `maestros` (
@@ -65,19 +90,34 @@ CREATE TABLE `maestros` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Volcado de datos para la tabla `maestros`
+-- Dumping data for table `maestros`
 --
 
 INSERT INTO `maestros` (`ID_Maestro`, `Nombre_Maestro`) VALUES
 (1, 'Daniel Arredondo'),
 (2, 'Ignacio Salas'),
 (3, 'Abraham Esquivel'),
-(4, 'Antonia Mireles');
+(4, 'Antonia Mireles'),
+(5, 'Jairo');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `materia`
+-- Table structure for table `Martes`
+--
+
+CREATE TABLE `Martes` (
+  `ID_Clase` int(10) NOT NULL,
+  `Maestro` varchar(50) NOT NULL,
+  `Aula` varchar(50) NOT NULL,
+  `Materia` varchar(100) NOT NULL,
+  `Hora` int(2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `materia`
 --
 
 CREATE TABLE `materia` (
@@ -88,19 +128,48 @@ CREATE TABLE `materia` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Volcado de datos para la tabla `materia`
+-- Dumping data for table `materia`
 --
 
 INSERT INTO `materia` (`ID_Materia`, `Nombre_Materia`, `Grado`, `Carrera`) VALUES
 (3, 'Ingles', 4, 'ISC'),
-(6, 'Circuitos', 4, 'ISC');
+(6, 'Circuitos', 4, 'ISC'),
+(7, 'Lenguajes de Interfaz', 6, 'ISC');
+
+-- --------------------------------------------------------
 
 --
--- Índices para tablas volcadas
+-- Table structure for table `Miercoles`
+--
+
+CREATE TABLE `Miercoles` (
+  `ID_Clase` int(10) NOT NULL,
+  `Maestro` varchar(50) NOT NULL,
+  `Aula` varchar(50) NOT NULL,
+  `Materia` varchar(100) NOT NULL,
+  `Hora` int(2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Viernes`
+--
+
+CREATE TABLE `Viernes` (
+  `ID_Clase` int(10) NOT NULL,
+  `Maestro` varchar(50) NOT NULL,
+  `Aula` varchar(50) NOT NULL,
+  `Materia` varchar(100) NOT NULL,
+  `Hora` int(2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Indexes for dumped tables
 --
 
 --
--- Indices de la tabla `aula`
+-- Indexes for table `aula`
 --
 ALTER TABLE `aula`
   ADD PRIMARY KEY (`ID_Aula`),
@@ -108,16 +177,20 @@ ALTER TABLE `aula`
   ADD KEY `ID_Aula_2` (`ID_Aula`);
 
 --
--- Indices de la tabla `Clase`
+-- Indexes for table `Jueves`
 --
-ALTER TABLE `Clase`
-  ADD PRIMARY KEY (`ID_Clase`,`ID_Aula`,`ID_Materia`,`ID_Maestro`),
-  ADD KEY `ID_Aula` (`ID_Aula`),
-  ADD KEY `ID_Materia` (`ID_Materia`),
-  ADD KEY `ID_Maestro` (`ID_Maestro`);
+ALTER TABLE `Jueves`
+  ADD PRIMARY KEY (`ID_Clase`);
 
 --
--- Indices de la tabla `maestros`
+-- Indexes for table `Lunes`
+--
+ALTER TABLE `Lunes`
+  ADD PRIMARY KEY (`ID_Clase`),
+  ADD UNIQUE KEY `unico` (`Hora`,`Aula`);
+
+--
+-- Indexes for table `maestros`
 --
 ALTER TABLE `maestros`
   ADD PRIMARY KEY (`ID_Maestro`),
@@ -125,7 +198,13 @@ ALTER TABLE `maestros`
   ADD KEY `ID_Maestro_2` (`ID_Maestro`);
 
 --
--- Indices de la tabla `materia`
+-- Indexes for table `Martes`
+--
+ALTER TABLE `Martes`
+  ADD PRIMARY KEY (`ID_Clase`);
+
+--
+-- Indexes for table `materia`
 --
 ALTER TABLE `materia`
   ADD PRIMARY KEY (`ID_Materia`),
@@ -133,35 +212,66 @@ ALTER TABLE `materia`
   ADD KEY `ID_Materia_2` (`ID_Materia`);
 
 --
--- AUTO_INCREMENT de las tablas volcadas
+-- Indexes for table `Miercoles`
+--
+ALTER TABLE `Miercoles`
+  ADD PRIMARY KEY (`ID_Clase`);
+
+--
+-- Indexes for table `Viernes`
+--
+ALTER TABLE `Viernes`
+  ADD PRIMARY KEY (`ID_Clase`);
+
+--
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT de la tabla `aula`
+-- AUTO_INCREMENT for table `aula`
 --
 ALTER TABLE `aula`
-  MODIFY `ID_Aula` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `ID_Aula` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT de la tabla `maestros`
+-- AUTO_INCREMENT for table `Jueves`
+--
+ALTER TABLE `Jueves`
+  MODIFY `ID_Clase` int(10) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `Lunes`
+--
+ALTER TABLE `Lunes`
+  MODIFY `ID_Clase` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+
+--
+-- AUTO_INCREMENT for table `maestros`
 --
 ALTER TABLE `maestros`
-  MODIFY `ID_Maestro` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `ID_Maestro` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT de la tabla `materia`
+-- AUTO_INCREMENT for table `Martes`
+--
+ALTER TABLE `Martes`
+  MODIFY `ID_Clase` int(10) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `materia`
 --
 ALTER TABLE `materia`
-  MODIFY `ID_Materia` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `ID_Materia` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- Restricciones para tablas volcadas
+-- AUTO_INCREMENT for table `Miercoles`
 --
+ALTER TABLE `Miercoles`
+  MODIFY `ID_Clase` int(10) NOT NULL AUTO_INCREMENT;
 
 --
--- Filtros para la tabla `Clase`
+-- AUTO_INCREMENT for table `Viernes`
 --
-ALTER TABLE `Clase`
-  ADD CONSTRAINT `clase_ibfk_1` FOREIGN KEY (`ID_Aula`) REFERENCES `aula` (`ID_Aula`),
-  ADD CONSTRAINT `clase_ibfk_2` FOREIGN KEY (`ID_Materia`) REFERENCES `materia` (`ID_Materia`),
-  ADD CONSTRAINT `clase_ibfk_3` FOREIGN KEY (`ID_Maestro`) REFERENCES `maestros` (`ID_Maestro`);
+ALTER TABLE `Viernes`
+  MODIFY `ID_Clase` int(10) NOT NULL AUTO_INCREMENT;
+
