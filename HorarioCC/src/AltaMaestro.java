@@ -1,5 +1,6 @@
 
 import java.awt.Color;
+import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 
 /*
@@ -51,6 +52,11 @@ public class AltaMaestro extends javax.swing.JFrame {
         TXTnombre.setBackground(new java.awt.Color(36, 47, 65));
         TXTnombre.setForeground(new java.awt.Color(255, 255, 255));
         TXTnombre.setBorder(null);
+        TXTnombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                TXTnombreKeyTyped(evt);
+            }
+        });
 
         jLabel5.setBackground(new java.awt.Color(255, 255, 255));
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
@@ -178,7 +184,7 @@ public class AltaMaestro extends javax.swing.JFrame {
         {
             if(mConexion.GuardarMaestro(mMaestro))
             {
-                JOptionPane.showMessageDialog(rootPane,"Gracias por Registrarse");
+                JOptionPane.showMessageDialog(rootPane,"Maestro Registrado Con Éxito ");
             }
         }
         this.hide();
@@ -195,6 +201,16 @@ public class AltaMaestro extends javax.swing.JFrame {
         MenuMaestro mMM = new MenuMaestro();
         mMM.show();
     }//GEN-LAST:event_BTNsalirActionPerformed
+
+    private void TXTnombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TXTnombreKeyTyped
+        // TODO add your handling code here:
+        char error = evt.getKeyChar();
+        if ((error < 'A' || error >'Z') && (error < 'a' || error > 'z') && (error != KeyEvent.VK_SPACE)) {
+            
+            evt.consume();
+        }
+                  
+    }//GEN-LAST:event_TXTnombreKeyTyped
 
     /**
      * @param args the command line arguments

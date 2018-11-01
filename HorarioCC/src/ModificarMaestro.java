@@ -1,4 +1,5 @@
 
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
@@ -109,6 +110,11 @@ public class ModificarMaestro extends javax.swing.JFrame {
         TXTnuevonombre.setBackground(new java.awt.Color(36, 47, 65));
         TXTnuevonombre.setForeground(new java.awt.Color(255, 255, 255));
         TXTnuevonombre.setBorder(null);
+        TXTnuevonombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                TXTnuevonombreKeyTyped(evt);
+            }
+        });
 
         TablaMaestros.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -261,6 +267,16 @@ public class ModificarMaestro extends javax.swing.JFrame {
         MenuMaestro mMM = new MenuMaestro();
         mMM.show();
     }//GEN-LAST:event_BTNsalirActionPerformed
+
+    private void TXTnuevonombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TXTnuevonombreKeyTyped
+        // TODO add your handling code here:
+        char error = evt.getKeyChar();
+        if ((error < 'A' || error >'Z') && (error < 'a' || error > 'z') && (error != KeyEvent.VK_SPACE)) {
+            
+            evt.consume();
+        }
+    
+    }//GEN-LAST:event_TXTnuevonombreKeyTyped
 
     public void setFilas() {
         Maestro mMaestro;

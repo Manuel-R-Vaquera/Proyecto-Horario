@@ -55,7 +55,7 @@ public class AltaMateria extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Nombre:");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(296, 171, 60, 16);
+        jLabel2.setBounds(296, 171, 60, 14);
 
         TXTnombre.setBackground(new java.awt.Color(36, 47, 65));
         TXTnombre.setForeground(new java.awt.Color(255, 255, 255));
@@ -72,7 +72,7 @@ public class AltaMateria extends javax.swing.JFrame {
             }
         });
         getContentPane().add(BTNsair);
-        BTNsair.setBounds(440, 410, 71, 20);
+        BTNsair.setBounds(440, 410, 71, 19);
 
         BTNaceptar.setBackground(new java.awt.Color(97, 212, 195));
         BTNaceptar.setText("Aceptar");
@@ -83,7 +83,7 @@ public class AltaMateria extends javax.swing.JFrame {
             }
         });
         getContentPane().add(BTNaceptar);
-        BTNaceptar.setBounds(320, 410, 70, 20);
+        BTNaceptar.setBounds(320, 410, 70, 19);
 
         jLabel5.setBackground(new java.awt.Color(255, 255, 255));
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
@@ -123,12 +123,12 @@ public class AltaMateria extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Grado:");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(296, 232, 60, 16);
+        jLabel3.setBounds(296, 232, 60, 14);
 
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Carrera:");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(296, 289, 49, 16);
+        jLabel4.setBounds(296, 289, 41, 14);
 
         TXTcarrera.setBackground(new java.awt.Color(36, 47, 65));
         TXTcarrera.setForeground(new java.awt.Color(255, 255, 255));
@@ -145,7 +145,7 @@ public class AltaMateria extends javax.swing.JFrame {
 
         SpinGrado.setModel(new javax.swing.SpinnerNumberModel(1, 1, 10, 1));
         getContentPane().add(SpinGrado);
-        SpinGrado.setBounds(296, 257, 49, 26);
+        SpinGrado.setBounds(296, 257, 39, 20);
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
