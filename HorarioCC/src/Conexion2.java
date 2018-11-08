@@ -114,5 +114,38 @@ public class Conexion2 {
 
         return ClaseArray;
     }
+    
+    public ArrayList consultarClasePorAula(String AulaSel) {
+        Clase mClase = null;
+        Statement consulta;
+        ResultSet resultado;
+        ArrayList ClaseArray = new ArrayList();
+
+        try {
+
+            consulta = conexion.createStatement();
+            resultado = consulta.executeQuery("SELECT * FROM Clases Natural Join maestros Natural Join aula Natural Join materia WHERE Nombre_Aula = '" + AulaSel
+                    + "' Order by Dia, Hora");
+            while (resultado.next()) {
+                mClase = new Clase();
+                mClase.setHora(resultado.getInt("Hora"));
+                mClase.setMateria(resultado.getString("Nombre_Materia"));
+                mClase.setMaestro(resultado.getString("Nombre_Maestro"));
+                mClase.setAula(resultado.getString("Nombre_Aula"));
+                mClase.setGrado(resultado.getInt("Grado"));
+                mClase.setCarrera(resultado.getString("Carrera"));
+                mClase.setGrupo(resultado.getString("Grupo"));
+                mClase.setDia(resultado.getString("Dia"));
+                
+
+                //mClase.setHora(Integer.parseInt(resultado.getString("Hora")));
+                ClaseArray.add(mClase);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return ClaseArray;
+    }
 
 }

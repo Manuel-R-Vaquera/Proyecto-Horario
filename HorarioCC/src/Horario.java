@@ -21,7 +21,9 @@ public class Horario extends javax.swing.JFrame {
     Conexion2 mConexion2 = new Conexion2();
     public TableRowSorter<TableModel> modeloOrdenado;
     DefaultTableModel modelo = new DefaultTableModel();
+    
     String DiaSel = "";
+    String AulaSel = "";
 
     public Horario() {
         initComponents();
@@ -30,12 +32,14 @@ public class Horario extends javax.swing.JFrame {
 
     }
     public void LimpiarTabla() {
+        this.TablaHorario.setModel(new DefaultTableModel());
+        /*
         DefaultTableModel Tabla = (DefaultTableModel) this.TablaHorario.getModel();
         int a = this.TablaHorario.getRowCount() - 1;
         for (int i = a; i >= 0; i--) {
             Tabla.removeRow(Tabla.getRowCount() - 1);
         }
-        Tabla.removeTableModelListener(TablaHorario);
+        Tabla.removeTableModelListener(TablaHorario);*/
     }
 
     public void setFilasDia() {
@@ -45,6 +49,7 @@ public class Horario extends javax.swing.JFrame {
         mArrayList = mConexion2.consultarClasePorDia(DiaSel);
         String[] Datos;
 
+        modelo = new DefaultTableModel();
         modelo.addColumn("Hora");
         modelo.addColumn("Materia");
         modelo.addColumn("Maestro");
@@ -60,6 +65,54 @@ public class Horario extends javax.swing.JFrame {
             Datos[1] = mClase.getMateria();
             Datos[2] = mClase.getMaestro();
             Datos[3] = mClase.getAula();
+            Datos[4] = Integer.toString(mClase.getGrado());
+            Datos[5] = mClase.getGrupo();
+            Datos[6] = mClase.getCarrera();
+            
+
+            modelo.addRow(Datos);
+            modeloOrdenado = new TableRowSorter<TableModel>(modelo);
+            modeloOrdenado.setRowFilter(RowFilter.regexFilter("^a", 0));
+        }
+
+        this.TablaHorario.setModel(modelo);
+        this.TablaHorario.getColumnModel().getColumn(0).setPreferredWidth(5);
+        this.TablaHorario.getColumnModel().getColumn(1).setPreferredWidth(40);
+        this.TablaHorario.getColumnModel().getColumn(2).setPreferredWidth(40);
+        this.TablaHorario.getColumnModel().getColumn(3).setPreferredWidth(20);
+        this.TablaHorario.getColumnModel().getColumn(4).setPreferredWidth(10);
+        this.TablaHorario.getColumnModel().getColumn(5).setPreferredWidth(10);
+        this.TablaHorario.getColumnModel().getColumn(6).setPreferredWidth(10);
+
+        if (this.TablaHorario.getRowCount() > 0) {
+            this.TablaHorario.setRowSelectionInterval(0, 0);
+        }
+
+    }
+    
+    public void setFilasAula() {
+        Clase mClase;
+        mConexion2.conectar();
+        ArrayList mArrayList = new ArrayList();
+        mArrayList = mConexion2.consultarClasePorAula(AulaSel);
+        String[] Datos;
+
+        modelo = new DefaultTableModel();
+        modelo.addColumn("Hora");
+        modelo.addColumn("Materia");
+        modelo.addColumn("Maestro");
+        modelo.addColumn("Dia");
+        modelo.addColumn("Grado");
+        modelo.addColumn("Grupo");
+        modelo.addColumn("Carrera");
+
+        for (Object mClaseArrays : mArrayList) {
+            Datos = new String[7];
+            mClase = (Clase) mClaseArrays;
+            Datos[0] = Integer.toString(mClase.getHora());
+            Datos[1] = mClase.getMateria();
+            Datos[2] = mClase.getMaestro();
+            Datos[3] = mClase.getDia();
             Datos[4] = Integer.toString(mClase.getGrado());
             Datos[5] = mClase.getGrupo();
             Datos[6] = mClase.getCarrera();
@@ -108,6 +161,11 @@ public class Horario extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        BtnMac = new javax.swing.JButton();
+        BtnLabsol = new javax.swing.JButton();
+        BtnLab1 = new javax.swing.JButton();
+        BtnLab2 = new javax.swing.JButton();
+        BtnLab3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -205,6 +263,51 @@ public class Horario extends javax.swing.JFrame {
                 .addGap(81, 81, 81))
         );
 
+        BtnMac.setBackground(new java.awt.Color(97, 212, 195));
+        BtnMac.setText("MAC");
+        BtnMac.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        BtnMac.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnMacActionPerformed(evt);
+            }
+        });
+
+        BtnLabsol.setBackground(new java.awt.Color(97, 212, 195));
+        BtnLabsol.setText("LABSOL");
+        BtnLabsol.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        BtnLabsol.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnLabsolActionPerformed(evt);
+            }
+        });
+
+        BtnLab1.setBackground(new java.awt.Color(97, 212, 195));
+        BtnLab1.setText("Lab1");
+        BtnLab1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        BtnLab1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnLab1ActionPerformed(evt);
+            }
+        });
+
+        BtnLab2.setBackground(new java.awt.Color(97, 212, 195));
+        BtnLab2.setText("Lab2");
+        BtnLab2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        BtnLab2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnLab2ActionPerformed(evt);
+            }
+        });
+
+        BtnLab3.setBackground(new java.awt.Color(97, 212, 195));
+        BtnLab3.setText("Lab3");
+        BtnLab3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        BtnLab3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnLab3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -220,30 +323,50 @@ public class Horario extends javax.swing.JFrame {
                     .addComponent(BtnSalir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(BtnLunes, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 518, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(BtnLabsol, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(BtnLab1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(BtnLab2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(BtnLab3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(BtnMac, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(60, 60, 60)
-                        .addComponent(BtnLunes)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(BtnMartes)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(BtnMiercoles)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(BtnJueves)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(BtnViernes)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(BtnSalir)))
-                .addContainerGap(63, Short.MAX_VALUE))
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(50, 50, 50)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(60, 60, 60)
+                                .addComponent(BtnLunes)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(BtnMartes)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(BtnMiercoles)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(BtnJueves)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(BtnViernes)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(BtnSalir))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(110, 110, 110)
+                        .addComponent(BtnMac)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(BtnLabsol)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(BtnLab1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(BtnLab2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(BtnLab3)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -286,6 +409,36 @@ public class Horario extends javax.swing.JFrame {
         setFilasDia();
     }//GEN-LAST:event_BtnViernesActionPerformed
 
+    private void BtnMacActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnMacActionPerformed
+        AulaSel = "MAC";
+        LimpiarTabla();
+        setFilasAula();
+    }//GEN-LAST:event_BtnMacActionPerformed
+
+    private void BtnLabsolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnLabsolActionPerformed
+        AulaSel = "LABSOL";
+        LimpiarTabla();
+        setFilasAula();
+    }//GEN-LAST:event_BtnLabsolActionPerformed
+
+    private void BtnLab1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnLab1ActionPerformed
+        AulaSel = "Lab1";
+        LimpiarTabla();
+        setFilasAula();
+    }//GEN-LAST:event_BtnLab1ActionPerformed
+
+    private void BtnLab2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnLab2ActionPerformed
+        AulaSel = "Lab2";
+        LimpiarTabla();
+        setFilasAula();
+    }//GEN-LAST:event_BtnLab2ActionPerformed
+
+    private void BtnLab3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnLab3ActionPerformed
+        AulaSel = "Lab3";
+        LimpiarTabla();
+        setFilasAula();
+    }//GEN-LAST:event_BtnLab3ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -323,7 +476,12 @@ public class Horario extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnJueves;
+    private javax.swing.JButton BtnLab1;
+    private javax.swing.JButton BtnLab2;
+    private javax.swing.JButton BtnLab3;
+    private javax.swing.JButton BtnLabsol;
     private javax.swing.JButton BtnLunes;
+    private javax.swing.JButton BtnMac;
     private javax.swing.JButton BtnMartes;
     private javax.swing.JButton BtnMiercoles;
     private javax.swing.JButton BtnSalir;
