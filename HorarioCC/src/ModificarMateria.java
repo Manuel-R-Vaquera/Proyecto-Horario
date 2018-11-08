@@ -329,18 +329,23 @@ public class ModificarMateria extends javax.swing.JFrame {
     }//GEN-LAST:event_TablaMateriaMouseClicked
 
     private void BTNborrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNborrarActionPerformed
-        if (this.TXTnombre.getText().isEmpty()) {
+        if (this.TXTnombre.getText().isEmpty() || this.TXTcarrera.getText().isEmpty() || this.IdText.getText().isEmpty()) {
             JOptionPane.showMessageDialog(rootPane, "No Ha Seleccionado Ningúna Materia");
         } else {
-            mMateria.setID_Materia(this.IdText.getText());
+            String nl = System.getProperty("line.separator");
+
+            if (JOptionPane.showConfirmDialog(null, "Esta seguro que desea eliminar esta materia?"+ nl + "Se eliminaran las clases asignadas a esta materia en el Horario", "Confirmar", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE)==0) {
+                mMateria.setID_Materia(this.IdText.getText());
                 if (mConexion.conectar()) {
                     if (mConexion.eliminarMateria(mMateria)) {
-                    JOptionPane.showMessageDialog(rootPane, "Materia Eliminada con Éxito");
-                    modelo.setColumnCount(0);
-                    modelo.setRowCount(0);
-                    setFilas();
+                        JOptionPane.showMessageDialog(rootPane, "Materia Eliminada con Éxito");
+                        modelo.setColumnCount(0);
+                        modelo.setRowCount(0);
+                        setFilas();
                     }
-                }
+                }  
+            }
+            
         }
         this.IdText.setText(null);
         this.TXTnombre.setText(null);

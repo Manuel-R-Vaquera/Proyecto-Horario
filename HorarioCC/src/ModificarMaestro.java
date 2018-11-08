@@ -245,9 +245,11 @@ public class ModificarMaestro extends javax.swing.JFrame {
     }//GEN-LAST:event_TablaMaestrosMouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if (this.TXTnuevonombre.getText().isEmpty()) {
+        if (this.TXTnuevonombre.getText().isEmpty() || this.IdText.getText().isEmpty()) {
             JOptionPane.showMessageDialog(rootPane, "No Ha Seleccionado Ningún Maestro");
         } else {
+            String nl = System.getProperty("line.separator");
+            if (JOptionPane.showConfirmDialog(null, "Esta seguro que desea eliminar este maestro?"+ nl + "Se eliminaran las clases asignadas a este maestro en el Horario", "Confirmar", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE)==0) {
             mMaestro.setID_Maestro(this.IdText.getText());
                 if (mConexion.conectar()) {
                     if (mConexion.eliminarMaestro(mMaestro)) {
@@ -257,6 +259,7 @@ public class ModificarMaestro extends javax.swing.JFrame {
                     setFilas();
                     }
                 }
+            }
                 this.IdText.setText(null);
                 this.TXTnuevonombre.setText(null);
         }

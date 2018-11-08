@@ -304,7 +304,8 @@ public class AgregarClase extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGuardarActionPerformed
-        if (this.CBMaestro.getSelectedItem() == "Seleccione un Maestro") {
+        if (this.CBMaestro.getSelectedItem() == "Seleccione un Maestro" || this.CBAula.getSelectedItem() == "Seleccione un Aula" ||
+                this.CBMateria.getSelectedItem() == "Seleccione una Materia") {
             JOptionPane.showMessageDialog(rootPane, "Asegurese de llenar todos los campos");
         } else {
 
