@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Nov 01, 2018 at 02:09 AM
+-- Generation Time: Nov 08, 2018 at 01:34 AM
 -- Server version: 5.7.23
 -- PHP Version: 7.2.8
 
@@ -39,30 +39,32 @@ INSERT INTO `aula` (`ID_Aula`, `Nombre_Aula`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Jueves`
+-- Table structure for table `Clases`
 --
 
-CREATE TABLE `Jueves` (
+CREATE TABLE `Clases` (
   `ID_Clase` int(10) NOT NULL,
-  `Maestro` varchar(50) NOT NULL,
-  `Aula` varchar(50) NOT NULL,
-  `Materia` varchar(100) NOT NULL,
-  `Hora` int(2) NOT NULL
+  `ID_Aula` int(10) NOT NULL,
+  `ID_Materia` int(10) NOT NULL,
+  `ID_Maestro` int(10) NOT NULL,
+  `Hora` int(2) NOT NULL,
+  `Dia` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- --------------------------------------------------------
-
 --
--- Table structure for table `Lunes`
+-- Dumping data for table `Clases`
 --
 
-CREATE TABLE `Lunes` (
-  `ID_Clase` int(10) NOT NULL,
-  `Maestro` varchar(50) NOT NULL,
-  `Aula` varchar(50) NOT NULL,
-  `Materia` varchar(100) NOT NULL,
-  `Hora` int(2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+INSERT INTO `Clases` (`ID_Clase`, `ID_Aula`, `ID_Materia`, `ID_Maestro`, `Hora`, `Dia`) VALUES
+(1, 1, 11, 1, 7, 'Lunes'),
+(2, 1, 12, 3, 8, 'Lunes'),
+(3, 1, 11, 1, 12, 'Lunes'),
+(5, 3, 13, 5, 7, 'Martes'),
+(6, 1, 13, 5, 7, 'Martes'),
+(8, 3, 12, 1, 7, 'Lunes'),
+(9, 2, 12, 4, 7, 'Jueves'),
+(11, 2, 12, 4, 7, 'Viernes'),
+(12, 2, 12, 4, 11, 'Viernes');
 
 -- --------------------------------------------------------
 
@@ -81,24 +83,9 @@ CREATE TABLE `maestros` (
 
 INSERT INTO `maestros` (`ID_Maestro`, `Nombre_Maestro`) VALUES
 (1, 'Daniel Arredondo'),
-(2, 'Ignacio Salas'),
 (3, 'Abraham Esquivel'),
 (4, 'Antonia Mireles'),
-(5, 'Jairo');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `Martes`
---
-
-CREATE TABLE `Martes` (
-  `ID_Clase` int(10) NOT NULL,
-  `Maestro` varchar(50) NOT NULL,
-  `Aula` varchar(50) NOT NULL,
-  `Materia` varchar(100) NOT NULL,
-  `Hora` int(2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+(5, 'Jairo Isaac');
 
 -- --------------------------------------------------------
 
@@ -110,45 +97,18 @@ CREATE TABLE `materia` (
   `ID_Materia` int(10) NOT NULL,
   `Nombre_Materia` varchar(50) DEFAULT NULL,
   `Grado` int(2) DEFAULT NULL,
-  `Carrera` varchar(50) DEFAULT NULL
+  `Carrera` varchar(50) DEFAULT NULL,
+  `Grupo` varchar(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `materia`
 --
 
-INSERT INTO `materia` (`ID_Materia`, `Nombre_Materia`, `Grado`, `Carrera`) VALUES
-(3, 'Ingles', 4, 'ISC'),
-(6, 'Circuitos', 4, 'ISC'),
-(7, 'Lenguajes de Interfaz', 6, 'ISC');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `Miercoles`
---
-
-CREATE TABLE `Miercoles` (
-  `ID_Clase` int(10) NOT NULL,
-  `Maestro` varchar(50) NOT NULL,
-  `Aula` varchar(50) NOT NULL,
-  `Materia` varchar(100) NOT NULL,
-  `Hora` int(2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `Viernes`
---
-
-CREATE TABLE `Viernes` (
-  `ID_Clase` int(10) NOT NULL,
-  `Maestro` varchar(50) NOT NULL,
-  `Aula` varchar(50) NOT NULL,
-  `Materia` varchar(100) NOT NULL,
-  `Hora` int(2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+INSERT INTO `materia` (`ID_Materia`, `Nombre_Materia`, `Grado`, `Carrera`, `Grupo`) VALUES
+(11, 'DAS', 7, 'ISC', 'A'),
+(12, 'TBD', 6, 'ISC', 'A'),
+(13, 'Taller De Investigación', 7, 'ISC', 'A');
 
 --
 -- Indexes for dumped tables
@@ -163,18 +123,14 @@ ALTER TABLE `aula`
   ADD KEY `ID_Aula_2` (`ID_Aula`);
 
 --
--- Indexes for table `Jueves`
+-- Indexes for table `Clases`
 --
-ALTER TABLE `Jueves`
+ALTER TABLE `Clases`
   ADD PRIMARY KEY (`ID_Clase`),
-  ADD UNIQUE KEY `U1` (`Hora`,`Aula`);
-
---
--- Indexes for table `Lunes`
---
-ALTER TABLE `Lunes`
-  ADD PRIMARY KEY (`ID_Clase`),
-  ADD UNIQUE KEY `unico` (`Hora`,`Aula`);
+  ADD UNIQUE KEY `U1` (`Dia`,`Hora`,`ID_Aula`),
+  ADD KEY `ID_Aula` (`ID_Aula`),
+  ADD KEY `ID_Materia` (`ID_Materia`),
+  ADD KEY `ID_Maestro` (`ID_Maestro`);
 
 --
 -- Indexes for table `maestros`
@@ -185,33 +141,12 @@ ALTER TABLE `maestros`
   ADD KEY `ID_Maestro_2` (`ID_Maestro`);
 
 --
--- Indexes for table `Martes`
---
-ALTER TABLE `Martes`
-  ADD PRIMARY KEY (`ID_Clase`),
-  ADD UNIQUE KEY `U1` (`Hora`,`Aula`);
-
---
 -- Indexes for table `materia`
 --
 ALTER TABLE `materia`
   ADD PRIMARY KEY (`ID_Materia`),
   ADD UNIQUE KEY `ID_Materia` (`ID_Materia`),
   ADD KEY `ID_Materia_2` (`ID_Materia`);
-
---
--- Indexes for table `Miercoles`
---
-ALTER TABLE `Miercoles`
-  ADD PRIMARY KEY (`ID_Clase`),
-  ADD UNIQUE KEY `U1` (`Hora`,`Aula`);
-
---
--- Indexes for table `Viernes`
---
-ALTER TABLE `Viernes`
-  ADD PRIMARY KEY (`ID_Clase`),
-  ADD UNIQUE KEY `U1` (`Hora`,`Aula`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -224,16 +159,10 @@ ALTER TABLE `aula`
   MODIFY `ID_Aula` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `Jueves`
+-- AUTO_INCREMENT for table `Clases`
 --
-ALTER TABLE `Jueves`
-  MODIFY `ID_Clase` int(10) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `Lunes`
---
-ALTER TABLE `Lunes`
-  MODIFY `ID_Clase` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+ALTER TABLE `Clases`
+  MODIFY `ID_Clase` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `maestros`
@@ -242,25 +171,19 @@ ALTER TABLE `maestros`
   MODIFY `ID_Maestro` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `Martes`
---
-ALTER TABLE `Martes`
-  MODIFY `ID_Clase` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
-
---
 -- AUTO_INCREMENT for table `materia`
 --
 ALTER TABLE `materia`
-  MODIFY `ID_Materia` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `ID_Materia` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
--- AUTO_INCREMENT for table `Miercoles`
+-- Constraints for dumped tables
 --
-ALTER TABLE `Miercoles`
-  MODIFY `ID_Clase` int(10) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `Viernes`
+-- Constraints for table `Clases`
 --
-ALTER TABLE `Viernes`
-  MODIFY `ID_Clase` int(10) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `Clases`
+  ADD CONSTRAINT `clases_ibfk_1` FOREIGN KEY (`ID_Aula`) REFERENCES `aula` (`ID_Aula`) ON DELETE CASCADE,
+  ADD CONSTRAINT `clases_ibfk_2` FOREIGN KEY (`ID_Materia`) REFERENCES `materia` (`ID_Materia`) ON DELETE CASCADE,
+  ADD CONSTRAINT `clases_ibfk_3` FOREIGN KEY (`ID_Maestro`) REFERENCES `maestros` (`ID_Maestro`) ON DELETE CASCADE;
