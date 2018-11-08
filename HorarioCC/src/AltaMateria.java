@@ -51,6 +51,8 @@ public class AltaMateria extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Registrar Materias");
+        setPreferredSize(new java.awt.Dimension(585, 480));
+        setSize(new java.awt.Dimension(605, 450));
         getContentPane().setLayout(null);
 
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));

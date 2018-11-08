@@ -343,8 +343,6 @@ public class AgregarClase extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(rootPane, "Error al conectar");
             }
         }
-        LimpiarTabla();
-        setFilasTodas();
 
     }//GEN-LAST:event_BtnGuardarActionPerformed
 
