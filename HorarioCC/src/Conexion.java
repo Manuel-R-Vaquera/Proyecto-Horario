@@ -1,4 +1,6 @@
 
+
+
 import com.mysql.jdbc.exceptions.MySQLIntegrityConstraintViolationException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -32,7 +34,7 @@ public class Conexion {
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             conexion = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/horariocc", "root", "");
+                    "jdbc:mysql://localhost:8889/horariocc", "root", "root");
             if (conexion != null) {
                 return true;
             } else {
@@ -105,9 +107,9 @@ public class Conexion {
         Statement consulta;
         try {
             consulta = conexion.createStatement();
-            consulta.execute("insert into materia (Nombre_Materia, Grado, Carrera)"
+            consulta.execute("insert into materia (Nombre_Materia, Grado, Grupo, Carrera)"
                     + "values ('" + mMateria.getNombre_Materia() + "'," + mMateria.getGrado() + 
-                    ",'"+ mMateria.getCarrera()+ "');");
+                    ",'" + mMateria.getGrupo() + "','"+ mMateria.getCarrera()+ "');");
             return true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -133,11 +135,13 @@ public class Conexion {
 
         try {
             consulta = conexion.createStatement();
-            consulta.execute("update materia set "
+            String cad = "update materia set "
                     + "Nombre_Materia = '" + nMateria.getNombre_Materia()
                     + "', Grado = " + nMateria.getGrado()
                     + ", Carrera = '" + nMateria.getCarrera()
-                    + "' where ID_Materia= '" + mMateria.getID_Materia() + "';");
+                    + "', Grupo = '" + nMateria.getGrupo()
+                    + "' where ID_Materia= '" + nMateria.getID_Materia() + "';";
+            consulta.execute(cad);
             return true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -158,15 +162,15 @@ public class Conexion {
             return false;
         }
     }
-    public int GuardarClaseLunes(Clase mClase) {
+    public int GuardarClase(Clase mClase) {
         Statement consulta;
         try {
             consulta = conexion.createStatement();
-            consulta.execute("insert into Lunes (Maestro, Materia, Aula, Dia, Hora) values ("
-                    + "'" + mClase.getMaestro()
-                    + "','" + mClase.getMateria()
-                    + "','" + mClase.getAula()
-                    + "','" + mClase.getDia()
+            consulta.execute("insert into Clases (ID_Maestro, ID_Materia, ID_Aula, Dia, Hora) values ("
+                    + "" + mClase.getMaestro()
+                    + "," + mClase.getMateria()
+                    + "," + mClase.getAula()
+                    + ",'" + mClase.getDia()
                     + "'," + mClase.getHora() + ");");
             return 1;
         } catch (MySQLIntegrityConstraintViolationException be) {
@@ -179,89 +183,6 @@ public class Conexion {
         }
     }
     
-    public int GuardarClaseMartes(Clase mClase) {
-        Statement consulta;
-        try {
-            consulta = conexion.createStatement();
-            consulta.execute("insert into Martes (Maestro, Materia, Aula, Dia, Hora) values ("
-                    + "'" + mClase.getMaestro()
-                    + "','" + mClase.getMateria()
-                    + "','" + mClase.getAula()
-                    + "','" + mClase.getDia()
-                    + "'," + mClase.getHora() + ");");
-            return 1;
-        } catch (MySQLIntegrityConstraintViolationException be) {
-            be.printStackTrace();
-            return 3;
-        
-        } catch (Exception e) {
-            e.printStackTrace();
-            return 2;
-        }
-    }
-    
-    public int GuardarClaseMiercoles(Clase mClase) {
-        Statement consulta;
-        try {
-            consulta = conexion.createStatement();
-            consulta.execute("insert into Miercoles (Maestro, Materia, Aula, Dia, Hora) values ("
-                    + "'" + mClase.getMaestro()
-                    + "','" + mClase.getMateria()
-                    + "','" + mClase.getAula()
-                    + "','" + mClase.getDia()
-                    + "'," + mClase.getHora() + ");");
-            return 1;
-        } catch (MySQLIntegrityConstraintViolationException be) {
-            be.printStackTrace();
-            return 3;
-        
-        } catch (Exception e) {
-            e.printStackTrace();
-            return 2;
-        }
-    }
-    
-    public int GuardarClaseJueves(Clase mClase) {
-        Statement consulta;
-        try {
-            consulta = conexion.createStatement();
-            consulta.execute("insert into Jueves (Maestro, Materia, Aula, Dia, Hora) values ("
-                    + "'" + mClase.getMaestro()
-                    + "','" + mClase.getMateria()
-                    + "','" + mClase.getAula()
-                    + "','" + mClase.getDia()
-                    + "'," + mClase.getHora() + ");");
-            return 1;
-        } catch (MySQLIntegrityConstraintViolationException be) {
-            be.printStackTrace();
-            return 3;
-        
-        } catch (Exception e) {
-            e.printStackTrace();
-            return 2;
-        }
-    }
-    
-    public int GuardarClaseViernes(Clase mClase) {
-        Statement consulta;
-        try {
-            consulta = conexion.createStatement();
-            consulta.execute("insert into Viernes (Maestro, Materia, Aula, Dia, Hora) values ("
-                    + "'" + mClase.getMaestro()
-                    + "','" + mClase.getMateria()
-                    + "','" + mClase.getAula()
-                    + "','" + mClase.getDia()
-                    + "'," + mClase.getHora() + ");");
-            return 1;
-        } catch (MySQLIntegrityConstraintViolationException be) {
-            be.printStackTrace();
-            return 3;
-        
-        } catch (Exception e) {
-            e.printStackTrace();
-            return 2;
-        }
-    }
 
     public boolean eliminarAula(Aula mAula) {
         Statement consulta;
@@ -378,6 +299,111 @@ public class Conexion {
 
     }
     
+    public String CargarLabelGrado(String IDM) {
+        Statement consulta;
+        int val;
+        
+        try {
+            consulta = conexion.createStatement();
+            ResultSet res = null;
+            res = consulta.executeQuery("SELECT Grado, Carrera, Grupo FROM materia WHERE Nombre_Materia = '"+ IDM +"'");
+            res.next();
+            val = res.getInt("Grado");
+            return ("" + val);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
+    public String CargarLabelGrupo(String IDM) {
+        Statement consulta;
+        String val;
+        
+        try {
+            consulta = conexion.createStatement();
+            ResultSet res = null;
+            res = consulta.executeQuery("SELECT Grado, Carrera, Grupo FROM materia WHERE Nombre_Materia = '"+ IDM +"'");
+            res.next();
+            val = res.getString("Grupo");
+            return ("" + val);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
+    
+    public String CargarLabelCarrera(String IDM) {
+        Statement consulta;
+        String val;
+        
+        try {
+            consulta = conexion.createStatement();
+            ResultSet res = null;
+            res = consulta.executeQuery("SELECT Grado, Carrera, Grupo FROM materia WHERE Nombre_Materia = '"+ IDM +"'");
+            res.next();
+            val = res.getString("Carrera");
+            return ("" + val);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
+    
+    public String CargarIDMateria(String ID_Mat) {
+        Statement consulta;
+        int val;
+        
+        try {
+            consulta = conexion.createStatement();
+            ResultSet res = null;
+            res = consulta.executeQuery("SELECT ID_Materia FROM materia WHERE Nombre_Materia = '"+ ID_Mat +"'");
+            res.next();
+            val = res.getInt("ID_Materia");
+            return ("" + val);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
+    public String CargarIDAula(String ID_Au) {
+        Statement consulta;
+        int val;
+        
+        try {
+            consulta = conexion.createStatement();
+            ResultSet res = null;
+            res = consulta.executeQuery("SELECT ID_Aula FROM aula WHERE Nombre_Aula = '"+ ID_Au +"'");
+            res.next();
+            val = res.getInt("ID_Aula");
+            return ("" + val);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
+    public String CargarIDMaestro(String ID_Mae) {
+        Statement consulta;
+        int val;
+        
+        try {
+            consulta = conexion.createStatement();
+            ResultSet res = null;
+            res = consulta.executeQuery("SELECT ID_Maestro FROM maestros WHERE Nombre_Maestro = '"+ ID_Mae +"'");
+            res.next();
+            val = res.getInt("ID_Maestro");
+            return ("" + val);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
+    
     public void CargarAula(JComboBox CBAula) {
         Statement consulta;
         
@@ -414,6 +440,7 @@ public class Conexion {
                 mMateria.setID_Materia(resultado.getString("ID_Materia"));
                 mMateria.setNombre_Materia(resultado.getString("Nombre_Materia"));
                 mMateria.setGrado(resultado.getInt("Grado"));
+                mMateria.setGrupo(resultado.getString("Grupo"));
                 mMateria.setCarrera(resultado.getString("Carrera"));
                 MateriaArray.add(mMateria);
             }
@@ -423,5 +450,6 @@ public class Conexion {
 
         return MateriaArray;
     }
+        
         
 }

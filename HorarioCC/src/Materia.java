@@ -14,13 +14,23 @@ public class Materia {
     String Nombre_Materia;
     int grado;
     String Carrera;
+    String Grupo;
 
     public Materia() {
         ID_Materia = "";
         Nombre_Materia = "";
         grado = 0;
         Carrera = "";
+        Grupo = "";
 
+    }
+
+    public String getGrupo() {
+        return Grupo;
+    }
+
+    public void setGrupo(String Grupo) {
+        this.Grupo = Grupo;
     }
 
     public String getID_Materia() {

@@ -25,11 +25,18 @@ public class AgregarClase extends javax.swing.JFrame {
 
     Conexion mConexion = new Conexion();
     Conexion2 mConexion2 = new Conexion2();
+    Materia mMateria = new Materia();
     Clase mClase = new Clase();
     int VHora = 1;
+    String IDM = "";
+    private int estado;
+    String ID_Mat = "";
+    String ID_Au = "";
+    String ID_Mae = "";
 
     public AgregarClase() {
         initComponents();
+        estado = 0;
         mConexion.conectar();
         mConexion.CargarMateria(CBMateria);
         mConexion.CargarAula(CBAula);
@@ -40,6 +47,7 @@ public class AgregarClase extends javax.swing.JFrame {
 
         setFilasTodas();
 
+        estado = 1;
     }
 
     public void setFilasTodas() {
@@ -71,7 +79,7 @@ public class AgregarClase extends javax.swing.JFrame {
 
         this.TablaHorario.setModel(modelo);
         this.TablaHorario.getColumnModel().getColumn(0).setPreferredWidth(10);
-        this.TablaHorario.getColumnModel().getColumn(1).setPreferredWidth(220);
+        this.TablaHorario.getColumnModel().getColumn(1).setPreferredWidth(20);
 
         if (this.TablaHorario.getRowCount() > 0) {
             this.TablaHorario.setRowSelectionInterval(0, 0);
@@ -111,6 +119,12 @@ public class AgregarClase extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         TablaHorario = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        LCarrera = new javax.swing.JLabel();
+        LGrado = new javax.swing.JLabel();
+        LGrupo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -128,6 +142,22 @@ public class AgregarClase extends javax.swing.JFrame {
 
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Hora");
+
+        CBMateria.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                CBMateriaItemStateChanged(evt);
+            }
+        });
+        CBMateria.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CBMateriaMouseClicked(evt);
+            }
+        });
+        CBMateria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CBMateriaActionPerformed(evt);
+            }
+        });
 
         CBDia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Lunes", "Martes", "Miercoles", "Jueves", "Viernes" }));
 
@@ -164,6 +194,21 @@ public class AgregarClase extends javax.swing.JFrame {
             }
         });
 
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("Carrera");
+
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setText("Grado");
+
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setText("Grupo");
+
+        LCarrera.setForeground(new java.awt.Color(255, 255, 255));
+
+        LGrado.setForeground(new java.awt.Color(255, 255, 255));
+
+        LGrupo.setForeground(new java.awt.Color(255, 255, 255));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -171,28 +216,43 @@ public class AgregarClase extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel1))
-                        .addGap(18, 18, 18)
+                        .addGap(29, 29, 29)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(CBAula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(CBHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(CBMaestro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(CBDia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(CBMateria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(BtnGuardar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel8))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(CBMateria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(LCarrera)
+                                    .addComponent(LGrado)
+                                    .addComponent(LGrupo)))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(60, 60, 60)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(BtnGuardar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addContainerGap()
+                        .addComponent(jLabel2)
+                        .addGap(18, 18, 18)
+                        .addComponent(CBMaestro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 584, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(21, 21, 21))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel3))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 521, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(CBAula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CBHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CBDia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 658, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -201,7 +261,19 @@ public class AgregarClase extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(CBMateria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(16, 16, 16)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(LCarrera))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(LGrado))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(LGrupo))
+                .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(CBMaestro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -217,13 +289,13 @@ public class AgregarClase extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(CBHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(52, 52, 52)
+                .addGap(18, 18, 18)
                 .addComponent(BtnGuardar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(37, 37, 37))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(16, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(14, 14, 14))
         );
@@ -236,107 +308,39 @@ public class AgregarClase extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "Asegurese de llenar todos los campos");
         } else {
 
-            mClase.setMaestro(this.CBMaestro.getSelectedItem().toString());
-            mClase.setAula(this.CBAula.getSelectedItem().toString());
-            mClase.setMateria(this.CBMateria.getSelectedItem().toString());
-            mClase.setDia(this.CBDia.getSelectedItem().toString());
-            mClase.setHora(Integer.parseInt(this.CBHora.getSelectedItem().toString()));
+            ID_Mat = this.CBMateria.getSelectedItem().toString();
+            ID_Au = this.CBAula.getSelectedItem().toString();
+            ID_Mae = this.CBMaestro.getSelectedItem().toString();
+            if (estado == 1) {
+                mClase.setMaestro(mConexion.CargarIDMaestro(ID_Mae));
+                mClase.setAula(mConexion.CargarIDAula(ID_Au));
+                mClase.setMateria(mConexion.CargarIDMateria(ID_Mat));
+                mClase.setDia(this.CBDia.getSelectedItem().toString());
+                mClase.setHora(Integer.parseInt(this.CBHora.getSelectedItem().toString()));
+            }
+            
+            
 
             if (mConexion.conectar()) {
-                if (this.CBDia.getSelectedItem().toString() == "Lunes") {
-                    switch (mConexion.GuardarClaseLunes(mClase)) {
+                    switch (mConexion.GuardarClase(mClase)) {
                         case 1:
                             JOptionPane.showMessageDialog(rootPane, "Clase Guardada con Exito");
                             LimpiarTabla();
                             setFilasTodas();
                             break;
                         case 2:
-                            JOptionPane.showMessageDialog(rootPane, "Ya hay una clase asignada en esta HORA y a esta AULA");
-                            break;
-                        case 3:
-                            JOptionPane.showMessageDialog(rootPane, "ERROR");
-                            break;
-                    }
-
-                    /*if (mConexion.GuardarClaseLunes(mClase)== 1) {
-                        JOptionPane.showMessageDialog(rootPane, "Clase Guardada con Exito");
-                    }
-                    if (mConexion.GuardarClaseLunes(mClase)== 2) {
-                        JOptionPane.showMessageDialog(rootPane, "Ya hay una clase asignada en esta hora");
-                    }*/
-                }
-                if (this.CBDia.getSelectedItem().toString() == "Martes") {
-                    switch (mConexion.GuardarClaseMartes(mClase)) {
-                        case 1:
-                            JOptionPane.showMessageDialog(rootPane, "Clase Guardada con Exito");
+                            JOptionPane.showMessageDialog(rootPane, "Ya hay una clase asignada en esta HORA, AULA y DIA");
                             LimpiarTabla();
                             setFilasTodas();
                             break;
-                        case 2:
-                            JOptionPane.showMessageDialog(rootPane, "Ya hay una clase asignada en esta HORA y a esta AULA");
-                            break;
                         case 3:
                             JOptionPane.showMessageDialog(rootPane, "ERROR");
                             break;
                     }
-
-                    /*if (mConexion.GuardarClaseMartes(mClase)) {
-                        JOptionPane.showMessageDialog(rootPane, "Clase Guardada con Exito");
-                    }*/
-                }
-                if (this.CBDia.getSelectedItem().toString() == "Miercoles") {
-                    switch (mConexion.GuardarClaseMiercoles(mClase)) {
-                        case 1:
-                            JOptionPane.showMessageDialog(rootPane, "Clase Guardada con Exito");
-                            LimpiarTabla();
-                            setFilasTodas();
-                            break;
-                        case 2:
-                            JOptionPane.showMessageDialog(rootPane, "Ya hay una clase asignada en esta HORA y a esta AULA");
-                            break;
-                        case 3:
-                            JOptionPane.showMessageDialog(rootPane, "ERROR");
-                            break;
-                    }
-                }
-                if (this.CBDia.getSelectedItem().toString() == "Jueves") {
-                    switch (mConexion.GuardarClaseJueves(mClase)) {
-                        case 1:
-                            JOptionPane.showMessageDialog(rootPane, "Clase Guardada con Exito");
-                            LimpiarTabla();
-                            setFilasTodas();
-                            break;
-                        case 2:
-                            JOptionPane.showMessageDialog(rootPane, "Ya hay una clase asignada en esta HORA y a esta AULA");
-                            break;
-                        case 3:
-                            JOptionPane.showMessageDialog(rootPane, "ERROR");
-                            break;
-                    }
-                }
-                if (this.CBDia.getSelectedItem().toString() == "Viernes") {
-                    switch (mConexion.GuardarClaseViernes(mClase)) {
-                        case 1:
-                            JOptionPane.showMessageDialog(rootPane, "Clase Guardada con Exito");
-                            LimpiarTabla();
-                            setFilasTodas();
-                            break;
-                        case 2:
-                            JOptionPane.showMessageDialog(rootPane, "Ya hay una clase asignada en esta HORA y a esta AULA");
-                            break;
-                        case 3:
-                            JOptionPane.showMessageDialog(rootPane, "ERROR");
-                            break;
-                    }
-                }
-
+                    
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Error al conectar");
             }
-
-            /*if (Integer.parseInt(this.CBHora.getSelectedItem().toString()) ==  ) {
-                JOptionPane.showMessageDialog(rootPane, "Iguales");
-            }*/
         }
         LimpiarTabla();
         setFilasTodas();
@@ -349,6 +353,27 @@ public class AgregarClase extends javax.swing.JFrame {
         MenuInicio mMI = new MenuInicio();
         mMI.show();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void CBMateriaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CBMateriaMouseClicked
+      //IDM = this.CBMateria.getSelectedItem().toString();
+       //mConexion.CargarMateria2(IDM);
+    }//GEN-LAST:event_CBMateriaMouseClicked
+
+    private void CBMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CBMateriaActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_CBMateriaActionPerformed
+
+    private void CBMateriaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_CBMateriaItemStateChanged
+        // TODO add your handling code here:
+        IDM = this.CBMateria.getSelectedItem().toString();
+        if (estado == 1) {
+        this.LGrado.setText(mConexion.CargarLabelGrado(IDM));
+        this.LGrupo.setText(mConexion.CargarLabelGrupo(IDM));
+        this.LCarrera.setText(mConexion.CargarLabelCarrera(IDM));
+        
+        }
+    }//GEN-LAST:event_CBMateriaItemStateChanged
 
     /**
      * @param args the command line arguments
@@ -392,6 +417,9 @@ public class AgregarClase extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> CBHora;
     private javax.swing.JComboBox<String> CBMaestro;
     private javax.swing.JComboBox<String> CBMateria;
+    private javax.swing.JLabel LCarrera;
+    private javax.swing.JLabel LGrado;
+    private javax.swing.JLabel LGrupo;
     private javax.swing.JTable TablaHorario;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
@@ -399,6 +427,9 @@ public class AgregarClase extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

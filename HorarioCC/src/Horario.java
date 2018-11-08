@@ -21,12 +21,12 @@ public class Horario extends javax.swing.JFrame {
     Conexion2 mConexion2 = new Conexion2();
     public TableRowSorter<TableModel> modeloOrdenado;
     DefaultTableModel modelo = new DefaultTableModel();
+    String DiaSel = "";
 
     public Horario() {
         initComponents();
         this.setLocationRelativeTo(null);
         getContentPane().setBackground(new java.awt.Color(36, 47, 65));
-        setFilasLunes();
 
     }
     public void LimpiarTabla() {
@@ -38,25 +38,32 @@ public class Horario extends javax.swing.JFrame {
         Tabla.removeTableModelListener(TablaHorario);
     }
 
-    public void setFilasLunes() {
+    public void setFilasDia() {
         Clase mClase;
         mConexion2.conectar();
         ArrayList mArrayList = new ArrayList();
-        mArrayList = mConexion2.consultarClaseLunes();
+        mArrayList = mConexion2.consultarClasePorDia(DiaSel);
         String[] Datos;
 
         modelo.addColumn("Hora");
         modelo.addColumn("Materia");
         modelo.addColumn("Maestro");
         modelo.addColumn("Aula");
+        modelo.addColumn("Grado");
+        modelo.addColumn("Grupo");
+        modelo.addColumn("Carrera");
 
         for (Object mClaseArrays : mArrayList) {
-            Datos = new String[4];
+            Datos = new String[7];
             mClase = (Clase) mClaseArrays;
             Datos[0] = Integer.toString(mClase.getHora());
             Datos[1] = mClase.getMateria();
             Datos[2] = mClase.getMaestro();
             Datos[3] = mClase.getAula();
+            Datos[4] = Integer.toString(mClase.getGrado());
+            Datos[5] = mClase.getGrupo();
+            Datos[6] = mClase.getCarrera();
+            
 
             modelo.addRow(Datos);
             modeloOrdenado = new TableRowSorter<TableModel>(modelo);
@@ -64,8 +71,13 @@ public class Horario extends javax.swing.JFrame {
         }
 
         this.TablaHorario.setModel(modelo);
-        this.TablaHorario.getColumnModel().getColumn(0).setPreferredWidth(10);
-        this.TablaHorario.getColumnModel().getColumn(1).setPreferredWidth(220);
+        this.TablaHorario.getColumnModel().getColumn(0).setPreferredWidth(5);
+        this.TablaHorario.getColumnModel().getColumn(1).setPreferredWidth(40);
+        this.TablaHorario.getColumnModel().getColumn(2).setPreferredWidth(40);
+        this.TablaHorario.getColumnModel().getColumn(3).setPreferredWidth(20);
+        this.TablaHorario.getColumnModel().getColumn(4).setPreferredWidth(10);
+        this.TablaHorario.getColumnModel().getColumn(5).setPreferredWidth(10);
+        this.TablaHorario.getColumnModel().getColumn(6).setPreferredWidth(10);
 
         if (this.TablaHorario.getRowCount() > 0) {
             this.TablaHorario.setRowSelectionInterval(0, 0);
@@ -73,145 +85,7 @@ public class Horario extends javax.swing.JFrame {
 
     }
 
-    public void setFilasMartes() {
-        Clase mClase;
-        mConexion2.conectar();
-        ArrayList mArrayList = new ArrayList();
-        mArrayList = mConexion2.consultarClaseMartes();
-        String[] Datos;
-
-        modelo.addColumn("Hora");
-        modelo.addColumn("Materia");
-        modelo.addColumn("Maestro");
-        modelo.addColumn("Aula");
-
-        for (Object mClaseArrays : mArrayList) {
-            Datos = new String[4];
-            mClase = (Clase) mClaseArrays;
-            Datos[0] = Integer.toString(mClase.getHora());
-            Datos[1] = mClase.getMateria();
-            Datos[2] = mClase.getMaestro();
-            Datos[3] = mClase.getAula();
-
-            modelo.addRow(Datos);
-            modeloOrdenado = new TableRowSorter<TableModel>(modelo);
-            modeloOrdenado.setRowFilter(RowFilter.regexFilter("^a", 0));
-        }
-
-        this.TablaHorario.setModel(modelo);
-        this.TablaHorario.getColumnModel().getColumn(0).setPreferredWidth(10);
-        this.TablaHorario.getColumnModel().getColumn(1).setPreferredWidth(220);
-
-        if (this.TablaHorario.getRowCount() > 0) {
-            this.TablaHorario.setRowSelectionInterval(0, 0);
-        }
-
-    }
     
-    public void setFilasMiercoles() {
-        Clase mClase;
-        mConexion2.conectar();
-        ArrayList mArrayList = new ArrayList();
-        mArrayList = mConexion2.consultarClaseMiercoles();
-        String[] Datos;
-
-        modelo.addColumn("Hora");
-        modelo.addColumn("Materia");
-        modelo.addColumn("Maestro");
-        modelo.addColumn("Aula");
-
-        for (Object mClaseArrays : mArrayList) {
-            Datos = new String[4];
-            mClase = (Clase) mClaseArrays;
-            Datos[0] = Integer.toString(mClase.getHora());
-            Datos[1] = mClase.getMateria();
-            Datos[2] = mClase.getMaestro();
-            Datos[3] = mClase.getAula();
-
-            modelo.addRow(Datos);
-            modeloOrdenado = new TableRowSorter<TableModel>(modelo);
-            modeloOrdenado.setRowFilter(RowFilter.regexFilter("^a", 0));
-        }
-
-        this.TablaHorario.setModel(modelo);
-        this.TablaHorario.getColumnModel().getColumn(0).setPreferredWidth(10);
-        this.TablaHorario.getColumnModel().getColumn(1).setPreferredWidth(220);
-
-        if (this.TablaHorario.getRowCount() > 0) {
-            this.TablaHorario.setRowSelectionInterval(0, 0);
-        }
-
-    }
-    
-    public void setFilasJueves() {
-        Clase mClase;
-        mConexion2.conectar();
-        ArrayList mArrayList = new ArrayList();
-        mArrayList = mConexion2.consultarClaseJueves();
-        String[] Datos;
-
-        modelo.addColumn("Hora");
-        modelo.addColumn("Materia");
-        modelo.addColumn("Maestro");
-        modelo.addColumn("Aula");
-
-        for (Object mClaseArrays : mArrayList) {
-            Datos = new String[4];
-            mClase = (Clase) mClaseArrays;
-            Datos[0] = Integer.toString(mClase.getHora());
-            Datos[1] = mClase.getMateria();
-            Datos[2] = mClase.getMaestro();
-            Datos[3] = mClase.getAula();
-
-            modelo.addRow(Datos);
-            modeloOrdenado = new TableRowSorter<TableModel>(modelo);
-            modeloOrdenado.setRowFilter(RowFilter.regexFilter("^a", 0));
-        }
-
-        this.TablaHorario.setModel(modelo);
-        this.TablaHorario.getColumnModel().getColumn(0).setPreferredWidth(10);
-        this.TablaHorario.getColumnModel().getColumn(1).setPreferredWidth(220);
-
-        if (this.TablaHorario.getRowCount() > 0) {
-            this.TablaHorario.setRowSelectionInterval(0, 0);
-        }
-
-    }
-    
-    public void setFilasViernes() {
-        Clase mClase;
-        mConexion2.conectar();
-        ArrayList mArrayList = new ArrayList();
-        mArrayList = mConexion2.consultarClaseViernes();
-        String[] Datos;
-
-        modelo.addColumn("Hora");
-        modelo.addColumn("Materia");
-        modelo.addColumn("Maestro");
-        modelo.addColumn("Aula");
-
-        for (Object mClaseArrays : mArrayList) {
-            Datos = new String[4];
-            mClase = (Clase) mClaseArrays;
-            Datos[0] = Integer.toString(mClase.getHora());
-            Datos[1] = mClase.getMateria();
-            Datos[2] = mClase.getMaestro();
-            Datos[3] = mClase.getAula();
-
-            modelo.addRow(Datos);
-            modeloOrdenado = new TableRowSorter<TableModel>(modelo);
-            modeloOrdenado.setRowFilter(RowFilter.regexFilter("^a", 0));
-        }
-
-        this.TablaHorario.setModel(modelo);
-        this.TablaHorario.getColumnModel().getColumn(0).setPreferredWidth(10);
-        this.TablaHorario.getColumnModel().getColumn(1).setPreferredWidth(220);
-
-        if (this.TablaHorario.getRowCount() > 0) {
-            this.TablaHorario.setRowSelectionInterval(0, 0);
-        }
-
-    }
 
 
     /**
@@ -324,7 +198,7 @@ public class Horario extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(122, 122, 122)
                 .addComponent(jLabel3)
-                .addContainerGap(255, Short.MAX_VALUE))
+                .addContainerGap(261, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
@@ -337,7 +211,7 @@ public class Horario extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(BtnMartes, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(BtnMiercoles, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -345,9 +219,9 @@ public class Horario extends javax.swing.JFrame {
                     .addComponent(BtnViernes, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(BtnSalir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(BtnLunes, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 467, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -368,7 +242,7 @@ public class Horario extends javax.swing.JFrame {
                         .addComponent(BtnViernes)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(BtnSalir)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(63, Short.MAX_VALUE))
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
@@ -376,8 +250,9 @@ public class Horario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnMartesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnMartesActionPerformed
+        DiaSel = "Martes";
         LimpiarTabla();
-        setFilasMartes();
+        setFilasDia();
     }//GEN-LAST:event_BtnMartesActionPerformed
 
     private void BtnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSalirActionPerformed
@@ -388,23 +263,27 @@ public class Horario extends javax.swing.JFrame {
     }//GEN-LAST:event_BtnSalirActionPerformed
 
     private void BtnLunesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnLunesActionPerformed
+        DiaSel = "Lunes";
         LimpiarTabla();
-        setFilasLunes();
+        setFilasDia();
     }//GEN-LAST:event_BtnLunesActionPerformed
 
     private void BtnMiercolesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnMiercolesActionPerformed
+        DiaSel = "Miercoles";
         LimpiarTabla();
-        setFilasMiercoles();
+        setFilasDia();
     }//GEN-LAST:event_BtnMiercolesActionPerformed
 
     private void BtnJuevesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnJuevesActionPerformed
+        DiaSel = "Jueves";
         LimpiarTabla();
-        setFilasJueves();
+        setFilasDia();
     }//GEN-LAST:event_BtnJuevesActionPerformed
 
     private void BtnViernesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnViernesActionPerformed
+        DiaSel = "Viernes";
         LimpiarTabla();
-        setFilasViernes();
+        setFilasDia();
     }//GEN-LAST:event_BtnViernesActionPerformed
 
     /**

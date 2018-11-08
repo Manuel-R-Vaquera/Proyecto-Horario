@@ -10,6 +10,9 @@ public class Clase {
     public String Aula;
     public String Dia;
     public int Hora;
+    public String Grupo;
+    public int Grado;
+    public String Carrera;
 
     public Clase() {
         Maestro = "";
@@ -17,6 +20,33 @@ public class Clase {
         Aula = "";
         Dia = "";
         Hora = 0;
+        Grupo = "";
+        Grado = 0;
+        Carrera = "";
+    }
+
+    public String getGrupo() {
+        return Grupo;
+    }
+
+    public void setGrupo(String Grupo) {
+        this.Grupo = Grupo;
+    }
+
+    public int getGrado() {
+        return Grado;
+    }
+
+    public void setGrado(int Grado) {
+        this.Grado = Grado;
+    }
+
+    public String getCarrera() {
+        return Carrera;
+    }
+
+    public void setCarrera(String Carrera) {
+        this.Carrera = Carrera;
     }
 
     public String getMaestro() {

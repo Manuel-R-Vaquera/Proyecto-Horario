@@ -1,4 +1,6 @@
 
+
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -55,40 +57,33 @@ public class Conexion2 {
         Clase mClase = null;
         Statement consulta;
         ResultSet resultado;
+
         ArrayList ClaseArray = new ArrayList();
 
         try {
 
             consulta = conexion.createStatement();
-            resultado = consulta.executeQuery("SELECT * FROM Lunes "
-                    + "UNION ALL "
-                    + "SELECT * FROM Martes "
-                    + "UNION ALL "
-                    + "SELECT * FROM Miercoles "
-                    + "UNION ALL "
-                    + "SELECT * FROM Jueves "
-                    + "UNION ALL "
-                    + "SELECT * FROM Viernes "
-                    + "GROUP BY Dia");
+            resultado = consulta.executeQuery("SELECT * FROM Clases Natural Join maestros Natural Join aula Natural Join Materia "
+                    + "Order by Dia, ID_Aula, Hora");
             while (resultado.next()) {
                 mClase = new Clase();
                 mClase.setHora(resultado.getInt("Hora"));
                 mClase.setDia(resultado.getString("Dia"));
-                mClase.setMateria(resultado.getString("Materia"));
-                mClase.setMaestro(resultado.getString("Maestro"));
-                mClase.setAula(resultado.getString("Aula"));
+                mClase.setMateria(resultado.getString("Nombre_Materia"));
+                mClase.setMaestro(resultado.getString("Nombre_Maestro"));
+                mClase.setAula(resultado.getString("Nombre_Aula"));
 
-                //mClase.setHora(Integer.parseInt(resultado.getString("Hora")));
                 ClaseArray.add(mClase);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
+        
 
         return ClaseArray;
     }
 
-    public ArrayList consultarClaseLunes() {
+    public ArrayList consultarClasePorDia(String DiaSel) {
         Clase mClase = null;
         Statement consulta;
         ResultSet resultado;
@@ -97,13 +92,18 @@ public class Conexion2 {
         try {
 
             consulta = conexion.createStatement();
-            resultado = consulta.executeQuery("select * from Lunes ORDER BY Hora");
+            resultado = consulta.executeQuery("SELECT * FROM Clases Natural Join maestros Natural Join aula Natural Join materia WHERE Dia = '" + DiaSel
+                    + "' Order by ID_Aula, Hora");
             while (resultado.next()) {
                 mClase = new Clase();
                 mClase.setHora(resultado.getInt("Hora"));
-                mClase.setMateria(resultado.getString("Materia"));
-                mClase.setMaestro(resultado.getString("Maestro"));
-                mClase.setAula(resultado.getString("Aula"));
+                mClase.setMateria(resultado.getString("Nombre_Materia"));
+                mClase.setMaestro(resultado.getString("Nombre_Maestro"));
+                mClase.setAula(resultado.getString("Nombre_Aula"));
+                mClase.setGrado(resultado.getInt("Grado"));
+                mClase.setCarrera(resultado.getString("Carrera"));
+                mClase.setGrupo(resultado.getString("Grupo"));
+                
 
                 //mClase.setHora(Integer.parseInt(resultado.getString("Hora")));
                 ClaseArray.add(mClase);
@@ -124,7 +124,8 @@ public class Conexion2 {
         try {
 
             consulta = conexion.createStatement();
-            resultado = consulta.executeQuery("select * from Martes ORDER BY Hora");
+            resultado = consulta.executeQuery("SELECT * FROM Clases Natural Join maestros Natural Join aula Natural Join Materia WHERE Dia = 'Lunes'"
+                    + "Order by Dia, ID_Aula, Hora");
             while (resultado.next()) {
                 mClase = new Clase();
                 mClase.setHora(resultado.getInt("Hora"));

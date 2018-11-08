@@ -1,4 +1,3 @@
-
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -42,7 +41,7 @@ public class ModificarMateria extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        BTNaceptar = new javax.swing.JButton();
+        BtnAceptar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -59,17 +58,19 @@ public class ModificarMateria extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         IdText = new javax.swing.JLabel();
         BTNsair = new javax.swing.JButton();
-        CBgrado = new javax.swing.JComboBox<>();
+        CBGrado = new javax.swing.JComboBox<>();
+        jLabel13 = new javax.swing.JLabel();
+        CBGrupo = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Modificar Materia");
 
-        BTNaceptar.setBackground(new java.awt.Color(97, 212, 195));
-        BTNaceptar.setText("Aceptar");
-        BTNaceptar.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        BTNaceptar.addActionListener(new java.awt.event.ActionListener() {
+        BtnAceptar.setBackground(new java.awt.Color(97, 212, 195));
+        BtnAceptar.setText("Aceptar");
+        BtnAceptar.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        BtnAceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BTNaceptarActionPerformed(evt);
+                BtnAceptarActionPerformed(evt);
             }
         });
 
@@ -126,11 +127,6 @@ public class ModificarMateria extends javax.swing.JFrame {
         TXTcarrera.setBackground(new java.awt.Color(36, 47, 65));
         TXTcarrera.setForeground(new java.awt.Color(255, 255, 255));
         TXTcarrera.setBorder(null);
-        TXTcarrera.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                TXTcarreraKeyTyped(evt);
-            }
-        });
 
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setText("Grado:");
@@ -176,7 +172,17 @@ public class ModificarMateria extends javax.swing.JFrame {
             }
         });
 
-        CBgrado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }));
+        CBGrado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }));
+
+        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel13.setText("Grupo");
+
+        CBGrupo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A", "B", "C", "D" }));
+        CBGrupo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CBGrupoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -191,9 +197,9 @@ public class ModificarMateria extends javax.swing.JFrame {
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(BTNaceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(BtnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(BTNborrar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
@@ -207,13 +213,20 @@ public class ModificarMateria extends javax.swing.JFrame {
                                     .addComponent(jLabel10)
                                     .addComponent(TXTcarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel12)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel4)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(IdText))
-                                    .addComponent(CBgrado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addContainerGap())))))
+                                        .addComponent(IdText)))
+                                .addContainerGap())
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel12)
+                                    .addComponent(CBGrado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel13)
+                                    .addComponent(CBGrupo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(35, 35, 35))))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -241,14 +254,20 @@ public class ModificarMateria extends javax.swing.JFrame {
                         .addGap(6, 6, 6)
                         .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addComponent(jLabel12)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(CBgrado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(23, 23, 23)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(BTNaceptar)
-                    .addComponent(BTNborrar)
-                    .addComponent(BTNsair))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel12)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(CBGrado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(23, 23, 23)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(BtnAceptar)
+                            .addComponent(BTNborrar)
+                            .addComponent(BTNsair)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel13)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(CBGrupo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -256,7 +275,7 @@ public class ModificarMateria extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void BTNaceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNaceptarActionPerformed
+    private void BtnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAceptarActionPerformed
         Materia nMateria = new Materia();
             
                 if(this.TXTnombre.getText().isEmpty())
@@ -266,10 +285,11 @@ public class ModificarMateria extends javax.swing.JFrame {
                 else
                 {
                     mMateria.setID_Materia(this.IdText.getText());
+                    nMateria.setID_Materia(this.IdText.getText());
                     nMateria.setNombre_Materia(this.TXTnombre.getText());
                     nMateria.setCarrera(this.TXTcarrera.getText());
-                    nMateria.setGrado(Integer.parseInt(this.CBgrado.getSelectedItem().toString()));
-                    
+                    nMateria.setGrupo(this.CBGrupo.getSelectedItem().toString());
+                    nMateria.setGrado(Integer.parseInt(this.CBGrado.getSelectedItem().toString()));
                     
                     if(mConexion.conectar())
                         if(mConexion.modificarMateria(mMateria, nMateria))
@@ -287,8 +307,9 @@ public class ModificarMateria extends javax.swing.JFrame {
                 this.IdText.setText(null);
                 this.TXTnombre.setText(null);
                 this.TXTcarrera.setText(null);
-                this.CBgrado.setSelectedItem(null);
-    }//GEN-LAST:event_BTNaceptarActionPerformed
+                this.CBGrado.setSelectedItem(null);
+                
+    }//GEN-LAST:event_BtnAceptarActionPerformed
 
     private void BTNsairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNsairActionPerformed
         // TODO add your handling code here:
@@ -300,9 +321,11 @@ public class ModificarMateria extends javax.swing.JFrame {
     private void TablaMateriaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaMateriaMouseClicked
         int rec = this.TablaMateria.getSelectedRow();
         this.TXTnombre.setText(TablaMateria.getValueAt(rec, 1).toString());
-        this.CBgrado.setSelectedItem(Integer.parseInt(this.CBgrado.getSelectedItem().toString()));
-        this.TXTcarrera.setText(TablaMateria.getValueAt(rec, 3).toString());
+        //this.CBGrado.setSelectedItem(Integer.parseInt(this.CBGrado.getSelectedItem().toString()));
+        //this.CBGrupo.setSelectedItem(this.CBGrupo.getSelectedItem().toString());
+        this.TXTcarrera.setText(TablaMateria.getValueAt(rec, 4).toString());
         this.IdText.setText(TablaMateria.getValueAt(rec, 0).toString());
+        
     }//GEN-LAST:event_TablaMateriaMouseClicked
 
     private void BTNborrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNborrarActionPerformed
@@ -321,22 +344,17 @@ public class ModificarMateria extends javax.swing.JFrame {
         }
         this.IdText.setText(null);
         this.TXTnombre.setText(null);
-        this.CBgrado.setSelectedItem(null);
+        this.CBGrado.setSelectedItem(null);
         this.TXTcarrera.setText(null);
     }//GEN-LAST:event_BTNborrarActionPerformed
-
-    private void TXTcarreraKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TXTcarreraKeyTyped
-        // TODO add your handling code here:
-        char error = evt.getKeyChar();
-        if ((error < 'A' || error >'Z') && (error < 'a' || error > 'z') && (error != KeyEvent.VK_SPACE)) {
-            
-            evt.consume();
-        }
-    }//GEN-LAST:event_TXTcarreraKeyTyped
 
     private void jLabel9KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jLabel9KeyTyped
         // TODO add your handling code here:
     }//GEN-LAST:event_jLabel9KeyTyped
+
+    private void CBGrupoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CBGrupoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CBGrupoActionPerformed
 
     public void setFilas() {
         Materia mMateria;
@@ -348,15 +366,17 @@ public class ModificarMateria extends javax.swing.JFrame {
         modelo.addColumn("ID Materia");
         modelo.addColumn("Nombre");
         modelo.addColumn("Grado");
+        modelo.addColumn("Grupo");
         modelo.addColumn("Carrera");
 
         for (Object mMateriaArrays : mArrayList) {
-            Datos = new String[4];
+            Datos = new String[5];
             mMateria = (Materia) mMateriaArrays;
             Datos[0] = mMateria.getID_Materia();
             Datos[1] = mMateria.getNombre_Materia();
             Datos[2] = Integer.toString(mMateria.getGrado());
-            Datos[3] = mMateria.getCarrera();
+            Datos[3] = mMateria.getGrupo();
+            Datos[4] = mMateria.getCarrera();
 
             modelo.addRow(Datos);
             modeloOrdenado = new TableRowSorter<TableModel>(modelo);
@@ -409,16 +429,18 @@ public class ModificarMateria extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BTNaceptar;
     private javax.swing.JButton BTNborrar;
     private javax.swing.JButton BTNsair;
-    private javax.swing.JComboBox<String> CBgrado;
+    private javax.swing.JButton BtnAceptar;
+    private javax.swing.JComboBox<String> CBGrado;
+    private javax.swing.JComboBox<String> CBGrupo;
     private javax.swing.JLabel IdText;
     private javax.swing.JTextField TXTcarrera;
     private javax.swing.JTextField TXTnombre;
     private javax.swing.JTable TablaMateria;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
