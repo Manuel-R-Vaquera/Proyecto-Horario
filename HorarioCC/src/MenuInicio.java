@@ -1,4 +1,7 @@
 
+import javax.swing.JOptionPane;
+
+
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -38,6 +41,7 @@ public class MenuInicio extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        BTNcs = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -108,6 +112,13 @@ public class MenuInicio extends javax.swing.JFrame {
             }
         });
 
+        BTNcs.setText("Cerrar Sesión");
+        BTNcs.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BTNcsActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -116,7 +127,7 @@ public class MenuInicio extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(BTNmateria)
-                .addGap(74, 74, 74)
+                .addGap(41, 41, 41)
                 .addComponent(BTNmaestro)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(BTNhorario)
@@ -128,11 +139,15 @@ public class MenuInicio extends javax.swing.JFrame {
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addGap(52, 52, 52))
+                .addGap(70, 70, 70))
             .addGroup(layout.createSequentialGroup()
                 .addGap(97, 97, 97)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(BTNcs)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -150,7 +165,9 @@ public class MenuInicio extends javax.swing.JFrame {
                     .addComponent(jLabel4)
                     .addComponent(jLabel2)
                     .addComponent(jLabel1))
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addComponent(BTNcs)
+                .addContainerGap())
         );
 
         pack();
@@ -182,6 +199,19 @@ public class MenuInicio extends javax.swing.JFrame {
         mAC.show();
         this.hide();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void BTNcsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNcsActionPerformed
+        // TODO add your handling code here:
+        
+        if (JOptionPane.showConfirmDialog(rootPane, "¿Desea realmente salir del sistema?",
+                "Salir del sistema", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){ 
+        
+       Login mMI = new Login();
+       mMI.show();
+       this.hide();
+        }
+        
+    }//GEN-LAST:event_BTNcsActionPerformed
 
     /**
      * @param args the command line arguments
@@ -219,6 +249,7 @@ public class MenuInicio extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BTNcs;
     private javax.swing.JButton BTNhorario;
     private javax.swing.JButton BTNmaestro;
     private javax.swing.JButton BTNmateria;

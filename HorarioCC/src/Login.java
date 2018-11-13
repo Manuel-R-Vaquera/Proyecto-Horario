@@ -161,8 +161,8 @@ public class Login extends javax.swing.JFrame {
         String Contraseña="1234";
         String Pass =new String(txtPassOculto.getPassword());
         
-          String usuario2 ="user";
-        String Contraseña2="1234";
+        String usuario2 ="estudiante";
+        String Contraseña2="";
         String Pass2 =new String(txtPassOculto.getPassword());
         
         if (txtusuario.getText().equals(usuario  )&& Pass.equals(Contraseña)) {
@@ -176,9 +176,9 @@ public class Login extends javax.swing.JFrame {
            
         }else  {
                 if (txtusuario.getText().equals(usuario2  )&& Pass2.equals(Contraseña2)) {
-            JOptionPane.showMessageDialog(null, "Bienvenido Usuario");
-           // MenuInicio mMenuInicio = new MenuInicio();
-            //mMenuInicio.show();
+            JOptionPane.showMessageDialog(null, "Bienvenido Estudiante");
+             HorarioEstudiante mHE = new HorarioEstudiante();
+             mHE.show();
        
             this.hide();
             }
@@ -187,6 +187,8 @@ public class Login extends javax.swing.JFrame {
         
        
         }
+        
+        
         
     }//GEN-LAST:event_btningresarActionPerformed
 
