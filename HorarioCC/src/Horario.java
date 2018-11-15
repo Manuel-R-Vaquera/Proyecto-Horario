@@ -22,7 +22,12 @@ public class Horario extends javax.swing.JFrame {
     Conexion mConexion = new Conexion();
     Conexion2 mConexion2 = new Conexion2();
     public TableRowSorter<TableModel> modeloOrdenado;
-    DefaultTableModel modelo = new DefaultTableModel();
+    DefaultTableModel modelo = new DefaultTableModel(){
+   @Override
+   public boolean isCellEditable(int row, int column) {
+      return false;
+   }
+};
 
     String DiaSel = "";
     String AulaSel = "";
@@ -52,7 +57,12 @@ public class Horario extends javax.swing.JFrame {
         mArrayList = mConexion2.consultarClasePorDia(DiaSel);
         String[] Datos;
 
-        modelo = new DefaultTableModel();
+        modelo = new DefaultTableModel(){
+   @Override
+   public boolean isCellEditable(int row, int column) {
+      return false;
+   }
+};
         modelo.addColumn("Hora");
         modelo.addColumn("Materia");
         modelo.addColumn("Maestro");
@@ -107,7 +117,12 @@ public class Horario extends javax.swing.JFrame {
         mArrayList = mConexion2.consultarClasePorAula(AulaSel);
         String[] Datos;
 
-        modelo = new DefaultTableModel();
+        modelo = new DefaultTableModel(){
+   @Override
+   public boolean isCellEditable(int row, int column) {
+      return false;
+   }
+};
         modelo.addColumn("Hora");
         modelo.addColumn("Materia");
         modelo.addColumn("Maestro");
@@ -625,9 +640,6 @@ public class Horario extends javax.swing.JFrame {
     private void TablaHorarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaHorarioMouseClicked
         int rec = this.TablaHorario.getSelectedRow();
         this.LMateria.setText(TablaHorario.getValueAt(rec, 1).toString());
-        //this.CBGrado.setSelectedItem(Integer.parseInt(this.CBGrado.getSelectedItem().toString()));
-        //this.CBGrupo.setSelectedItem(this.CBGrupo.getSelectedItem().toString());
-        //this.TXTcarrera.setText(TablaHorario.getValueAt(rec, 4).toString());
         this.LHora.setText(TablaHorario.getValueAt(rec, 0).toString());
         this.LID.setText(TablaHorario.getValueAt(rec, 9).toString());
         this.LDisponible.setText(TablaHorario.getValueAt(rec, 7).toString());

@@ -4,14 +4,12 @@ import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.table.DefaultTableModel;
 
-
-
-
 /**
  *
  * @author Martin
  */
 public class Login extends javax.swing.JFrame {
+
     public boolean mostrar = true;
 
     /**
@@ -19,9 +17,9 @@ public class Login extends javax.swing.JFrame {
      */
     public Login() {
         initComponents();
-       this.setTitle("Login");
-       this.setLocationRelativeTo(null);
-        
+        this.setTitle("Login");
+        this.setLocationRelativeTo(null);
+
     }
 
     /**
@@ -155,54 +153,48 @@ public class Login extends javax.swing.JFrame {
 
     private void btningresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btningresarActionPerformed
         // TODO add your handling code here:
-       
-        
-        String usuario ="admin";
-        String Contraseña="1234";
-        String Pass =new String(txtPassOculto.getPassword());
-        
-        String usuario2 ="estudiante";
-        String Contraseña2="";
-        String Pass2 =new String(txtPassOculto.getPassword());
-        
-        if (txtusuario.getText().equals(usuario  )&& Pass.equals(Contraseña)) {
+
+        String usuario = "admin";
+        String Contraseña = "1234";
+        String Pass = new String(txtPassOculto.getPassword());
+
+        String usuario2 = "estudiante";
+        String Contraseña2 = "";
+        String Pass2 = new String(txtPassOculto.getPassword());
+
+        if (txtusuario.getText().equals(usuario) && Pass.equals(Contraseña)) {
             JOptionPane.showMessageDialog(null, "Bienvenido Administrador");
             MenuInicio mMenuInicio = new MenuInicio();
             mMenuInicio.show();
-       
+
             this.hide();
-    
-                    
-           
-        }else  {
-                if (txtusuario.getText().equals(usuario2  )&& Pass2.equals(Contraseña2)) {
-            JOptionPane.showMessageDialog(null, "Bienvenido Estudiante");
-             HorarioEstudiante mHE = new HorarioEstudiante();
-             mHE.show();
-       
-            this.hide();
+
+        } else {
+            if (txtusuario.getText().equals(usuario2) && Pass2.equals(Contraseña2)) {
+                JOptionPane.showMessageDialog(null, "Bienvenido Estudiante");
+                HorarioEst mHorarioEst = new HorarioEst();
+                mHorarioEst.show();
+
+                this.hide();
+            } else {
+                JOptionPane.showMessageDialog(null, "constraseña o usuario incorrecta por favor verifica tu informacion");
             }
-                else {JOptionPane.showMessageDialog(null, "constraseña o usuario incorrecta por favor verifica tu informacion");}       
-       
-        
-       
+
         }
-        
-        
-        
+
+
     }//GEN-LAST:event_btningresarActionPerformed
 
     private void btnsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsalirActionPerformed
 
-System.exit(0);
+        System.exit(0);
 // TODO add your handling code here:
     }//GEN-LAST:event_btnsalirActionPerformed
 
     private void btnMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarActionPerformed
 
         //Proceso condicional para mostrar e ocultar la contraseña
-        if (mostrar)
-        {
+        if (mostrar) {
             //Ocultamiento y muestreo de componentes
             txtPassVisible.setVisible(true);
             txtPassOculto.setVisible(false);
@@ -214,7 +206,7 @@ System.exit(0);
             //Le decimos al sistema que en el proximo click que de el
             //usuario debe de mostrarse la contrseña en modo Oculto.
             mostrar = false;
-        }else{
+        } else {
             //Ocultamiento y muestreo de componentes
             txtPassVisible.setVisible(false);
             txtPassOculto.setVisible(true);

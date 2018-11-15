@@ -16,31 +16,33 @@ import javax.swing.table.TableRowSorter;
  *
  * @author manzana
  */
-public class HorarioEstudiante extends javax.swing.JFrame {
+public class HorarioEst extends javax.swing.JFrame {
 
     Clase mClase = new Clase();
+    Conexion mConexion = new Conexion();
     Conexion2 mConexion2 = new Conexion2();
     public TableRowSorter<TableModel> modeloOrdenado;
-    DefaultTableModel modelo = new DefaultTableModel();
-    
+    DefaultTableModel modelo = new DefaultTableModel(){
+   @Override
+   public boolean isCellEditable(int row, int column) {
+      return false;
+   }
+};
+
     String DiaSel = "";
     String AulaSel = "";
 
-    public HorarioEstudiante() {
+    public HorarioEst() {
         initComponents();
         this.setLocationRelativeTo(null);
         getContentPane().setBackground(new java.awt.Color(36, 47, 65));
 
     }
+
     public void LimpiarTabla() {
         this.TablaHorario.setModel(new DefaultTableModel());
-        /*
-        DefaultTableModel Tabla = (DefaultTableModel) this.TablaHorario.getModel();
-        int a = this.TablaHorario.getRowCount() - 1;
-        for (int i = a; i >= 0; i--) {
-            Tabla.removeRow(Tabla.getRowCount() - 1);
-        }
-        Tabla.removeTableModelListener(TablaHorario);*/
+        
+        
     }
 
     public void setFilasDia() {
@@ -50,7 +52,12 @@ public class HorarioEstudiante extends javax.swing.JFrame {
         mArrayList = mConexion2.consultarClasePorDia(DiaSel);
         String[] Datos;
 
-        modelo = new DefaultTableModel();
+        modelo = new DefaultTableModel(){
+   @Override
+   public boolean isCellEditable(int row, int column) {
+      return false;
+   }
+};
         modelo.addColumn("Hora");
         modelo.addColumn("Materia");
         modelo.addColumn("Maestro");
@@ -58,9 +65,12 @@ public class HorarioEstudiante extends javax.swing.JFrame {
         modelo.addColumn("Grado");
         modelo.addColumn("Grupo");
         modelo.addColumn("Carrera");
+        modelo.addColumn("Disp");
+        modelo.addColumn("Suplente");
+        modelo.addColumn("ID_Class");
 
         for (Object mClaseArrays : mArrayList) {
-            Datos = new String[7];
+            Datos = new String[10];
             mClase = (Clase) mClaseArrays;
             Datos[0] = Integer.toString(mClase.getHora());
             Datos[1] = mClase.getMateria();
@@ -69,7 +79,9 @@ public class HorarioEstudiante extends javax.swing.JFrame {
             Datos[4] = Integer.toString(mClase.getGrado());
             Datos[5] = mClase.getGrupo();
             Datos[6] = mClase.getCarrera();
-            
+            Datos[7] = mClase.getDisponible();
+            Datos[8] = mClase.getSuplente();
+            Datos[9] = Integer.toString(mClase.getID_Clase());
 
             modelo.addRow(Datos);
             modeloOrdenado = new TableRowSorter<TableModel>(modelo);
@@ -84,13 +96,15 @@ public class HorarioEstudiante extends javax.swing.JFrame {
         this.TablaHorario.getColumnModel().getColumn(4).setPreferredWidth(10);
         this.TablaHorario.getColumnModel().getColumn(5).setPreferredWidth(10);
         this.TablaHorario.getColumnModel().getColumn(6).setPreferredWidth(10);
+        this.TablaHorario.getColumnModel().getColumn(7).setPreferredWidth(5);
+        this.TablaHorario.getColumnModel().getColumn(9).setPreferredWidth(5);
 
         if (this.TablaHorario.getRowCount() > 0) {
             this.TablaHorario.setRowSelectionInterval(0, 0);
         }
 
     }
-    
+
     public void setFilasAula() {
         Clase mClase;
         mConexion2.conectar();
@@ -98,7 +112,12 @@ public class HorarioEstudiante extends javax.swing.JFrame {
         mArrayList = mConexion2.consultarClasePorAula(AulaSel);
         String[] Datos;
 
-        modelo = new DefaultTableModel();
+        modelo = new DefaultTableModel(){
+   @Override
+   public boolean isCellEditable(int row, int column) {
+      return false;
+   }
+};
         modelo.addColumn("Hora");
         modelo.addColumn("Materia");
         modelo.addColumn("Maestro");
@@ -106,9 +125,12 @@ public class HorarioEstudiante extends javax.swing.JFrame {
         modelo.addColumn("Grado");
         modelo.addColumn("Grupo");
         modelo.addColumn("Carrera");
+        modelo.addColumn("Disponible");
+        modelo.addColumn("Suplente");
+        modelo.addColumn("ID_Class");
 
         for (Object mClaseArrays : mArrayList) {
-            Datos = new String[7];
+            Datos = new String[10];
             mClase = (Clase) mClaseArrays;
             Datos[0] = Integer.toString(mClase.getHora());
             Datos[1] = mClase.getMateria();
@@ -117,7 +139,9 @@ public class HorarioEstudiante extends javax.swing.JFrame {
             Datos[4] = Integer.toString(mClase.getGrado());
             Datos[5] = mClase.getGrupo();
             Datos[6] = mClase.getCarrera();
-            
+            Datos[7] = mClase.getDisponible();
+            Datos[8] = mClase.getSuplente();
+            Datos[9] = Integer.toString(mClase.getID_Clase());
 
             modelo.addRow(Datos);
             modeloOrdenado = new TableRowSorter<TableModel>(modelo);
@@ -132,15 +156,14 @@ public class HorarioEstudiante extends javax.swing.JFrame {
         this.TablaHorario.getColumnModel().getColumn(4).setPreferredWidth(10);
         this.TablaHorario.getColumnModel().getColumn(5).setPreferredWidth(10);
         this.TablaHorario.getColumnModel().getColumn(6).setPreferredWidth(10);
+        this.TablaHorario.getColumnModel().getColumn(7).setPreferredWidth(5);
+        this.TablaHorario.getColumnModel().getColumn(9).setPreferredWidth(5);
 
         if (this.TablaHorario.getRowCount() > 0) {
             this.TablaHorario.setRowSelectionInterval(0, 0);
         }
 
     }
-
-    
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -181,6 +204,11 @@ public class HorarioEstudiante extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        TablaHorario.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TablaHorarioMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(TablaHorario);
 
         BtnLunes.setBackground(new java.awt.Color(97, 212, 195));
@@ -257,7 +285,7 @@ public class HorarioEstudiante extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(122, 122, 122)
                 .addComponent(jLabel3)
-                .addContainerGap(261, Short.MAX_VALUE))
+                .addContainerGap(271, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
@@ -315,28 +343,24 @@ public class HorarioEstudiante extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(BtnMartes, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(BtnMiercoles, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(BtnJueves, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(BtnViernes, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(BtnLunes, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 518, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(BtnLabsol, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(BtnLab1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(BtnLab2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(BtnLab3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(BtnMac, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(316, 316, 316)
-                        .addComponent(BtnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(BtnMartes, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(BtnMiercoles, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(BtnJueves, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(BtnViernes, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(BtnSalir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(BtnLunes, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 733, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 60, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(BtnLabsol, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(BtnLab1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(BtnLab2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(BtnLab3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(BtnMac, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -344,11 +368,9 @@ public class HorarioEstudiante extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(50, 50, 50)
+                        .addGap(110, 110, 110)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(60, 60, 60)
                                 .addComponent(BtnLunes)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(BtnMartes)
@@ -357,21 +379,23 @@ public class HorarioEstudiante extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(BtnJueves)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(BtnViernes))))
+                                .addComponent(BtnViernes)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(BtnSalir))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(BtnMac)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(BtnLabsol)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(BtnLab1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(BtnLab2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(BtnLab3))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(110, 110, 110)
-                        .addComponent(BtnMac)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(BtnLabsol)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(BtnLab1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(BtnLab2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(BtnLab3)))
-                .addGap(18, 18, 18)
-                .addComponent(BtnSalir)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(57, Short.MAX_VALUE))
         );
 
         pack();
@@ -385,13 +409,9 @@ public class HorarioEstudiante extends javax.swing.JFrame {
 
     private void BtnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSalirActionPerformed
         // TODO add your handling code here:
-         if (JOptionPane.showConfirmDialog(rootPane, "¿Desea realmente salir del sistema?",
-                "Salir del sistema", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){ 
-        
-       Login mMI = new Login();
-       mMI.show();
-       this.hide();
-        }
+        this.hide();
+        Login mLogin = new Login();
+        mLogin.show();
     }//GEN-LAST:event_BtnSalirActionPerformed
 
     private void BtnLunesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnLunesActionPerformed
@@ -447,6 +467,10 @@ public class HorarioEstudiante extends javax.swing.JFrame {
         LimpiarTabla();
         setFilasAula();
     }//GEN-LAST:event_BtnLab3ActionPerformed
+
+    private void TablaHorarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaHorarioMouseClicked
+
+    }//GEN-LAST:event_TablaHorarioMouseClicked
 
     /**
      * @param args the command line arguments
