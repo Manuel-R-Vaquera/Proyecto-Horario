@@ -4,7 +4,7 @@
  * @author manzana
  */
 public class Clase {
-    
+    public int ID_Clase;
     public String Maestro;
     public String Materia;
     public String Aula;
@@ -13,6 +13,8 @@ public class Clase {
     public String Grupo;
     public int Grado;
     public String Carrera;
+    public String Disponible;
+    public String Suplente;
 
     public Clase() {
         Maestro = "";
@@ -23,6 +25,33 @@ public class Clase {
         Grupo = "";
         Grado = 0;
         Carrera = "";
+        ID_Clase = 0;
+        Disponible = "";
+        Suplente = "";
+    }
+
+    public String getSuplente() {
+        return Suplente;
+    }
+
+    public void setSuplente(String Suplente) {
+        this.Suplente = Suplente;
+    }
+
+    public String getDisponible() {
+        return Disponible;
+    }
+
+    public void setDisponible(String Disponible) {
+        this.Disponible = Disponible;
+    }
+
+    public int getID_Clase() {
+        return ID_Clase;
+    }
+
+    public void setID_Clase(int ID_Clase) {
+        this.ID_Clase = ID_Clase;
     }
 
     public String getGrupo() {

@@ -101,6 +101,37 @@ public class Conexion {
             return false;
         }
     }
+    
+    public boolean Disponibilidad(Clase mClase, Clase nClase) {
+        Statement consulta;
+
+        try {
+            consulta = conexion.createStatement();
+            consulta.execute("update Clases set "
+                    + "Disponible = '" + nClase.getDisponible()
+                    + "', Suplente = ''"
+                    + " where ID_Clase = " + mClase.getID_Clase() + ";");
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+    
+    public boolean ActualizarSuplente(Clase mClase, Clase nClase) {
+        Statement consulta;
+
+        try {
+            consulta = conexion.createStatement();
+            consulta.execute("update Clases set "
+                    + "Suplente = '" + nClase.getSuplente()
+                    + "' where ID_Clase= " + mClase.getID_Clase() + ";");
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 
     ///Catalogo Materia///
     public boolean GuardarMateria(Materia mMateria) {
@@ -288,6 +319,29 @@ public class Conexion {
             while (res.next()) {
 
                 CBMateria.addItem(res.getString("Nombre_Materia"));
+                /*Horario mHorario = new Horario();
+                mHorario.setID_Materia(Integer.parseInt("ID_Materia"));*/
+
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+    
+    public void CargarMateriaSuplente(JComboBox CBMateriaSuplente, String DiaSel) {
+        Statement consulta;
+        
+        try {
+            consulta = conexion.createStatement();
+            ResultSet res = null;
+            res = consulta.executeQuery("SELECT Nombre_Materia FROM Clases Natural Join maestros Natural Join aula Natural Join materia WHERE Dia = '"+ DiaSel + "'");
+
+            CBMateriaSuplente.addItem("Seleccione una Materia");
+            while (res.next()) {
+
+                CBMateriaSuplente.addItem(res.getString("Nombre_Materia"));
                 /*Horario mHorario = new Horario();
                 mHorario.setID_Materia(Integer.parseInt("ID_Materia"));*/
 

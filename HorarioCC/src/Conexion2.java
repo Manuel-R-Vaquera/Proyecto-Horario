@@ -103,6 +103,10 @@ public class Conexion2 {
                 mClase.setGrado(resultado.getInt("Grado"));
                 mClase.setCarrera(resultado.getString("Carrera"));
                 mClase.setGrupo(resultado.getString("Grupo"));
+                mClase.setDisponible(resultado.getString("Disponible"));
+                mClase.setSuplente(resultado.getString("Suplente"));
+                mClase.setID_Clase(resultado.getInt("ID_Clase"));
+                
                 
 
                 //mClase.setHora(Integer.parseInt(resultado.getString("Hora")));
@@ -136,6 +140,9 @@ public class Conexion2 {
                 mClase.setCarrera(resultado.getString("Carrera"));
                 mClase.setGrupo(resultado.getString("Grupo"));
                 mClase.setDia(resultado.getString("Dia"));
+                mClase.setID_Clase(resultado.getInt("ID_Clase"));
+                mClase.setDisponible(resultado.getString("Disponible"));
+                mClase.setSuplente(resultado.getString("Suplente"));
                 
 
                 //mClase.setHora(Integer.parseInt(resultado.getString("Hora")));

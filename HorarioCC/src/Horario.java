@@ -1,5 +1,6 @@
 
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
@@ -18,10 +19,11 @@ import javax.swing.table.TableRowSorter;
 public class Horario extends javax.swing.JFrame {
 
     Clase mClase = new Clase();
+    Conexion mConexion = new Conexion();
     Conexion2 mConexion2 = new Conexion2();
     public TableRowSorter<TableModel> modeloOrdenado;
     DefaultTableModel modelo = new DefaultTableModel();
-    
+
     String DiaSel = "";
     String AulaSel = "";
 
@@ -31,6 +33,7 @@ public class Horario extends javax.swing.JFrame {
         getContentPane().setBackground(new java.awt.Color(36, 47, 65));
 
     }
+
     public void LimpiarTabla() {
         this.TablaHorario.setModel(new DefaultTableModel());
         /*
@@ -57,9 +60,12 @@ public class Horario extends javax.swing.JFrame {
         modelo.addColumn("Grado");
         modelo.addColumn("Grupo");
         modelo.addColumn("Carrera");
+        modelo.addColumn("Disp");
+        modelo.addColumn("Suplente");
+        modelo.addColumn("ID_Class");
 
         for (Object mClaseArrays : mArrayList) {
-            Datos = new String[7];
+            Datos = new String[10];
             mClase = (Clase) mClaseArrays;
             Datos[0] = Integer.toString(mClase.getHora());
             Datos[1] = mClase.getMateria();
@@ -68,7 +74,9 @@ public class Horario extends javax.swing.JFrame {
             Datos[4] = Integer.toString(mClase.getGrado());
             Datos[5] = mClase.getGrupo();
             Datos[6] = mClase.getCarrera();
-            
+            Datos[7] = mClase.getDisponible();
+            Datos[8] = mClase.getSuplente();
+            Datos[9] = Integer.toString(mClase.getID_Clase());
 
             modelo.addRow(Datos);
             modeloOrdenado = new TableRowSorter<TableModel>(modelo);
@@ -83,13 +91,15 @@ public class Horario extends javax.swing.JFrame {
         this.TablaHorario.getColumnModel().getColumn(4).setPreferredWidth(10);
         this.TablaHorario.getColumnModel().getColumn(5).setPreferredWidth(10);
         this.TablaHorario.getColumnModel().getColumn(6).setPreferredWidth(10);
+        this.TablaHorario.getColumnModel().getColumn(7).setPreferredWidth(5);
+        this.TablaHorario.getColumnModel().getColumn(9).setPreferredWidth(5);
 
         if (this.TablaHorario.getRowCount() > 0) {
             this.TablaHorario.setRowSelectionInterval(0, 0);
         }
 
     }
-    
+
     public void setFilasAula() {
         Clase mClase;
         mConexion2.conectar();
@@ -105,9 +115,12 @@ public class Horario extends javax.swing.JFrame {
         modelo.addColumn("Grado");
         modelo.addColumn("Grupo");
         modelo.addColumn("Carrera");
+        modelo.addColumn("Disponible");
+        modelo.addColumn("Suplente");
+        modelo.addColumn("ID_Class");
 
         for (Object mClaseArrays : mArrayList) {
-            Datos = new String[7];
+            Datos = new String[10];
             mClase = (Clase) mClaseArrays;
             Datos[0] = Integer.toString(mClase.getHora());
             Datos[1] = mClase.getMateria();
@@ -116,7 +129,9 @@ public class Horario extends javax.swing.JFrame {
             Datos[4] = Integer.toString(mClase.getGrado());
             Datos[5] = mClase.getGrupo();
             Datos[6] = mClase.getCarrera();
-            
+            Datos[7] = mClase.getDisponible();
+            Datos[8] = mClase.getSuplente();
+            Datos[9] = Integer.toString(mClase.getID_Clase());
 
             modelo.addRow(Datos);
             modeloOrdenado = new TableRowSorter<TableModel>(modelo);
@@ -131,15 +146,14 @@ public class Horario extends javax.swing.JFrame {
         this.TablaHorario.getColumnModel().getColumn(4).setPreferredWidth(10);
         this.TablaHorario.getColumnModel().getColumn(5).setPreferredWidth(10);
         this.TablaHorario.getColumnModel().getColumn(6).setPreferredWidth(10);
+        this.TablaHorario.getColumnModel().getColumn(7).setPreferredWidth(5);
+        this.TablaHorario.getColumnModel().getColumn(9).setPreferredWidth(5);
 
         if (this.TablaHorario.getRowCount() > 0) {
             this.TablaHorario.setRowSelectionInterval(0, 0);
         }
 
     }
-
-    
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -166,6 +180,18 @@ public class Horario extends javax.swing.JFrame {
         BtnLab1 = new javax.swing.JButton();
         BtnLab2 = new javax.swing.JButton();
         BtnLab3 = new javax.swing.JButton();
+        BtnDisponible = new javax.swing.JButton();
+        BtnNoDisp = new javax.swing.JButton();
+        CBMateriaSuplente = new javax.swing.JComboBox<>();
+        LMateria = new javax.swing.JLabel();
+        LHora = new javax.swing.JLabel();
+        LID = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        LDisponible = new javax.swing.JLabel();
+        BtnSuplente = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -180,6 +206,11 @@ public class Horario extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        TablaHorario.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TablaHorarioMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(TablaHorario);
 
         BtnLunes.setBackground(new java.awt.Color(97, 212, 195));
@@ -256,7 +287,7 @@ public class Horario extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(122, 122, 122)
                 .addComponent(jLabel3)
-                .addContainerGap(261, Short.MAX_VALUE))
+                .addContainerGap(383, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
@@ -308,30 +339,102 @@ public class Horario extends javax.swing.JFrame {
             }
         });
 
+        BtnDisponible.setText("Disponible");
+        BtnDisponible.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnDisponibleActionPerformed(evt);
+            }
+        });
+
+        BtnNoDisp.setText("No Disponible");
+        BtnNoDisp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnNoDispActionPerformed(evt);
+            }
+        });
+
+        LMateria.setForeground(new java.awt.Color(255, 255, 255));
+
+        LHora.setForeground(new java.awt.Color(255, 255, 255));
+
+        LID.setForeground(new java.awt.Color(255, 255, 255));
+
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("ID:");
+
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("Hora:");
+
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("DISPONIBLE:");
+
+        LDisponible.setForeground(new java.awt.Color(255, 255, 255));
+
+        BtnSuplente.setText("Guardar");
+        BtnSuplente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnSuplenteActionPerformed(evt);
+            }
+        });
+
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("Materia Suplente");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(BtnMartes, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(BtnMiercoles, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(BtnJueves, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(BtnViernes, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(BtnSalir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(BtnLunes, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 518, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(BtnMartes, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(BtnMiercoles, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(BtnJueves, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(BtnViernes, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(BtnSalir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(BtnLunes, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 733, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 107, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(120, 120, 120)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(BtnDisponible)
+                            .addComponent(jLabel6))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(CBMateriaSuplente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(78, 78, 78)
+                                .addComponent(BtnSuplente)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(BtnNoDisp)
+                                .addGap(29, 29, 29)
+                                .addComponent(LMateria)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel4)
+                                .addGap(18, 18, 18)
+                                .addComponent(LHora, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel2)
+                                .addGap(18, 18, 18)
+                                .addComponent(LID, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel5)
+                                .addGap(18, 18, 18)
+                                .addComponent(LDisponible, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(125, 125, 125)))))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(BtnLabsol, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(BtnLab1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(BtnLab2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(BtnLab3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(BtnMac, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -339,11 +442,9 @@ public class Horario extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(50, 50, 50)
+                        .addGap(110, 110, 110)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(60, 60, 60)
                                 .addComponent(BtnLunes)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(BtnMartes)
@@ -354,18 +455,44 @@ public class Horario extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(BtnViernes)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(BtnSalir))))
+                                .addComponent(BtnSalir))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(BtnMac)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(BtnLabsol)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(BtnLab1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(BtnLab2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(BtnLab3))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(110, 110, 110)
-                        .addComponent(BtnMac)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(BtnLabsol)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(BtnLab1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(BtnLab2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(BtnLab3)))
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(BtnDisponible)
+                            .addComponent(BtnNoDisp)
+                            .addComponent(LMateria)
+                            .addComponent(LHora, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(LID, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel5)))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addComponent(LDisponible, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(CBMateriaSuplente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel6))
+                    .addComponent(BtnSuplente))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -374,6 +501,13 @@ public class Horario extends javax.swing.JFrame {
 
     private void BtnMartesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnMartesActionPerformed
         DiaSel = "Martes";
+        this.CBMateriaSuplente.removeAllItems();
+        mConexion.conectar();
+        mConexion.CargarMateriaSuplente(CBMateriaSuplente, DiaSel);
+        this.LID.setText(null);
+        this.LHora.setText(null);
+        this.LMateria.setText(null);
+        this.LDisponible.setText(null);
         LimpiarTabla();
         setFilasDia();
     }//GEN-LAST:event_BtnMartesActionPerformed
@@ -387,57 +521,195 @@ public class Horario extends javax.swing.JFrame {
 
     private void BtnLunesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnLunesActionPerformed
         DiaSel = "Lunes";
+        this.CBMateriaSuplente.removeAllItems();
+        mConexion.conectar();
+        mConexion.CargarMateriaSuplente(CBMateriaSuplente, DiaSel);
+        this.LID.setText(null);
+        this.LHora.setText(null);
+        this.LMateria.setText(null);
+        this.LDisponible.setText(null);
         LimpiarTabla();
         setFilasDia();
     }//GEN-LAST:event_BtnLunesActionPerformed
 
     private void BtnMiercolesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnMiercolesActionPerformed
         DiaSel = "Miercoles";
+        this.CBMateriaSuplente.removeAllItems();
+        mConexion.conectar();
+        mConexion.CargarMateriaSuplente(CBMateriaSuplente, DiaSel);
+        this.LID.setText(null);
+        this.LHora.setText(null);
+        this.LMateria.setText(null);
+        this.LDisponible.setText(null);
         LimpiarTabla();
         setFilasDia();
     }//GEN-LAST:event_BtnMiercolesActionPerformed
 
     private void BtnJuevesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnJuevesActionPerformed
         DiaSel = "Jueves";
+        this.CBMateriaSuplente.removeAllItems();
+        mConexion.conectar();
+        mConexion.CargarMateriaSuplente(CBMateriaSuplente, DiaSel);
+        this.LID.setText(null);
+        this.LHora.setText(null);
+        this.LMateria.setText(null);
+        this.LDisponible.setText(null);
         LimpiarTabla();
         setFilasDia();
     }//GEN-LAST:event_BtnJuevesActionPerformed
 
     private void BtnViernesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnViernesActionPerformed
         DiaSel = "Viernes";
+        this.CBMateriaSuplente.removeAllItems();
+        mConexion.conectar();
+        mConexion.CargarMateriaSuplente(CBMateriaSuplente, DiaSel);
+        this.LID.setText(null);
+        this.LHora.setText(null);
+        this.LMateria.setText(null);
+        this.LDisponible.setText(null);
         LimpiarTabla();
         setFilasDia();
     }//GEN-LAST:event_BtnViernesActionPerformed
 
     private void BtnMacActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnMacActionPerformed
         AulaSel = "MAC";
+        this.LID.setText(null);
+        this.LHora.setText(null);
+        this.LMateria.setText(null);
+        this.LDisponible.setText(null);
         LimpiarTabla();
         setFilasAula();
     }//GEN-LAST:event_BtnMacActionPerformed
 
     private void BtnLabsolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnLabsolActionPerformed
         AulaSel = "LABSOL";
+        this.LID.setText(null);
+        this.LHora.setText(null);
+        this.LMateria.setText(null);
+        this.LDisponible.setText(null);
         LimpiarTabla();
         setFilasAula();
     }//GEN-LAST:event_BtnLabsolActionPerformed
 
     private void BtnLab1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnLab1ActionPerformed
         AulaSel = "Lab1";
+        this.LID.setText(null);
+        this.LHora.setText(null);
+        this.LMateria.setText(null);
+        this.LDisponible.setText(null);
         LimpiarTabla();
         setFilasAula();
     }//GEN-LAST:event_BtnLab1ActionPerformed
 
     private void BtnLab2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnLab2ActionPerformed
         AulaSel = "Lab2";
+        this.LID.setText(null);
+        this.LHora.setText(null);
+        this.LMateria.setText(null);
+        this.LDisponible.setText(null);
         LimpiarTabla();
         setFilasAula();
     }//GEN-LAST:event_BtnLab2ActionPerformed
 
     private void BtnLab3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnLab3ActionPerformed
         AulaSel = "Lab3";
+        this.LID.setText(null);
+        this.LHora.setText(null);
+        this.LMateria.setText(null);
+        this.LDisponible.setText(null);
         LimpiarTabla();
         setFilasAula();
     }//GEN-LAST:event_BtnLab3ActionPerformed
+
+    private void TablaHorarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaHorarioMouseClicked
+        int rec = this.TablaHorario.getSelectedRow();
+        this.LMateria.setText(TablaHorario.getValueAt(rec, 1).toString());
+        //this.CBGrado.setSelectedItem(Integer.parseInt(this.CBGrado.getSelectedItem().toString()));
+        //this.CBGrupo.setSelectedItem(this.CBGrupo.getSelectedItem().toString());
+        //this.TXTcarrera.setText(TablaHorario.getValueAt(rec, 4).toString());
+        this.LHora.setText(TablaHorario.getValueAt(rec, 0).toString());
+        this.LID.setText(TablaHorario.getValueAt(rec, 9).toString());
+        this.LDisponible.setText(TablaHorario.getValueAt(rec, 7).toString());
+
+    }//GEN-LAST:event_TablaHorarioMouseClicked
+
+    private void BtnDisponibleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnDisponibleActionPerformed
+        Clase nClase = new Clase();
+        mClase.setID_Clase(Integer.parseInt(this.LID.getText()));
+        nClase.setID_Clase(Integer.parseInt(this.LID.getText()));
+        nClase.setDisponible("Si");
+        //nClase.setSuplente("");
+        if (mConexion.conectar()) {
+            if (mConexion.Disponibilidad(mClase, nClase)) {
+                JOptionPane.showMessageDialog(rootPane, "Materia Modificada Con Éxito");
+                DiaSel = "Lunes";
+                this.LID.setText(null);
+                this.LHora.setText(null);
+                this.LMateria.setText(null);
+                this.LDisponible.setText(null);
+                LimpiarTabla();
+                setFilasDia();
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Error al Modificar");
+            }
+        }
+    }//GEN-LAST:event_BtnDisponibleActionPerformed
+
+    private void BtnNoDispActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnNoDispActionPerformed
+
+        Clase nClase = new Clase();
+        mClase.setID_Clase(Integer.parseInt(this.LID.getText()));
+        nClase.setID_Clase(Integer.parseInt(this.LID.getText()));
+        nClase.setDisponible("No");
+        if (mConexion.conectar()) {
+            if (mConexion.Disponibilidad(mClase, nClase)) {
+                JOptionPane.showMessageDialog(rootPane, "Materia Modificada Con Éxito");
+                DiaSel = "Lunes";
+                this.LID.setText(null);
+                this.LHora.setText(null);
+                this.LMateria.setText(null);
+                this.LDisponible.setText(null);
+                LimpiarTabla();
+                setFilasDia();
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Error al Modificar");
+            }
+        }
+
+
+    }//GEN-LAST:event_BtnNoDispActionPerformed
+
+    private void BtnSuplenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSuplenteActionPerformed
+        if ("Si".equals(this.LDisponible.getText())) {
+            Clase nClase = new Clase();
+            mClase.setID_Clase(Integer.parseInt(this.LID.getText()));
+            nClase.setID_Clase(Integer.parseInt(this.LID.getText()));
+            nClase.setSuplente(this.CBMateriaSuplente.getSelectedItem().toString());// OJO AQUI
+
+            if (mConexion.conectar()) {
+                if (mConexion.ActualizarSuplente(mClase, nClase)) {
+                    JOptionPane.showMessageDialog(rootPane, "Suplente Agrgado Con Éxito");
+                    DiaSel = "Lunes";
+                    this.LID.setText(null);
+                    this.LHora.setText(null);
+                    this.LMateria.setText(null);
+                    this.LDisponible.setText(null);
+                    LimpiarTabla();
+                    setFilasDia();
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "Error al Modificar");
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "CLASE OCUPADA");
+            this.LID.setText(null);
+            this.LHora.setText(null);
+            this.LMateria.setText(null);
+            this.LDisponible.setText(null);
+        }
+
+
+    }//GEN-LAST:event_BtnSuplenteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -475,6 +747,7 @@ public class Horario extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BtnDisponible;
     private javax.swing.JButton BtnJueves;
     private javax.swing.JButton BtnLab1;
     private javax.swing.JButton BtnLab2;
@@ -484,11 +757,22 @@ public class Horario extends javax.swing.JFrame {
     private javax.swing.JButton BtnMac;
     private javax.swing.JButton BtnMartes;
     private javax.swing.JButton BtnMiercoles;
+    private javax.swing.JButton BtnNoDisp;
     private javax.swing.JButton BtnSalir;
+    private javax.swing.JButton BtnSuplente;
     private javax.swing.JButton BtnViernes;
+    private javax.swing.JComboBox<String> CBMateriaSuplente;
+    private javax.swing.JLabel LDisponible;
+    private javax.swing.JLabel LHora;
+    private javax.swing.JLabel LID;
+    private javax.swing.JLabel LMateria;
     private javax.swing.JTable TablaHorario;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
