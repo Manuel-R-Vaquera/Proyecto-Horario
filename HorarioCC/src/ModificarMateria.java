@@ -308,6 +308,7 @@ public class ModificarMateria extends javax.swing.JFrame {
                 this.TXTnombre.setText(null);
                 this.TXTcarrera.setText(null);
                 this.CBGrado.setSelectedItem(null);
+                this.CBGrupo.setSelectedItem(null);
                 
     }//GEN-LAST:event_BtnAceptarActionPerformed
 
@@ -321,8 +322,9 @@ public class ModificarMateria extends javax.swing.JFrame {
     private void TablaMateriaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaMateriaMouseClicked
         int rec = this.TablaMateria.getSelectedRow();
         this.TXTnombre.setText(TablaMateria.getValueAt(rec, 1).toString());
-        //this.CBGrado.setSelectedItem(Integer.parseInt(this.CBGrado.getSelectedItem().toString()));
-        //this.CBGrupo.setSelectedItem(this.CBGrupo.getSelectedItem().toString());
+        //JOptionPane.showMessageDialog(rootPane, GD);
+        this.CBGrado.setSelectedItem(TablaMateria.getValueAt(rec, 2).toString());
+        this.CBGrupo.setSelectedItem(TablaMateria.getValueAt(rec, 3).toString());
         this.TXTcarrera.setText(TablaMateria.getValueAt(rec, 4).toString());
         this.IdText.setText(TablaMateria.getValueAt(rec, 0).toString());
         

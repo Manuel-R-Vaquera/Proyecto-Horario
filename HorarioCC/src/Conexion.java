@@ -197,12 +197,13 @@ public class Conexion {
         Statement consulta;
         try {
             consulta = conexion.createStatement();
-            consulta.execute("insert into Clases (ID_Maestro, ID_Materia, ID_Aula, Dia, Hora) values ("
+            consulta.execute("insert into Clases (ID_Maestro, ID_Materia, ID_Aula, Dia, Hora, Suplente) values ("
                     + "" + mClase.getMaestro()
                     + "," + mClase.getMateria()
                     + "," + mClase.getAula()
                     + ",'" + mClase.getDia()
-                    + "'," + mClase.getHora() + ");");
+                    + "'," + mClase.getHora() 
+                    + ",'');");
             return 1;
         } catch (MySQLIntegrityConstraintViolationException be) {
             be.printStackTrace();

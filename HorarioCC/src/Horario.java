@@ -43,13 +43,13 @@ public class Horario extends javax.swing.JFrame {
     ArrayList<String> Suplente = new ArrayList();
     ArrayList<String> ID_Class = new ArrayList();
     String DateToday = "";
-    
-    DefaultTableModel modelo = new DefaultTableModel(){
-   @Override
-   public boolean isCellEditable(int row, int column) {
-      return false;
-   }
-};
+
+    DefaultTableModel modelo = new DefaultTableModel() {
+        @Override
+        public boolean isCellEditable(int row, int column) {
+            return false;
+        }
+    };
 
     String DiaSel = "";
     String AulaSel = "";
@@ -79,12 +79,12 @@ public class Horario extends javax.swing.JFrame {
         mArrayList = mConexion2.consultarClasePorDia(DiaSel);
         String[] Datos;
 
-        modelo = new DefaultTableModel(){
-   @Override
-   public boolean isCellEditable(int row, int column) {
-      return false;
-   }
-};
+        modelo = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
         modelo.addColumn("Hora");
         modelo.addColumn("Materia");
         modelo.addColumn("Maestro");
@@ -95,7 +95,7 @@ public class Horario extends javax.swing.JFrame {
         modelo.addColumn("Disp");
         modelo.addColumn("Suplente");
         modelo.addColumn("ID_Class");
-        
+
         Hora.clear();
         Materia.clear();
         Maestro.clear();
@@ -120,18 +120,17 @@ public class Horario extends javax.swing.JFrame {
             Datos[7] = mClase.getDisponible();
             Datos[8] = mClase.getSuplente();
             Datos[9] = Integer.toString(mClase.getID_Clase());
-            
-            Hora.add("" +mClase.getHora());
-            Materia.add(""+ mClase.getMateria());
-            Maestro.add(""+ mClase.getMaestro());
-            Aula.add(""+ mClase.getAula());
-            Grado.add(""+ mClase.getGrado());
-            Grupo.add(""+ mClase.getGrupo());
-            Carrera.add(""+ mClase.getCarrera());
-            Disponible.add(""+ mClase.getDisponible());
-            Suplente.add(""+ mClase.getSuplente());
-            ID_Class.add(""+ mClase.getID_Clase());
-           
+
+            Hora.add("" + mClase.getHora());
+            Materia.add("" + mClase.getMateria());
+            Maestro.add("" + mClase.getMaestro());
+            Aula.add("" + mClase.getAula());
+            Grado.add("" + mClase.getGrado());
+            Grupo.add("" + mClase.getGrupo());
+            Carrera.add("" + mClase.getCarrera());
+            Disponible.add("" + mClase.getDisponible());
+            Suplente.add("" + mClase.getSuplente());
+            ID_Class.add("" + mClase.getID_Clase());
 
             modelo.addRow(Datos);
             modeloOrdenado = new TableRowSorter<TableModel>(modelo);
@@ -162,12 +161,12 @@ public class Horario extends javax.swing.JFrame {
         mArrayList = mConexion2.consultarClasePorAula(AulaSel);
         String[] Datos;
 
-        modelo = new DefaultTableModel(){
-   @Override
-   public boolean isCellEditable(int row, int column) {
-      return false;
-   }
-};
+        modelo = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
         modelo.addColumn("Hora");
         modelo.addColumn("Materia");
         modelo.addColumn("Maestro");
@@ -178,9 +177,7 @@ public class Horario extends javax.swing.JFrame {
         modelo.addColumn("Disponible");
         modelo.addColumn("Suplente");
         modelo.addColumn("ID_Class");
-        
-        
-        
+
         for (Object mClaseArrays : mArrayList) {
             Datos = new String[10];
             mClase = (Clase) mClaseArrays;
@@ -194,8 +191,6 @@ public class Horario extends javax.swing.JFrame {
             Datos[7] = mClase.getDisponible();
             Datos[8] = mClase.getSuplente();
             Datos[9] = Integer.toString(mClase.getID_Clase());
-            
-           
 
             modelo.addRow(Datos);
             modeloOrdenado = new TableRowSorter<TableModel>(modelo);
@@ -257,6 +252,7 @@ public class Horario extends javax.swing.JFrame {
         BtnSuplente = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        BtnEliminar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -352,7 +348,7 @@ public class Horario extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(122, 122, 122)
                 .addComponent(jLabel3)
-                .addContainerGap(383, Short.MAX_VALUE))
+                .addContainerGap(356, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
@@ -452,6 +448,15 @@ public class Horario extends javax.swing.JFrame {
             }
         });
 
+        BtnEliminar.setBackground(new java.awt.Color(97, 212, 195));
+        BtnEliminar.setText("Eliminar");
+        BtnEliminar.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        BtnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnEliminarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -467,7 +472,8 @@ public class Horario extends javax.swing.JFrame {
                             .addComponent(BtnJueves, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(BtnViernes, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(BtnSalir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(BtnLunes, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(BtnLunes, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(BtnEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 733, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, Short.MAX_VALUE))
@@ -490,9 +496,9 @@ public class Horario extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel4)
-                                .addGap(104, 104, 104)
-                                .addComponent(LHora, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
+                                .addComponent(LHora, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(25, 25, 25)
                                 .addComponent(jLabel2)
                                 .addGap(18, 18, 18)
                                 .addComponent(LID, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -514,7 +520,7 @@ public class Horario extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(110, 110, 110)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -527,9 +533,7 @@ public class Horario extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(BtnJueves)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(BtnViernes)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(BtnSalir))
+                                .addComponent(BtnViernes))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(BtnMac)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -539,7 +543,11 @@ public class Horario extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(BtnLab2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(BtnLab3))))
+                                .addComponent(BtnLab3)))
+                        .addGap(29, 29, 29)
+                        .addComponent(BtnEliminar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(BtnSalir))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -570,7 +578,7 @@ public class Horario extends javax.swing.JFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(BtnSuplente)
                         .addComponent(jButton1)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(48, Short.MAX_VALUE))
         );
 
         pack();
@@ -716,7 +724,7 @@ public class Horario extends javax.swing.JFrame {
         if (mConexion.conectar()) {
             if (mConexion.Disponibilidad(mClase, nClase)) {
                 JOptionPane.showMessageDialog(rootPane, "Materia Modificada Con Éxito");
-                DiaSel = "Lunes";
+                //DiaSel = "Lunes";
                 this.LID.setText(null);
                 this.LHora.setText(null);
                 this.LMateria.setText(null);
@@ -738,7 +746,7 @@ public class Horario extends javax.swing.JFrame {
         if (mConexion.conectar()) {
             if (mConexion.Disponibilidad(mClase, nClase)) {
                 JOptionPane.showMessageDialog(rootPane, "Materia Modificada Con Éxito");
-                DiaSel = "Lunes";
+                //DiaSel = "Lunes";
                 this.LID.setText(null);
                 this.LHora.setText(null);
                 this.LMateria.setText(null);
@@ -763,7 +771,7 @@ public class Horario extends javax.swing.JFrame {
             if (mConexion.conectar()) {
                 if (mConexion.ActualizarSuplente(mClase, nClase)) {
                     JOptionPane.showMessageDialog(rootPane, "Suplente Agrgado Con Éxito");
-                    DiaSel = "Lunes";
+                    //DiaSel = "Lunes";
                     this.LID.setText(null);
                     this.LHora.setText(null);
                     this.LMateria.setText(null);
@@ -786,55 +794,84 @@ public class Horario extends javax.swing.JFrame {
     }//GEN-LAST:event_BtnSuplenteActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
-        String path = "src/Reporte/";
-        String DateTime = Date();
-       
-        String Name_Report = DateTime + ".PDF";
 
-        try {
-            FileOutputStream FOS = new FileOutputStream(path + Name_Report);
-            Document Doc = new Document();
-            PdfWriter.getInstance(Doc, FOS);
-            Doc.open();
-            
-            Doc.add(new Paragraph("\n"));
-            Doc.add(new Paragraph("\n"));
-            Doc.add(new Paragraph("Fecha " + DateToday + "                       Identificador unico de reporte: " + DateTime));
-            Doc.add(new Paragraph("\n"));
-            Doc.add(new Paragraph("\n"));
-            Doc.add(new Paragraph("\n"));
-            Doc.add(new Paragraph("                                                 Horario  " + DiaSel));
-            Doc.add(new Paragraph("\n"));
-            Doc.add(new Paragraph("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - "));
-            Doc.add(new Paragraph("\n"));
-            Doc.add(new Paragraph("Hora    Materia     Maestro     Aula     Grado     Grupo     Carrera     Disponible     Suplente     ID_Class"));
-            Doc.add(new Paragraph("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - "));
-            for (int i = 0; i < ID_Class.size(); i++) {
-                
-                Doc.add(new Paragraph("\n"));
-                Doc.add(new Paragraph(Hora.get(i) + "     " + Materia.get(i)+ "     " + Maestro.get(i)+ "     " + Aula.get(i)+ "     " +Grado.get(i)+ "     " + Grupo.get(i)+ "     " + Carrera.get(i)+ "     " + Disponible.get(i)+ "     " + Suplente.get(i)+ "     " + ID_Class.get(i)));
-                Doc.add(new Paragraph("_______________________________________________________________________"));
-            }
+        if (DiaSel == "") {
+            JOptionPane.showMessageDialog(rootPane, "No ha seleccionado ningún día");
 
-            Doc.close();
+        } else {
+            String path = "src/Reporte/";
+            String DateTime = Date();
+
+            String Name_Report = DateTime + ".PDF";
+
             try {
-                File R = new File(path + "/" + Name_Report);
-                
-                Desktop.getDesktop().open(R);
-                System.out.println(path + "/" + Name_Report);
+                FileOutputStream FOS = new FileOutputStream(path + Name_Report);
+                Document Doc = new Document();
+                PdfWriter.getInstance(Doc, FOS);
+                Doc.open();
+
+                Doc.add(new Paragraph("\n"));
+                Doc.add(new Paragraph("\n"));
+                Doc.add(new Paragraph("Fecha " + DateToday + "                       Identificador unico de reporte: " + DateTime));
+                Doc.add(new Paragraph("\n"));
+                Doc.add(new Paragraph("\n"));
+                Doc.add(new Paragraph("\n"));
+                Doc.add(new Paragraph("                                                 Horario  " + DiaSel));
+                Doc.add(new Paragraph("\n"));
+                Doc.add(new Paragraph("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - "));
+                Doc.add(new Paragraph("\n"));
+                Doc.add(new Paragraph("Hora Materia     Maestro       Aula Grado Grupo     Carrera     Disp   3Suplente"));
+                Doc.add(new Paragraph("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - "));
+                for (int i = 0; i < ID_Class.size(); i++) {
+
+                    Doc.add(new Paragraph("\n"));
+                    Doc.add(new Paragraph(Hora.get(i) + "     " + Materia.get(i) + "     " + Maestro.get(i) + "     " + Aula.get(i) + "     " + Grado.get(i) + "     " + Grupo.get(i) + "     " + Carrera.get(i) + "     " + Disponible.get(i) + "     " + Suplente.get(i)));
+                    Doc.add(new Paragraph("_______________________________________________________________________"));
+                }
+
+                Doc.close();
+                try {
+                    File R = new File(path + "/" + Name_Report);
+
+                    Desktop.getDesktop().open(R);
+                    System.out.println(path + "/" + Name_Report);
+                } catch (Exception E) {
+
+                    JOptionPane.showMessageDialog(null, "Error al abrir");
+                    System.out.println(path + "/" + Name_Report);
+
+                }
+
             } catch (Exception E) {
-                
-                JOptionPane.showMessageDialog(null,"Error al abrir");
-                System.out.println(path + "/" + Name_Report);
-                
+                JOptionPane.showMessageDialog(null, "No se pudo generar");
             }
-           
-        } catch (Exception E) {
-            JOptionPane.showMessageDialog(null,"No se pudo generar");
         }
-        
+
+
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void BtnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEliminarActionPerformed
+        if (this.LID.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(rootPane, "No Ha Seleccionado Ningúna Clase");
+            this.LID.setText(null);
+            this.LHora.setText(null);
+            this.LMateria.setText(null);
+            this.LDisponible.setText(null);
+        } else {
+            mClase.setID_Clase(Integer.parseInt(this.LID.getText()));
+            if (mConexion2.conectar()) {
+                if (mConexion2.EliminarClase(mClase)) {
+                    JOptionPane.showMessageDialog(rootPane, "Clase Eliminada");
+                    this.LID.setText(null);
+                    this.LHora.setText(null);
+                    this.LMateria.setText(null);
+                    this.LDisponible.setText(null);
+                    LimpiarTabla();
+                    setFilasDia();
+                }
+            }
+        }
+    }//GEN-LAST:event_BtnEliminarActionPerformed
 
     private String Date() {
         DateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy");
@@ -846,11 +883,12 @@ public class Horario extends javax.swing.JFrame {
         int Hour = fecha.get(Calendar.HOUR);
         int Minute = fecha.get(Calendar.MINUTE);
         int Second = fecha.get(Calendar.SECOND);
-        
+
         DateTime = "Reporte_de_Horario" + Month + Day + Year + Hour + Minute + Second;
         DateToday = Day + "/" + Month + "/" + Year;
         return DateTime;
     }
+
     /**
      * @param args the command line arguments
      */
@@ -888,6 +926,7 @@ public class Horario extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnDisponible;
+    private javax.swing.JButton BtnEliminar;
     private javax.swing.JButton BtnJueves;
     private javax.swing.JButton BtnLab1;
     private javax.swing.JButton BtnLab2;

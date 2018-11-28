@@ -154,5 +154,19 @@ public class Conexion2 {
 
         return ClaseArray;
     }
+    
+    public boolean EliminarClase(Clase mClase) {
+        Statement consulta;
+
+        try {
+            consulta = conexion.createStatement();
+            consulta.execute("delete from Clases" + 
+                        " where ID_Clase = '" + mClase.getID_Clase() + "';");
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 
 }
