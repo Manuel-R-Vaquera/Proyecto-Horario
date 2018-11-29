@@ -58,7 +58,7 @@ public class AltaMateria extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Nombre:");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(296, 171, 60, 16);
+        jLabel2.setBounds(296, 171, 60, 14);
 
         TXTnombre.setBackground(new java.awt.Color(36, 47, 65));
         TXTnombre.setForeground(new java.awt.Color(255, 255, 255));
@@ -75,7 +75,7 @@ public class AltaMateria extends javax.swing.JFrame {
             }
         });
         getContentPane().add(BTNsair);
-        BTNsair.setBounds(440, 410, 71, 20);
+        BTNsair.setBounds(440, 410, 71, 19);
 
         BTNaceptar.setBackground(new java.awt.Color(97, 212, 195));
         BTNaceptar.setText("Aceptar");
@@ -86,7 +86,7 @@ public class AltaMateria extends javax.swing.JFrame {
             }
         });
         getContentPane().add(BTNaceptar);
-        BTNaceptar.setBounds(320, 410, 70, 20);
+        BTNaceptar.setBounds(320, 410, 70, 19);
 
         jLabel5.setBackground(new java.awt.Color(255, 255, 255));
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
@@ -126,12 +126,12 @@ public class AltaMateria extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Grupo:");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(450, 230, 60, 16);
+        jLabel3.setBounds(450, 230, 60, 14);
 
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Carrera:");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(296, 289, 49, 16);
+        jLabel4.setBounds(296, 289, 41, 14);
 
         TXTcarrera.setBackground(new java.awt.Color(36, 47, 65));
         TXTcarrera.setForeground(new java.awt.Color(255, 255, 255));
@@ -161,7 +161,7 @@ public class AltaMateria extends javax.swing.JFrame {
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Grado:");
         getContentPane().add(jLabel9);
-        jLabel9.setBounds(300, 230, 60, 16);
+        jLabel9.setBounds(300, 230, 60, 14);
 
         CBGrupo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A", "B", "C", "D" }));
         CBGrupo.addActionListener(new java.awt.event.ActionListener() {
@@ -174,7 +174,7 @@ public class AltaMateria extends javax.swing.JFrame {
 
         CBGrado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }));
         getContentPane().add(CBGrado);
-        CBGrado.setBounds(300, 250, 60, 27);
+        CBGrado.setBounds(300, 250, 60, 20);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -190,7 +190,7 @@ public class AltaMateria extends javax.swing.JFrame {
             mMateria.setGrupo(this.CBGrupo.getSelectedItem().toString());
             if (mConexion.conectar()) {
                 if (mConexion.GuardarMateria(mMateria)) {
-                    JOptionPane.showMessageDialog(rootPane, "Materia Guardada con Exito");
+                    JOptionPane.showMessageDialog(rootPane, "Materia Guardada con éxito");
                 }
 
             }

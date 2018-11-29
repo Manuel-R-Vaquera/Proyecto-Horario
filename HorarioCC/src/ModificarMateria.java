@@ -294,7 +294,7 @@ public class ModificarMateria extends javax.swing.JFrame {
                     if(mConexion.conectar())
                         if(mConexion.modificarMateria(mMateria, nMateria))
                         {
-                            JOptionPane.showMessageDialog(rootPane, "Materia Modificado Con Éxito");
+                            JOptionPane.showMessageDialog(rootPane, "Materia ModificadaCon Éxito");
                             modelo.setColumnCount(0);
                             modelo.setRowCount(0);
                             setFilas();

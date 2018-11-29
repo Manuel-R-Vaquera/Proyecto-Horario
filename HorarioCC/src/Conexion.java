@@ -34,7 +34,7 @@ public class Conexion {
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             conexion = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:8889/horariocc", "root", "root");
+                    "jdbc:mysql://localhost:3306/horariocc", "root", "");
             if (conexion != null) {
                 return true;
             } else {
@@ -337,7 +337,7 @@ public class Conexion {
         try {
             consulta = conexion.createStatement();
             ResultSet res = null;
-            res = consulta.executeQuery("SELECT Nombre_Materia FROM Clases Natural Join maestros Natural Join aula Natural Join materia WHERE Dia = '"+ DiaSel + "'");
+            res = consulta.executeQuery("SELECT DISTINCT Nombre_Materia FROM Clases Natural Join maestros Natural Join aula Natural Join materia");
 
             CBMateriaSuplente.addItem("Seleccione una Materia");
             while (res.next()) {

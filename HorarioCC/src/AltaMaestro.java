@@ -52,6 +52,11 @@ public class AltaMaestro extends javax.swing.JFrame {
         TXTnombre.setBackground(new java.awt.Color(36, 47, 65));
         TXTnombre.setForeground(new java.awt.Color(255, 255, 255));
         TXTnombre.setBorder(null);
+        TXTnombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TXTnombreActionPerformed(evt);
+            }
+        });
         TXTnombre.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 TXTnombreKeyTyped(evt);
@@ -203,14 +208,12 @@ public class AltaMaestro extends javax.swing.JFrame {
     }//GEN-LAST:event_BTNsalirActionPerformed
 
     private void TXTnombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TXTnombreKeyTyped
-        // TODO add your handling code here:
-        char error = evt.getKeyChar();
-        if ((error < 'A' || error >'Z') && (error < 'a' || error > 'z') && (error != KeyEvent.VK_SPACE)) {
-            
-            evt.consume();
-        }
-                  
+       
     }//GEN-LAST:event_TXTnombreKeyTyped
+
+    private void TXTnombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TXTnombreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TXTnombreActionPerformed
 
     /**
      * @param args the command line arguments

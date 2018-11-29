@@ -177,7 +177,7 @@ public class Login extends javax.swing.JFrame {
 
                 this.hide();
             } else {
-                JOptionPane.showMessageDialog(null, "constraseña o usuario incorrecta por favor verifica tu informacion");
+                JOptionPane.showMessageDialog(null, "contraseña o usuario incorrectos, por favor verifica tu información");
             }
 
         }
