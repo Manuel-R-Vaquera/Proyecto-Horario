@@ -33,12 +33,17 @@ public class AgregarClase extends javax.swing.JFrame {
     String ID_Mat = "";
     String ID_Au = "";
     String ID_Mae = "";
+    String Carr = "";
+    boolean listo = false;
 
     public AgregarClase() {
         initComponents();
         estado = 0;
         mConexion.conectar();
-        mConexion.CargarMateria(CBMateria);
+        //String Carr = "ISC";
+        mConexion.CargarCarrera(CBCarrera);
+        Carr = this.CBCarrera.getSelectedItem().toString();
+        mConexion.CargarMateria(CBMateria, Carr);
         mConexion.CargarAula(CBAula);
         mConexion.CargarMaestros(CBMaestro);
         this.CBMateria.add(new JSeparator(SwingConstants.VERTICAL));
@@ -125,7 +130,7 @@ public class AgregarClase extends javax.swing.JFrame {
         LCarrera = new javax.swing.JLabel();
         LGrado = new javax.swing.JLabel();
         LGrupo = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        CBCarrera = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -210,7 +215,11 @@ public class AgregarClase extends javax.swing.JFrame {
 
         LGrupo.setForeground(new java.awt.Color(255, 255, 255));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ISC", "IIA", "ITIC", "CP", "IGE", "IA", "IEM" }));
+        CBCarrera.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                CBCarreraItemStateChanged(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -260,14 +269,14 @@ public class AgregarClase extends javax.swing.JFrame {
                             .addComponent(CBDia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(85, 85, 85)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(CBCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(34, 34, 34)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(CBCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
@@ -315,8 +324,8 @@ public class AgregarClase extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGuardarActionPerformed
-        if (this.CBMaestro.getSelectedItem() == "Seleccione un Maestro" || this.CBAula.getSelectedItem() == "Seleccione un Aula" ||
-                this.CBMateria.getSelectedItem() == "Seleccione una Materia") {
+        if (this.CBMaestro.getSelectedItem() == "Seleccione un Maestro" || this.CBAula.getSelectedItem() == "Seleccione un Aula"
+                || this.CBMateria.getSelectedItem() == "Seleccione una Materia") {
             JOptionPane.showMessageDialog(rootPane, "Asegurese de llenar todos los campos");
         } else {
 
@@ -330,26 +339,24 @@ public class AgregarClase extends javax.swing.JFrame {
                 mClase.setDia(this.CBDia.getSelectedItem().toString());
                 mClase.setHora(Integer.parseInt(this.CBHora.getSelectedItem().toString()));
             }
-            
-            
 
             if (mConexion.conectar()) {
-                    switch (mConexion.GuardarClase(mClase)) {
-                        case 1:
-                            JOptionPane.showMessageDialog(rootPane, "Clase Guardada con Exito");
-                            LimpiarTabla();
-                            setFilasTodas();
-                            break;
-                        case 2:
-                            JOptionPane.showMessageDialog(rootPane, "Ya hay una clase asignada en esta HORA, AULA, DIA Y MAESTRO");
-                            LimpiarTabla();
-                            setFilasTodas();
-                            break;
-                        case 3:
-                            JOptionPane.showMessageDialog(rootPane, "ERROR");
-                            break;
-                    }
-                    
+                switch (mConexion.GuardarClase(mClase)) {
+                    case 1:
+                        JOptionPane.showMessageDialog(rootPane, "Clase Guardada con Exito");
+                        LimpiarTabla();
+                        setFilasTodas();
+                        break;
+                    case 2:
+                        JOptionPane.showMessageDialog(rootPane, "Ya hay una clase asignada en esta HORA, AULA, DIA Y MAESTRO");
+                        LimpiarTabla();
+                        setFilasTodas();
+                        break;
+                    case 3:
+                        JOptionPane.showMessageDialog(rootPane, "ERROR");
+                        break;
+                }
+
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Error al conectar");
             }
@@ -365,25 +372,41 @@ public class AgregarClase extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void CBMateriaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CBMateriaMouseClicked
-      //IDM = this.CBMateria.getSelectedItem().toString();
-       //mConexion.CargarMateria2(IDM);
+        //IDM = this.CBMateria.getSelectedItem().toString();
+        //mConexion.CargarMateria2(IDM);
     }//GEN-LAST:event_CBMateriaMouseClicked
 
     private void CBMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CBMateriaActionPerformed
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_CBMateriaActionPerformed
 
     private void CBMateriaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_CBMateriaItemStateChanged
         // TODO add your handling code here:
+        //CBMateria.removeAll();
+
         IDM = this.CBMateria.getSelectedItem().toString();
         if (estado == 1) {
-        this.LGrado.setText(mConexion.CargarLabelGrado(IDM));
-        this.LGrupo.setText(mConexion.CargarLabelGrupo(IDM));
-        this.LCarrera.setText(mConexion.CargarLabelCarrera(IDM));
-        
+            this.LGrado.setText(mConexion.CargarLabelGrado(IDM));
+            this.LGrupo.setText(mConexion.CargarLabelGrupo(IDM));
+            this.LCarrera.setText(mConexion.CargarLabelCarrera(IDM));
         }
+
+
     }//GEN-LAST:event_CBMateriaItemStateChanged
+
+    private void CBCarreraItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_CBCarreraItemStateChanged
+        Carr = this.CBCarrera.getSelectedItem().toString();
+        if (estado == 1) {
+
+            this.CBMateria.removeAllItems();
+            mConexion.conectar();
+            mConexion.CargarMateria(CBMateria, Carr);
+            listo = true;
+        }
+
+
+    }//GEN-LAST:event_CBCarreraItemStateChanged
 
     /**
      * @param args the command line arguments
@@ -423,6 +446,7 @@ public class AgregarClase extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnGuardar;
     private javax.swing.JComboBox<String> CBAula;
+    private javax.swing.JComboBox<String> CBCarrera;
     private javax.swing.JComboBox<String> CBDia;
     private javax.swing.JComboBox<String> CBHora;
     private javax.swing.JComboBox<String> CBMaestro;
@@ -432,7 +456,6 @@ public class AgregarClase extends javax.swing.JFrame {
     private javax.swing.JLabel LGrupo;
     private javax.swing.JTable TablaHorario;
     private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

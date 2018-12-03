@@ -289,6 +289,24 @@ public class Conexion {
 
         return AulaArray;
     }
+    
+    public void CargarCarrera(JComboBox CBCarrera) {
+        Statement consulta;
+        
+        try {
+            consulta = conexion.createStatement();
+            ResultSet res = null;
+            res = consulta.executeQuery("SELECT Carrera FROM materia GROUP BY Carrera");
+            
+            //CBMateria.addItem("Seleccione una");
+            while (res.next()) {
+                CBCarrera.addItem(res.getString("Carrera"));
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     public void CargarMaestros(JComboBox CBMaestro) {
         Statement consulta;
@@ -308,13 +326,14 @@ public class Conexion {
         }
 
     }
-    public void CargarMateria(JComboBox CBMateria) {
+    public void CargarMateria(JComboBox CBMateria, String Carr) {
         Statement consulta;
+        //CBMateria.removeAllItems();
         
         try {
             consulta = conexion.createStatement();
             ResultSet res = null;
-            res = consulta.executeQuery("SELECT Nombre_Materia FROM materia");
+            res = consulta.executeQuery("SELECT Nombre_Materia FROM materia where Carrera = '" + Carr + "'");
 
             CBMateria.addItem("Seleccione una Materia");
             while (res.next()) {
