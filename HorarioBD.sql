@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Nov 28, 2018 at 07:42 PM
+-- Generation Time: Dec 10, 2018 at 09:49 PM
 -- Server version: 5.7.23
 -- PHP Version: 7.2.8
 
@@ -58,19 +58,7 @@ CREATE TABLE `Clases` (
 --
 
 INSERT INTO `Clases` (`ID_Clase`, `ID_Aula`, `ID_Materia`, `ID_Maestro`, `Hora`, `Dia`, `Disponible`, `Suplente`) VALUES
-(4, 2, 17, 5, 9, 'Lunes', 'No', ''),
-(5, 3, 18, 4, 10, 'Lunes', 'No', ''),
-(6, 3, 20, 3, 11, 'Lunes', 'No', ''),
-(7, 2, 19, 3, 7, 'Martes', 'No', ''),
-(8, 3, 20, 3, 8, 'Martes', 'No', ''),
-(9, 3, 20, 3, 9, 'Martes', 'No', ''),
-(10, 1, 16, 4, 10, 'Martes', 'No', ''),
-(11, 1, 16, 4, 7, 'Miercoles', 'No', ''),
-(12, 5, 17, 3, 8, 'Miercoles', 'No', ''),
-(13, 5, 17, 3, 9, 'Miercoles', 'No', ''),
-(14, 4, 21, 1, 10, 'Miercoles', 'No', ''),
-(15, 1, 21, 1, 7, 'Jueves', 'No', ''),
-(17, 2, 23, 6, 7, 'Lunes', 'No', '');
+(1, 1, 3, 2, 7, 'Lunes', 'No', '');
 
 -- --------------------------------------------------------
 
@@ -88,11 +76,9 @@ CREATE TABLE `maestros` (
 --
 
 INSERT INTO `maestros` (`ID_Maestro`, `Nombre_Maestro`) VALUES
-(1, 'Daniel Arredondo'),
-(3, 'Abraham Esquivel'),
-(4, 'Antonia Mireles'),
-(5, 'Jairo Isaac Lira'),
-(6, 'Manuel Ignacio Salas');
+(1, 'Ingnacio Salas Guzmán'),
+(2, 'Antonia Mireles'),
+(3, 'Jairo Lira');
 
 -- --------------------------------------------------------
 
@@ -113,14 +99,9 @@ CREATE TABLE `materia` (
 --
 
 INSERT INTO `materia` (`ID_Materia`, `Nombre_Materia`, `Grado`, `Carrera`, `Grupo`) VALUES
-(16, 'Inglés', 1, 'IA', 'A'),
-(17, 'Ing. de Requerimientos', 9, 'ISC', 'B'),
-(18, 'Fundamentos de Investigación', 1, 'ISC', 'A'),
-(19, 'Lenguajes de Interfaz', 6, 'ISC', 'A'),
-(20, 'Circuitos Integrados', 5, 'ISC', 'C'),
-(21, 'TBD', 6, 'ISC', 'A'),
-(22, 'Taller de Investigación', 7, 'ISC', 'A'),
-(23, 'Taller de Ingeniería de Software', 5, 'ITIC', 'A');
+(1, 'Desarrollo ágil de Software', 7, 'ISC', 'A'),
+(2, 'Ingés', 1, 'IIA', 'A'),
+(3, 'Taller de Investigación', 7, 'IEM', 'A');
 
 --
 -- Indexes for dumped tables
@@ -174,19 +155,19 @@ ALTER TABLE `aula`
 -- AUTO_INCREMENT for table `Clases`
 --
 ALTER TABLE `Clases`
-  MODIFY `ID_Clase` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `ID_Clase` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `maestros`
 --
 ALTER TABLE `maestros`
-  MODIFY `ID_Maestro` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `ID_Maestro` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `materia`
 --
 ALTER TABLE `materia`
-  MODIFY `ID_Materia` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `ID_Materia` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables

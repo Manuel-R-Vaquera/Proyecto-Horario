@@ -27,7 +27,7 @@ public class Conexion2 {
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             conexion = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/horariocc", "root", "");
+                    "jdbc:mysql://localhost:8889/horariocc", "root", "root");
             if (conexion != null) {
                 return true;
             } else {

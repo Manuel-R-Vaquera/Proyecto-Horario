@@ -195,6 +195,14 @@ public class MenuInicio extends javax.swing.JFrame {
     }//GEN-LAST:event_BTNhorarioActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        /*Conexion mConexion = new Conexion();
+        String ret = mConexion.Existemaestro();
+        JOptionPane.showMessageDialog(rootPane, ret);*/
+
+        /*if (mConexion.Existemaestro() == "0") {
+            JOptionPane.showMessageDialog(rootPane, "NO HAY MAESTROS");
+        } else 
+            JOptionPane.showMessageDialog(rootPane, "SI HAY MAESTROS");*/
         AgregarClase mAC = new AgregarClase();
         mAC.show();
         this.hide();

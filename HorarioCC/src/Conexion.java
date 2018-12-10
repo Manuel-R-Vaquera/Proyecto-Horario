@@ -34,7 +34,7 @@ public class Conexion {
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             conexion = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/horariocc", "root", "");
+                    "jdbc:mysql://localhost:8889/horariocc", "root", "root");
             if (conexion != null) {
                 return true;
             } else {
@@ -267,7 +267,7 @@ public class Conexion {
         return MaestroArray;
     }
 
-    public ArrayList consultarAula() {
+public ArrayList consultarAula() {
         Aula mAula = null;
         Statement consulta;
         ResultSet resultado;
@@ -288,6 +288,25 @@ public class Conexion {
         }
 
         return AulaArray;
+    }
+
+
+    public String Existemaestro() {
+        Statement consulta;
+        ResultSet resultado;
+        String ret = "";
+
+        try {
+            consulta = conexion.createStatement();
+            resultado = consulta.executeQuery("SELECT COUNT(*) as cont FROM maestros");
+            while(resultado.next()){
+                ret = resultado.getString("cont");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return ret;
     }
     
     public void CargarCarrera(JComboBox CBCarrera) {
